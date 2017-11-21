@@ -1,23 +1,25 @@
 # Site settings
 
-author: Yourname
-email: example@email.com
+author: yxnne                     # using the https://github.com/mumuxme/materialize-jekyll 's jekyll Theme
+email: 506524339@qq.com
 twitter_username: twitter
-github_username:  github
+github_username:  506524339@qq.com
 googleplus_username: google
 
-head-title: Your blog
-title: Your blog
+head-title: noty Yxnne
+title: Life is the Art of Struggle~
 
-baseurl: "/"    # the subpath of your site, "/blog"
+baseurl: "/"                      # the subpath of your site, "/blog"
 url: ""
 
 # footer 
 description: "I know that what I'm doing looks stupid, but I'm a big boy and really want to do this."
 
-favo: "春梦随云散，飞花逐水流"
-descrpt: "“巧者劳而智者忧，无能者无所求，饱食而遨游，泛若不系之舟”  ——《南华经》"
-
+# the old is cool but I don't want to repeat it.so keep it in comments
+# favo: "春梦随云散，飞花逐水流"
+# descrpt: "“巧者劳而智者忧，无能者无所求，饱食而遨游，泛若不系之舟”  ——《南华经》"
+favo: "知行合一"
+descrpt: "“古人学问无遗力，少壮工夫老始成。纸上得来终觉浅，绝知此事要躬行”  ——陆放翁"
 
 #
 # Build settings
