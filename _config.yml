@@ -9,7 +9,7 @@ googleplus_username: google
 head-title: Life is the Art of Struggle~
 title: noty Yxnne
 
-baseurl: "/"                      # the subpath of your site, "/blog"
+baseurl: ""                      # the subpath of your site, "/blog"
 url: ""
 
 # footer 

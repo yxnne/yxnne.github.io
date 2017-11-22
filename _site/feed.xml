@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your blog</title>
+    <title>noty Yxnne</title>
     <description>I know that what I'm doing looks stupid, but I'm a big boy and really want to do this.</description>
-    <link>/materialize-jekyll/</link>
-    <atom:link href="/materialize-jekyll/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Nov 2017 18:04:19 +0800</pubDate>
-    <lastBuildDate>Tue, 21 Nov 2017 18:04:19 +0800</lastBuildDate>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 22 Nov 2017 18:59:45 +0800</pubDate>
+    <lastBuildDate>Wed, 22 Nov 2017 18:59:45 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -27,8 +27,8 @@
 
 </description>
         <pubDate>Fri, 30 Dec 2016 00:00:00 +0800</pubDate>
-        <link>/materialize-jekyll/posts/jekyll-update/welcome-to-jekyll-Test.html</link>
-        <guid isPermaLink="true">/materialize-jekyll/posts/jekyll-update/welcome-to-jekyll-Test.html</guid>
+        <link>/posts/jekyll-update/welcome-to-jekyll-Test.html</link>
+        <guid isPermaLink="true">/posts/jekyll-update/welcome-to-jekyll-Test.html</guid>
         
         
         <category>jekyll-update</category>
@@ -53,8 +53,8 @@
 
 </description>
         <pubDate>Fri, 30 Dec 2016 00:00:00 +0800</pubDate>
-        <link>/materialize-jekyll/posts/jekyll-update/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">/materialize-jekyll/posts/jekyll-update/welcome-to-jekyll.html</guid>
+        <link>/posts/jekyll-update/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">/posts/jekyll-update/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll-update</category>
@@ -157,8 +157,8 @@
 
 </description>
         <pubDate>Fri, 30 Dec 2016 00:00:00 +0800</pubDate>
-        <link>/materialize-jekyll/posts/readme/post-template.html</link>
-        <guid isPermaLink="true">/materialize-jekyll/posts/readme/post-template.html</guid>
+        <link>/posts/readme/post-template.html</link>
+        <guid isPermaLink="true">/posts/readme/post-template.html</guid>
         
         <category>jekyll</category>
         
