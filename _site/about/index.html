@@ -33,8 +33,10 @@
 
     <header class="site-header">
       <nav class="nav-extended indigo lighten-1">
-        <div class="nav-wrapper">
+        <!-- 这一页是菜单侧滑栏 -->
+<div class="nav-wrapper">
       <span class="site-title">noty Yxnne</span>
+
       <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="mdi mdi-menu white-text"></i></a>
       
       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -51,7 +53,20 @@
             <i class="mdi mdi-rss left indigo-text text-lighten-3"></i>RSS
         </a></li>
       </ul>
+
+
       <ul class="side-nav" id="mobile-navbar">
+        <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images/bg_office.jpg" >
+            </div>
+              <a href="#!user"><img class="circle" src="images/portraits/portrait_qq.jpeg"></a>
+              <a href="#!name"><span class="white-text name">yxnne</span></a>
+              <a href="#!email"><span class="white-text email">506524339@qq.com</span></a>
+            </div>
+
+        </li>
         <li><a href="/" class="waves-effect waves-teal black-text">
             <i class="mdi mdi-home left green-text"></i>Home
         </a></li>
@@ -68,13 +83,15 @@
 </div>
 
 
+
+
         <div class="nav-content">
           <ul class="tabs tabs-transparent">
-            <li class="tab"><a class="active" href="#tab-main">main</a></li>
+            <li class="tab"><a class="active" href="#tab-main">Articles</a></li>
           
-            <li class="tab "><a href="#tab-test">test</a></li>
+            <li class="tab "><a href="#tab-test">Favors</a></li>
           
-            <li class="tab disabled"><a href="#tab-test1">diasble-test</a></li>
+            <li class="tab "><a href="#tab-test1">Favors</a></li>
           
           </ul>
         </div>
@@ -122,7 +139,42 @@
     </div>
   
     <div id="tab-test1">
-      
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
     </div>
   
 

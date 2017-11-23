@@ -1,5 +1,7 @@
+<!-- 这一页是菜单侧滑栏 -->
 <div class="nav-wrapper">
       <span class="site-title">{{ site.title }}</span>
+
       <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="mdi mdi-menu white-text"></i></a>
       
       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -16,7 +18,20 @@
             <i class="mdi mdi-rss left indigo-text text-lighten-3"></i>RSS
         </a></li>
       </ul>
+
+
       <ul class="side-nav" id="mobile-navbar">
+        <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images/bg_office.jpg" >
+            </div>
+              <a href="#!user"><img class="circle" src="images/portraits/portrait_qq.jpeg"></a>
+              <a href="#!name"><span class="white-text name">{{ site.owner }}</span></a>
+              <a href="#!email"><span class="white-text email">{{ site.email }}</span></a>
+            </div>
+
+        </li>
         <li><a href="{{ '/' | prepend: site.baseurl }}" class="waves-effect waves-teal black-text">
             <i class="mdi mdi-home left green-text"></i>Home
         </a></li>
@@ -31,3 +46,5 @@
         </a></li>
       </ul>
 </div>
+
+
