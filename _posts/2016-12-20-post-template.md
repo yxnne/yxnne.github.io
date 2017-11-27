@@ -5,7 +5,7 @@ date:   2016-12-30
 categories: "readme"
 tags: [jekyll, material design]
 author: Lambda
-comment: false
+comment: true
 ---
 
 This is a documentation of posts.

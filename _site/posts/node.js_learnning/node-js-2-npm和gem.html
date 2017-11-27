@@ -8,9 +8,9 @@
   <meta name="theme-color" content="#5c6bc0">
 
   <link rel="shortcut icon" href="/favicon.ico">
-  <title>Welcome to Jekyll!</title>
-  <meta name="description" content="You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...">
-  <link rel="canonical" href="/posts/jekyll-update/welcome-to-jekyll.html">
+  <title>node.js——初见</title>
+  <meta name="description" content="Node.js是基于Chrome JavaScript运行时建立的一个平台，实际上它是对Google Chrome V8引擎进行了封装，它主要用于创建快速的、可扩展的网络应用。Node.js采用事件驱动和非阻塞IO模型，使其变得轻微和高效，非常适合构建运行在分布式设备的数据密集型实时应用。">
+  <link rel="canonical" href="/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html">
   <link rel="alternate" type="application/rss+xml" title="noty Yxnne" href="/feed.xml" />
 
   <link rel="stylesheet" href="/lib/materialize/css/materialize.min.css">
@@ -188,38 +188,66 @@
 
     <p class="grey-text">
       <i class="mdi mdi-calendar"></i>&nbsp;
-      Dec 30, 2016
+      Nov 27, 2017
       &nbsp;&nbsp;<i class="mdi mdi-account-circle"></i>&nbsp;
       yxnne
       &nbsp;&nbsp;<i class="mdi mdi-label"></i>&nbsp;
-      <span class="capitalize">jekyll-update</span>
-      &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Nov 21, 2017
+      <span class="capitalize">node.js_learnning</span>
+      &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Nov 27, 2017
     </p>
 
     <div class="post-header">
-      <h1 class="post-title">Welcome to Jekyll!</h1>
+      <h1 class="post-title">node.js——初见</h1>
 
       
         <i class="post-tag mdi mdi-tag-multiple waves-effect waves-light"></i>
+        
+        <div class="chip">node.js</div>
         
       
     </div>
 
     <article class="post-content">
-      <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+      <p><big>Node.js</big>是基于Chrome JavaScript运行时建立的一个平台，实际上它是对Google Chrome V8引擎进行了封装，它主要用于创建快速的、可扩展的网络应用。Node.js采用事件驱动和非阻塞IO模型，使其变得轻微和高效，非常适合构建运行在分布式设备的数据密集型实时应用。</p>
 
-<p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<p>JS解析器只是JS代码运行的一种环境，浏览器是JS运行的一种环境，浏览器为JS提供了操作DOM对象和window对象等接口。Node.js也是JS的一种运行环境，node.js为JS提供操作文件、创建http服务、创建TCP、UDP服务等接口，所以Node.js可以完成其他后台语言能完成的工作。</p>
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+<h4 id="简单点">简单点：</h4>
+<ul>
+  <li>Node.js 就是运行在服务端的 JavaScript。</li>
+</ul>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+<p>既然是node.js是服务器端运行的js代码，那么初窥node.js最好就是写一个服务端小程序了：</p>
 
-<p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//im</span><span class="n">port</span> <span class="k">module</span> <span class="nn">using</span> <span class="nb">require</span><span class="p">()</span> 
+<span class="sr">//ins</span><span class="n">tance</span> <span class="s1">'http object'</span>
+<span class="n">var</span> <span class="n">http</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">"http"</span><span class="p">);</span>
+<span class="sr">//</span><span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">server</span> <span class="n">and</span> <span class="n">listen</span> <span class="n">port</span><span class="p">:</span><span class="mi">8888</span>
+<span class="n">http</span><span class="p">.</span><span class="nf">createServer</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">request</span> <span class="p">,</span><span class="n">response</span><span class="p">){</span>
 
+	<span class="sr">//sen</span><span class="n">d</span> <span class="no">Http</span> <span class="no">Head</span> <span class="p">:</span> <span class="no">State</span> <span class="p">:</span><span class="mi">200</span> <span class="n">content</span> <span class="n">type</span> <span class="ss">:text</span><span class="o">/</span><span class="n">plain</span> 
+	<span class="n">response</span><span class="p">.</span><span class="nf">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s1">'Content-Type'</span> <span class="p">:</span> <span class="s1">'text/plain'</span><span class="p">});</span>
+	<span class="sr">//sen</span><span class="n">d</span> <span class="n">response</span> 
+	<span class="n">response</span><span class="p">.</span><span class="nf">end</span><span class="p">(</span><span class="s1">'Hello World\n'</span><span class="p">);</span>
+
+
+<span class="p">}).</span><span class="nf">listen</span><span class="p">(</span><span class="mi">8888</span><span class="p">);</span>
+
+<span class="sr">//</span> <span class="n">out</span> <span class="n">put</span> <span class="k">in</span> <span class="n">the</span> <span class="n">console</span> 
+<span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">"the server has started"</span><span class="p">);</span></code></pre></figure>
+
+<ul>
+  <li>
+    <p>require( )是node.js自带的函数，用来载入模块，这里载入了这个模块，把它实例化给了引用http.</p>
+  </li>
+  <li>
+    <p>createServer( )是http对象的函数(方法)，顾名思义，创造一个服务。该函数的参数是一个函数，表示服务的行为；listen( )是http对象的另一个方法，用来监听端口。</p>
+  </li>
+</ul>
+
+<p>最后：</p>
+
+<p><a href="http://www.runoob.com/nodejs/nodejs-http-server.html">感谢菜鸟教程</a></p>
 
     </article>
 
@@ -229,18 +257,18 @@
 <div class="hide-on-small-only">
   <i class="mdi mdi-share-variant material-icons small grey-text waves-effect waves-light"></i>
 
-  <a href="https://plus.google.com/share?url=/posts/jekyll-update/welcome-to-jekyll.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
-  <a href="https://twitter.com/intent/tweet?text=Welcome to Jekyll!&url=/posts/jekyll-update/welcome-to-jekyll.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
-  <a href="https://facebook.com/sharer.php?u=/posts/jekyll-update/welcome-to-jekyll.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
+  <a href="https://plus.google.com/share?url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=node.js——初见&url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
 </div>
 
 <!-- small screen device -->
 <div class="hide-on-med-and-up">
   <i class="mdi mdi-share-variant waves-effect waves-light small tooltipped grey-text" data-position="bottom" data-delay="50" data-tooltip="Share"></i>
 
-  <a href="https://plus.google.com/share?url=/posts/jekyll-update/welcome-to-jekyll.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
-  <a href="https://twitter.com/intent/tweet?text=Welcome to Jekyll!&url=/posts/jekyll-update/welcome-to-jekyll.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
-  <a href="https://facebook.com/sharer.php?u=/posts/jekyll-update/welcome-to-jekyll.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
+  <a href="https://plus.google.com/share?url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=node.js——初见&url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
 </div>
 
 </div>
