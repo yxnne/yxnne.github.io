@@ -12,7 +12,7 @@ JS解析器只是JS代码运行的一种环境，浏览器是JS运行的一种�
 #### 简单点：
 * Node.js 就是运行在服务端的 JavaScript。
 
-既然是node.js是服务器端运行的js代码，那么初窥node.js最好就是写一个服务端小程序了：
+既然是node.js是服务器端运行的js代码，那么初窥node.js最好就是写一个服务端小程序了（新建一个test.js文件并键入下面代码）：
 
 {% highlight ruby %}
 
@@ -35,6 +35,7 @@ console.log("the server has started");
 
 {% endhighlight %}
 
+最后，在终端里面执行：node test.js ，接着访问http://localhost：8888试试，终端里Ctrl+C结束服务
 
 * require( )是node.js自带的函数，用来载入模块，这里载入了这个模块，把它实例化给了引用http.
 
