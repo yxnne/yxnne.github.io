@@ -1,13 +1,23 @@
 ---
 layout: post
-title:  React-官网学习-QuickStart1-HelloWorld
-date:   2017-11-30
+title:  React-官网学习-QuickStart2-JSX(未完成)
+date:   2017-12-1
 categories: react_learnning
 tags: [node.js]
 ---
-<big>React</big> ,来自于FaceBook,是一个JavaScript类库用于构建用户界面的。新的技术都是从HelloWorld开始。（参考的是[React官方文档](https://reactjs.org/docs/hello-world.html),算是简单的翻译了下吧）
+<big>JSX</big> ,JavaScript的一种语法扩展。
 
-关于这部分功能的核心对象是eventEmitter（事件发生器）。
+看看下面这个变量声明：
+
+{% highlight ruby %}
+
+const element = <h1>Hello, world!</h1>;
+
+{% endhighlight %}
+
+这个有趣的语法既不是字符串也不是HTML。
+
+他叫JSX，是一种JavaScript的语法扩展。我们推荐使用JSX来描述UI。JSX可能让你觉得是一种模板语言，可他具有JavaScript的全部功能。
 
 #### Hello World
 开始React的最简单方式是使用CodePen([一个在线编译平台，速度有点慢](https://codepen.io/pen?&editors=0010)),这样你就什么都不需要安装了。你要做的就是在浏览器的另一页，打开它，然后照着接下来的例子敲代码。如果你更偏向用本地环境开发，参照[安装引导](https://reactjs.org/docs/installation.html)
