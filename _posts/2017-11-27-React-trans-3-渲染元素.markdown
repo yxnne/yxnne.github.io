@@ -91,4 +91,4 @@ ReactDOM比较当前组件，包括他的子组件的上一个状态，并且只
 我们的经验表明，比起整天考虑怎样改变UI这种问题，专注考虑UI应该是什么样子更能减少一些类型的Bug。
 
 
-[官网文章 Quick Start :JSX](https://reactjs.org/docs/rendering-elements.html)
+[官网文章 Quick Start :Rendering Elements](https://reactjs.org/docs/rendering-elements.html)
