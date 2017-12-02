@@ -3,7 +3,7 @@ layout: post
 title:  React-官网学习-QuickStart2-JSX
 date:   2017-12-1
 categories: react_learnning
-tags: [node.js]
+tags: [React.js]
 ---
 <big>JSX</big> ,JavaScript的一种语法扩展。
 
