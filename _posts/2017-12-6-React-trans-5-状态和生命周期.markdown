@@ -499,4 +499,4 @@ ReactDOM.render(
 
 在React APP中，一个组件有很多状态或者一个状态也没有是由组件的实现细节决定，而这些细节也是可能变化的。你可以把丰富状态的组件放到鲜有状态的组件之中，反之亦然。
 
-[官网文章 Quick Start :Components and Props](https://reactjs.org/docs/state-and-lifecycle.html)
+[官网文章 Quick Start :State and LifeCycle](https://reactjs.org/docs/state-and-lifecycle.html)

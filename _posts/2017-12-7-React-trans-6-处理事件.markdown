@@ -168,4 +168,4 @@ class LoggingButton extends React.Component {
 
 这两种情况下，参数‘e’都代表了React的事件，都会在传递id参数之后被传递。在箭头函数中，我们显示的传递了它，但是在绑定中它被自动传递了。
 
-[官网文章 Quick Start :Components and Props](https://reactjs.org/docs/state-and-lifecycle.html)
+[官网文章 Quick Start :Handling Events](https://reactjs.org/docs/handling-events.html)
