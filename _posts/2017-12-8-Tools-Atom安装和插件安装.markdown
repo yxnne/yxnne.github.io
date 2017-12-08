@@ -21,35 +21,35 @@ Atom安装很简单，官网下载就好。
 
 #### 插件
 
-##### emmet
+##### __emmet__
 
 emmet是插件一个效率化工具，从sublime上就一直追随至今。[github](https://github.com/emmetio/emmet)
 
-##### atom-ternjs
+##### __atom-ternjs__
 
 JavaScript代码自动补全，代码分析支持是[Tern](https://github.com/ternjs/tern),支持ES5, ES6, ES7, Node.js, jQuery, Angular。[github](https://github.com/tststs/atom-ternjs)
 
-##### atom-beautify
+##### __atom-beautify__
 
 顾名思义，美化代码，格式化工具。[github](https://github.com/Glavin001/atom-beautify)
 
-##### open-in-browser
+##### __open-in-browser__
 
 添加直接在浏览器打开的功能。
 
-##### file-icons
+##### __file-icons__
 
 文件树的icon
 
-##### highlight-line
+##### __highlight-line__
 
 行高亮
 
-##### highlight-selected
+##### __highlight-selected__
 
 选中高亮
 
-##### activate-power-mode
+##### __activate-power-mode__
 
 炸裂的编辑特效 [github](https://atom.io/packages/activate-power-mode)
 
