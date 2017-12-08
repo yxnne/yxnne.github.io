@@ -49,6 +49,10 @@ JavaScript代码自动补全，代码分析支持是[Tern](https://github.com/te
 
 选中高亮
 
+##### activate-power-mode
+
+炸裂的编辑特效 [github](https://atom.io/packages/activate-power-mode)
+
 #### 插件安装的问题
 
 本来插件安装时比较简单的,直接搜索安装就好了：
@@ -68,4 +72,3 @@ $ npm install
 {% endhighlight %}
 
 在windows下面，最后一步使用cnpm(淘宝镜像)成功了，npm太慢。**但是Mac下这个方法居然没有成功，安装完成之后Atom总是打开后没有响应！！！？？？不知为何啊..**
-
