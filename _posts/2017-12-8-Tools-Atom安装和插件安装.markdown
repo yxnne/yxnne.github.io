@@ -52,7 +52,7 @@ JavaScript代码自动补全，代码分析支持是[Tern](https://github.com/te
 #### 插件安装的问题
 
 本来插件安装时比较简单的,直接搜索安装就好了：
-![在Atom中，打开setting](images/artical_using/20171208_atom_install.jpeg)
+![在Atom中，打开setting](https://raw.githubusercontent.com/yxnne/yxnne.github.io/master/images/artical_using/20171208_atom_install.jpeg)
 
 但是实际安装过程中效果不是很好，主要可能是网络问题吧，比如说atom-beautify这个插件，总是安装不成功，设置翻墙也没成。
 
