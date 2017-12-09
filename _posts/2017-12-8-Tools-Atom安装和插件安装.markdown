@@ -8,6 +8,7 @@ tags: [Tools]
 <big>Atom</big> ，号称是21世纪可控制文本编辑器，Github搞出来的东西 [官网](https://atom.io)。Atom是一个使用HTML，JavaScript，CSS和Node.js集成构建的桌面应用程序。它运行在[Electron](https://electronjs.org/)上，这是一个使用Web技术构建跨平台应用程序的框架。
 
 其特点诸如：
+
 * 跨平台：Win/OSX/Linux
 * 内置包管理器，直接搜索安装即可（依赖网络状况）
 * 自动补全
