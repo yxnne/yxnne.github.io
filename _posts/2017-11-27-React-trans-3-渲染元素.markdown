@@ -3,7 +3,7 @@ layout: post
 title:  React-官网学习-QuickStart3-渲染元素
 date:   2017-12-1
 categories: react_learnning
-tags: [React.js]
+tags: [translations_React.js]
 ---
 <big>Element(元素)</big> ,就是描述你在屏幕上见到的东西。
 

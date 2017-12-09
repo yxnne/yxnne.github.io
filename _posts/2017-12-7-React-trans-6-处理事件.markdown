@@ -3,7 +3,7 @@ layout: post
 title:  React-官网学习-QuickStart6-处理事件
 date:   2017-12-7
 categories: react_learnning
-tags: [React.js]
+tags: [translations_React.js]
 ---
 <big>处理事件</big> ，用React,和用DOM非常相似，就是些语法差异：
 

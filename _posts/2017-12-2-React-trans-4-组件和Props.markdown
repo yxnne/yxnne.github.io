@@ -3,7 +3,7 @@ layout: post
 title:  React-官网学习-QuickStart4-组件和Props
 date:   2017-12-2
 categories: react_learnning
-tags: [React.js]
+tags: [translations_React.js]
 ---
 <big>Components(组件)</big> ,使你能够将UI划分成独立的，可复用的部件。每一个部件都能被独立考虑。
 

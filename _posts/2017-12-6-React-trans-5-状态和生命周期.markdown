@@ -3,7 +3,7 @@ layout: post
 title:  React-官网学习-QuickStart5-状态和生命周期
 date:   2017-12-6
 categories: react_learnning
-tags: [React.js]
+tags: [translations_React.js]
 ---
 <big>考虑下</big> 之前章节学习的时钟的例子。在本章，我们将要学习怎样真正复用和封装这个‘时钟’，它会拥有自己的计时器并没秒自己更新自己。
 

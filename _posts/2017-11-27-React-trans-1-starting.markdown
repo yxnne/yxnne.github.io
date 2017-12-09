@@ -3,7 +3,7 @@ layout: post
 title:  React-官网学习-QuickStart1-HelloWorld
 date:   2017-11-30
 categories: react_learnning
-tags: [React.js]
+tags: [translations_React.js]
 ---
 <big>React</big> ,来自于FaceBook,是一个JavaScript类库用于构建用户界面的。新的技术都是从HelloWorld开始。（参考的是[React官方文档](https://reactjs.org/docs/hello-world.html),算是简单的翻译了下吧）
 
