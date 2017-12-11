@@ -53,211 +53,273 @@ ReactDOM.render(
 
 #### 基本列表元素
 
+通常你需要渲染组件里面的列表。
 
-
-这个例子渲染了不同的‘greeting’，根据的就是isLoggedIn这个属性的值。
-
-#### 元素变量
-
-你可以用变量来储存一个元素。这样在组件中那些不需要变更的部分维持现状是，能帮助你条件性渲染组件（需要变更）的部分。
-
-看看这两个新的组件，Logout登出和Login登入按钮：
+我们重构先前的例子，使它接受一个数字数组参数的并且输出一个无序列表。
 
 {% highlight ruby %}
 
-function LoginButton(props) {
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    <li>{number}</li>
+  );
   return (
-    <button onClick={props.onClick}>
-      Login
-    </button>
+    <ul>{listItems}</ul>
   );
 }
 
-function LogoutButton(props) {
-  return (
-    <button onClick={props.onClick}>
-      Logout
-    </button>
-  );
-}
-
-{% endhighlight %}
-
-接着我们创建一个‘状态满满’的组件：LoginControl。
-
-该组件会渲染<LoginButton/>和<LogoutButton/>当中的一个，渲染谁取决于当前它的状态。它也渲染了之前的例子<Greeting/>组件：
-
-{% highlight ruby %}
-
-class LoginControl extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.state = {isLoggedIn: false};
-  }
-
-  handleLoginClick() {
-    this.setState({isLoggedIn: true});
-  }
-
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false});
-  }
-
-  render() {
-    const isLoggedIn = this.state.isLoggedIn;
-
-    let button = null;
-    if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick} />;
-    } else {
-      button = <LoginButton onClick={this.handleLoginClick} />;
-    }
-
-    return (
-      <div>
-        <Greeting isLoggedIn={isLoggedIn} />
-        {button}
-      </div>
-    );
-  }
-}
-
+const numbers = [1, 2, 3, 4, 5];
 ReactDOM.render(
-  <LoginControl />,
+  <NumberList numbers={numbers} />,
   document.getElementById('root')
 );
 
 {% endhighlight %}
 
-声明一个变量而且使用if语句是一个不错的方法来达到条件化渲染组件的目的，有时候你可能想用更简短的语法。下面介绍下载JSX中的行内条件判断。
+代码运行后，你发现有一个错误，说你需要给你的列表的元素一个Key(**bundle.js:1289 Warning: Each child in an array or iterator should have a unique "key" prop.**)。“key”是一个特殊的字符串属性，当你构造列表时，你需要提供这个属性。下一节中我们将讨论为什么这点如此重要。
 
-#### 行内的IF和逻辑&&操作符
-
-任何JSX只要写在花括号里都是可嵌入的。这里面包括了JavaScript的'&&'(且运算符) 。这对于行内条件元素可能比较方便：
+让我们在numbers.map()中分配key给每个列表项来修复这个丢失了key的问题。
 
 {% highlight ruby %}
 
-function Mailbox(props) {
-  const unreadMessages = props.unreadMessages;
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    <li key={number.toString()}>
+      {number}
+    </li>
+  );
   return (
-    <div>
-      <h1>Hello!</h1>
-      {unreadMessages.length > 0 &&
-        <h2>
-          You have {unreadMessages.length} unread messages.
-        </h2>
-      }
-    </div>
+    <ul>{listItems}</ul>
   );
 }
 
-const messages = ['React', 'Re: React', 'Re:Re: React'];
+const numbers = [1, 2, 3, 4, 5];
 ReactDOM.render(
-  <Mailbox unreadMessages={messages} />,
+  <NumberList numbers={numbers} />,
   document.getElementById('root')
 );
 
 {% endhighlight %}
 
+#### Keys
 
-这样之所以奏效，是因为在JavaScript中，true && 表达式 ，值永远等于表达式，且false && 表达式 永远等于false。
-
-因此，要是条件的值是true(成立)，那么&&右边的元素就会被输出；条件不成立，React就会忽略和跳过右边的。
-
-#### 行内的If-Else 使用条件运算符
-
-条件化的行内渲染的另一种方法是使用JavaScript的三目运算符 condition ? true : false。
-
-下面的例子中我们就用这种写法条件化渲染了一小段文字：
+Key帮助React识别哪个元素发生了变更，是增加了？或者被移除了。数组中的元素应该被赋予一个具有稳定性的Key：
 
 {% highlight ruby %}
 
-render() {
-  const isLoggedIn = this.state.isLoggedIn;
-  return (
-    <div>
-      The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
-    </div>
-  );
-}
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((number) =>
+  <li key={number.toString()}>
+    {number}
+  </li>
+);
 
 {% endhighlight %}
 
-它也能用于更大的表达式，尽管它也不太清楚发生什么：
+挑出Key最好的方法是使用一个独立标识于其他兄弟元素的字符串。最常见的就是使用数据里面的ID作为Key：
 
 {% highlight ruby %}
 
-render() {
-  const isLoggedIn = this.state.isLoggedIn;
+const todoItems = todos.map((todo) =>
+  <li key={todo.id}>
+    {todo.text}
+  </li>
+);
+
+{% endhighlight %}
+
+万不得已时（当你没有一个稳定的ID来渲染元素时），你可能使用元素索引作为key。
+
+{% highlight ruby %}
+
+const todoItems = todos.map((todo, index) =>
+  // Only do this if items have no stable IDs
+  <li key={index}>
+    {todo.text}
+  </li>
+);
+
+{% endhighlight %}
+
+要是列表中的次序会改变，我们不推荐使用这种索引Key。这会造成性能问题还会导致关于组建状态的诸多问题。查看Robin Pokorny的论文[ in-depth explanation on the negative impacts of using an index as a key.](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)。如果你选择不是分配一个明确的key，那么儿啊春天就会默认使用索引作为key。
+
+有兴趣了解更多，看看[进一步解释为什么Key是必要的](https://reactjs.org/docs/reconciliation.html#recursing-on-children)。
+
+#### 根据Key提取组件
+
+Key只在数组相关的上下文中生效。
+
+举例说明，要是你提取组件：ListItem，你需要把key保持在身处数组中的<ListItem>元素中，而不是<ListItem>定义时的<li>元素中。
+
+**例子：错误用法**
+
+{% highlight ruby %}
+
+function ListItem(props) {
+  const value = props.value;
   return (
-    <div>
-      {isLoggedIn ? (
-        <LogoutButton onClick={this.handleLogoutClick} />
-      ) : (
-        <LoginButton onClick={this.handleLoginClick} />
+    // Wrong! There is no need to specify the key here:
+    <li key={value.toString()}>
+      {value}
+    </li>
+  );
+}
+
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    // Wrong! The key should have been specified here:
+    <ListItem value={number} />
+  );
+  return (
+    <ul>
+      {listItems}
+    </ul>
+  );
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('root')
+);
+
+{% endhighlight %}
+
+**例子：正确用法**
+
+{% highlight ruby %}
+
+function ListItem(props) {
+  // Correct! There is no need to specify the key here:
+  return <li>{props.value}</li>;
+}
+
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    // Correct! Key should be specified inside the array.
+    <ListItem key={number.toString()}
+              value={number} />
+
+  );
+  return (
+    <ul>
+      {listItems}
+    </ul>
+  );
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('root')
+);
+
+{% endhighlight %}
+
+一个好的经验是：元素在map()调用中使用key。
+
+#### Key在兄弟元素中必须独一无二
+
+Key的使用在一个数组中不能重复，可是，并不需要在全局中唯一。当我们构造了两个不一样的数组是，我们可以使用相同的key：
+
+{% highlight ruby %}
+
+function Blog(props) {
+  const sidebar = (
+    <ul>
+      {props.posts.map((post) =>
+        <li key={post.id}>
+          {post.title}
+        </li>
       )}
+    </ul>
+  );
+  const content = props.posts.map((post) =>
+    <div key={post.id}>
+      <h3>{post.title}</h3>
+      <p>{post.content}</p>
     </div>
   );
-}
-
-{% endhighlight %}
-
-就像JavaScript，选哪一种风格是取决于你和你的团队认为哪一种风格可读性强，这由你决定。但也要记得，任何时候，条件太多太复杂，那么这时候就是提取组件的好时机。
-
-#### 防止组件渲染
-
-少数情况下，你可能想要组件吧自己隐藏，即使组件本身被其他组件渲染着。这样你需要return null 来替代组件本身的输出。
-
-下面的例子中，<warnningBanner/>被渲染与否决定于一个叫warn属性props。如果这个prop属性值为false，那么这个组件将不会被渲染。
-
-{% highlight ruby %}
-
-function WarningBanner(props) {
-  if (!props.warn) {
-    return null;
-  }
-
   return (
-    <div className="warning">
-      Warning!
+    <div>
+      {sidebar}
+      <hr />
+      {content}
     </div>
   );
 }
 
-class Page extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {showWarning: true}
-    this.handleToggleClick = this.handleToggleClick.bind(this);
-  }
-
-  handleToggleClick() {
-    this.setState(prevState => ({
-      showWarning: !prevState.showWarning
-    }));
-  }
-
-  render() {
-    return (
-      <div>
-        <WarningBanner warn={this.state.showWarning} />
-        <button onClick={this.handleToggleClick}>
-          {this.state.showWarning ? 'Hide' : 'Show'}
-        </button>
-      </div>
-    );
-  }
-}
-
+const posts = [
+  {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+  {id: 2, title: 'Installation', content: 'You can install React from npm.'}
+];
 ReactDOM.render(
-  <Page />,
+  <Blog posts={posts} />,
   document.getElementById('root')
 );
 
 {% endhighlight %}
 
-从一个组件的render的方法返回null不会影响第一个生命周期方法。举例来说，componentWillUpdate和componentDidUpdate依然会被调用。
+Key的作用就像是给React暗示，但是它不能向下层组件传递。你要是需要相同的值，那你就另外一个prop名字，显式的把这个值传递。
 
-[官网文章 Quick Start :Conditional Rendering](https://reactjs.org/docs/conditional-rendering.html)
+{% highlight ruby %}
+
+const content = posts.map((post) =>
+  <Post
+    key={post.id}
+    id={post.id}
+    title={post.title} />
+);
+
+{% endhighlight %}
+
+上述例子中，组件Post能读懂props.id，但是不能读懂props.key。
+
+#### 在map()中嵌入JSX
+
+在上面的例子中，我们生命了一个ListItems变量并在里面写了JSX：
+
+{% highlight ruby %}
+
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    <ListItem key={number.toString()}
+              value={number} />
+
+  );
+  return (
+    <ul>
+      {listItems}
+    </ul>
+  );
+}
+
+{% endhighlight %}
+
+JSX允许在任何花括号{}中嵌入表达式，所以我们也能把JSX内联在在map()的返回中：
+
+{% highlight ruby %}
+
+function NumberList(props) {
+  const numbers = props.numbers;
+  return (
+    <ul>
+      {numbers.map((number) =>
+        <ListItem key={number.toString()}
+                  value={number} />
+
+      )}
+    </ul>
+  );
+}
+
+{% endhighlight %}
+
+有时候这种写法清晰，有时候这种写法也让人迷惑。就像JavaScript，为了可读性而把它提取为变量，这完全决定于你。有一点要记住，要是map()中嵌套的太复杂，那么这将是一个提取成组件的好时机。
+
+[官网文章 Quick Start :Lists and Keys](https://reactjs.org/docs/lists-and-keys.html)
