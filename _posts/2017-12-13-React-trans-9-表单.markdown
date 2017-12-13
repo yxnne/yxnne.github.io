@@ -65,307 +65,222 @@ class NameForm extends React.Component {
 
 {% endhighlight %}
 
-代码在控制台输出[2 , 4 , 6 , 8 , 10]。
+既然value属性是我们表单自己设置的，那显示的值永远是this.state.value，反映着‘真理的源头’。由于在每一次键盘输入后都会调用handleChange来更新state状态，显示在界面的数值就会根据用户输入更新。
 
-在React中，将数组转换成元素列表几乎是相同的。
-
-#### 渲染多个组件
-
-使用花括号{}来构造一个元素集合或把JSX写在里面。
-
-下面 ，我们通过map()函数遍历一个number数组。让每个元素都返回自己的'<li>'。最终，我们把（一个<li>的集合）结果赋给变量 listItems。
+使用控制组件，每一个可变状态将会关联一个处理函数。这使得它可以直接修改或者验证用户输入。举例来说，假如我们想强行的把name变成大写字母，我们可以再handleChange中这样写：
 
 {% highlight ruby %}
 
-const numbers = [1, 2, 3, 4, 5];
-const listItems = numbers.map((number) =>
-  <li>{number}</li>
-);
+handleChange(event) {
+  this.setState({value: event.target.value.toUpperCase()});
+}
 
 {% endhighlight %}
 
-我们用<ul>标签把整个listItem包括起来，并在DOM中渲染:
+#### 标签:textarea
+
+在HTML中，textarea标签通过其子元素定义它的文本。
 
 {% highlight ruby %}
 
+<textarea>
+  Hello there, this is some text in a text area
+</textarea>
+
+{% endhighlight %}
+
+在React中，textarea标签使用value属性代替。用这样的方式，使用<textarea>的表单就可以写得和单独使用input的表单极其相似：
+
+{% highlight ruby %}
+
+class EssayForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 'Please write an essay about your favorite DOM element.'
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('An essay was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <textarea value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+{% endhighlight %}
+
+注意我们在构造器中初始化this.state.value，这样textarea一开始就有文字在里面。
+
+#### 标签：select
+
+HTML中，<select> 标签生成下拉表单，举例，下面的HTML生成喜好的列表：
+
+{% highlight ruby %}
+
+<select>
+  <option value="grapefruit">Grapefruit</option>
+  <option value="lime">Lime</option>
+  <option selected value="coconut">Coconut</option>
+  <option value="mango">Mango</option>
+</select>
+
+{% endhighlight %}
+
+注意Coconut选项是默认初始选择的，因为设置了selected属性。React中，不用selected属性，用select根标签中的value属性。这样对于控制组件来说更方便因为你只需在一处更新，就像这样:
+
+{% highlight ruby %}
+
+class FlavorForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: 'coconut'};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('Your favorite flavor is: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Pick your favorite La Croix flavor:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+{% endhighlight %}
+
+总之，这样<input type="text">, <textarea>, 以及 <select> 工作起来就很相似-- 他们都接受value属性，通过value可以实现控制组件。
+
+>注意：
+你也能在value属性中传递一个数组,这样做能实现多选项选中：
+<select multiple={true} value={['B', 'C']}>
+
+#### 处理多种输入
+
+当你需要处理多个被控制的input元素，你需要在每一个元素中添加一个name属性并且让处理函数根据event.target.name的值来决定做什么。
+
+例如：
+
+{% highlight ruby %}
+
+class Reservation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isGoing: true,
+      numberOfGuests: 2
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+    alert(name + " : " + value);
+  }
+
+  render() {
+    return (
+      <form>
+        <label>
+          Is going:
+          <input
+            name="isGoing"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
+        </label>
+        <br />
+        <label>
+          Number of guests:
+          <input
+            name="numberOfGuests"
+            type="number"
+            value={this.state.numberOfGuests}
+            onChange={this.handleInputChange} />
+        </label>
+      </form>
+    );
+  }
+}
+
 ReactDOM.render(
-  <ul>{listItems}</ul>,
+  <Reservation />,
   document.getElementById('root')
 );
 
 {% endhighlight %}
 
-这段代码呈现了一个从1--5的列表。
-
-#### 基本列表元素
-
-通常你需要渲染组件里面的列表。
-
-我们重构先前的例子，使它接受一个数字数组参数的并且输出一个无序列表。
+记下你如何使用ES6[计算属性名语法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names)来更新与input name一致的state:
 
 {% highlight ruby %}
 
-function NumberList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
-    <li>{number}</li>
-  );
-  return (
-    <ul>{listItems}</ul>
-  );
-}
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+this.setState({
+  [name]: value
+});
 
 {% endhighlight %}
 
-代码运行后，你发现有一个错误，说你需要给你的列表的元素一个Key(**bundle.js:1289 Warning: Each child in an array or iterator should have a unique "key" prop.**)。“key”是一个特殊的字符串属性，当你构造列表时，你需要提供这个属性。下一节中我们将讨论为什么这点如此重要。
-
-让我们在numbers.map()中分配key给每个列表项来修复这个丢失了key的问题。
+这和ES5中这样的代码等价:
 
 {% highlight ruby %}
 
-function NumberList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
-    <li key={number.toString()}>
-      {number}
-    </li>
-  );
-  return (
-    <ul>{listItems}</ul>
-  );
-}
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+var partialState = {};
+partialState[name] = value;
+this.setState(partialState);
 
 {% endhighlight %}
 
-#### Keys
 
-Key帮助React识别哪个元素发生了变更，是增加了？或者被移除了。数组中的元素应该被赋予一个具有稳定性的Key：
 
 {% highlight ruby %}
 
-const numbers = [1, 2, 3, 4, 5];
-const listItems = numbers.map((number) =>
-  <li key={number.toString()}>
-    {number}
-  </li>
-);
+
 
 {% endhighlight %}
 
-挑出Key最好的方法是使用一个独立标识于其他兄弟元素的字符串。最常见的就是使用数据里面的ID作为Key：
-
-{% highlight ruby %}
-
-const todoItems = todos.map((todo) =>
-  <li key={todo.id}>
-    {todo.text}
-  </li>
-);
-
-{% endhighlight %}
-
-万不得已时（当你没有一个稳定的ID来渲染元素时），你可能使用元素索引作为key。
-
-{% highlight ruby %}
-
-const todoItems = todos.map((todo, index) =>
-  // Only do this if items have no stable IDs
-  <li key={index}>
-    {todo.text}
-  </li>
-);
-
-{% endhighlight %}
-
-要是列表中的次序会改变，我们不推荐使用这种索引Key。这会造成性能问题还会导致关于组建状态的诸多问题。查看Robin Pokorny的论文[ in-depth explanation on the negative impacts of using an index as a key.](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)。如果你选择不是分配一个明确的key，那么儿啊春天就会默认使用索引作为key。
-
-有兴趣了解更多，看看[进一步解释为什么Key是必要的](https://reactjs.org/docs/reconciliation.html#recursing-on-children)。
-
-#### 根据Key提取组件
-
-Key只在数组相关的上下文中生效。
-
-举例说明，要是你提取组件：ListItem，你需要把key保持在身处数组中的<ListItem>元素中，而不是<ListItem>定义时的<li>元素中。
-
-**例子：错误用法**
-
-{% highlight ruby %}
-
-function ListItem(props) {
-  const value = props.value;
-  return (
-    // Wrong! There is no need to specify the key here:
-    <li key={value.toString()}>
-      {value}
-    </li>
-  );
-}
-
-function NumberList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
-    // Wrong! The key should have been specified here:
-    <ListItem value={number} />
-  );
-  return (
-    <ul>
-      {listItems}
-    </ul>
-  );
-}
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
-
-{% endhighlight %}
-
-**例子：正确用法**
-
-{% highlight ruby %}
-
-function ListItem(props) {
-  // Correct! There is no need to specify the key here:
-  return <li>{props.value}</li>;
-}
-
-function NumberList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
-    // Correct! Key should be specified inside the array.
-    <ListItem key={number.toString()}
-              value={number} />
-
-  );
-  return (
-    <ul>
-      {listItems}
-    </ul>
-  );
-}
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
-
-{% endhighlight %}
-
-一个好的经验是：元素在map()调用中使用key。
-
-#### Key在兄弟元素中必须独一无二
-
-Key的使用在一个数组中不能重复，可是，并不需要在全局中唯一。当我们构造了两个不一样的数组是，我们可以使用相同的key：
-
-{% highlight ruby %}
-
-function Blog(props) {
-  const sidebar = (
-    <ul>
-      {props.posts.map((post) =>
-        <li key={post.id}>
-          {post.title}
-        </li>
-      )}
-    </ul>
-  );
-  const content = props.posts.map((post) =>
-    <div key={post.id}>
-      <h3>{post.title}</h3>
-      <p>{post.content}</p>
-    </div>
-  );
-  return (
-    <div>
-      {sidebar}
-      <hr />
-      {content}
-    </div>
-  );
-}
-
-const posts = [
-  {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
-  {id: 2, title: 'Installation', content: 'You can install React from npm.'}
-];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
-
-{% endhighlight %}
-
-Key的作用就像是给React暗示，但是它不能向下层组件传递。你要是需要相同的值，那你就另外一个prop名字，显式的把这个值传递。
-
-{% highlight ruby %}
-
-const content = posts.map((post) =>
-  <Post
-    key={post.id}
-    id={post.id}
-    title={post.title} />
-);
-
-{% endhighlight %}
-
-上述例子中，组件Post能读懂props.id，但是不能读懂props.key。
-
-#### 在map()中嵌入JSX
-
-在上面的例子中，我们生命了一个ListItems变量并在里面写了JSX：
-
-{% highlight ruby %}
-
-function NumberList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
-    <ListItem key={number.toString()}
-              value={number} />
-
-  );
-  return (
-    <ul>
-      {listItems}
-    </ul>
-  );
-}
-
-{% endhighlight %}
-
-JSX允许在任何花括号{}中嵌入表达式，所以我们也能把JSX内联在在map()的返回中：
-
-{% highlight ruby %}
-
-function NumberList(props) {
-  const numbers = props.numbers;
-  return (
-    <ul>
-      {numbers.map((number) =>
-        <ListItem key={number.toString()}
-                  value={number} />
-
-      )}
-    </ul>
-  );
-}
-
-{% endhighlight %}
-
-有时候这种写法清晰，有时候这种写法也让人迷惑。就像JavaScript，为了可读性而把它提取为变量，这完全决定于你。有一点要记住，要是map()中嵌套的太复杂，那么这将是一个提取成组件的好时机。
-
-[官网文章 Quick Start :Lists and Keys](https://reactjs.org/docs/lists-and-keys.html)
+[官网文章 Quick Start :Form](https://reactjs.org/docs/forms.html)
