@@ -275,12 +275,26 @@ this.setState(partialState);
 
 {% endhighlight %}
 
+另外，由于setState()会自动合并部分state到当前state对象中,我们中需调用该方法更新改变的部分。
 
+#### 控制输入NULL值
+
+明晰在控制组件中value属性防止用户修改输入值，除非你就是这样想的。如果你是有一个明确的值但是这个组件依旧是可编辑的，那有可能会意外的收获udefined或者null这种值。
+
+下面的代码展示了这样的事：（input一开始是锁定着的但是短暂间隔之后又变得可编辑了‘<input value={null} />’--这样会变得可编辑）
 
 {% highlight ruby %}
 
+ReactDOM.render(<input value="hi" />, mountNode);
 
+setTimeout(function() {
+  ReactDOM.render(<input value={null} />, mountNode);
+}, 1000);
 
 {% endhighlight %}
+
+#### 控制组件的替代
+
+使用控制组件有时变的很冗长，因为你需要为每一个数据可以改变的书写事件处理并且通话React组件输送所有的输入状态。这样在当你把一个先前存在的代码库变成React时，或者在非React应用中集成React应用时尤其使人厌烦。着这些状况下，学习下[非控制组件](https://reactjs.org/docs/uncontrolled-components.html),这是一种控制组件的替代技术。
 
 [官网文章 Quick Start :Form](https://reactjs.org/docs/forms.html)
