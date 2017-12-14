@@ -1,0 +1,593 @@
+---
+layout: post
+title:  React-官网学习-QuickStart10-状态提升
+date:   2017-12-14
+categories: react_learnning
+tags: [translations_React.js]
+---
+<big>通常</big>情况下，许多组件需要共同反应数据变化。我们推荐将共享的状态提升到距离他们最近的共同父控件上。让我们看看这样是怎么工作的。
+
+这一节中，我们将创造一个温度计算器根据给定温度来计算水是否沸腾。
+
+我们开始于组件<BoilingVerdict>(沸腾裁决)。这个组件接受一个Celsius（摄氏）温度作为prop参数，打印它是否足够使得水烧开:
+
+{% highlight ruby %}
+
+function BoilingVerdict(props) {
+  if (props.celsius >= 100) {
+    return <p>The water would boil.</p>;
+  }
+  return <p>The water would not boil.</p>;
+}
+
+{% endhighlight %}
+
+下面，我们创建一个组件叫Calculator，它渲染一个Input元素来使用户键入温度，该组件将输入值储存在this.state.temperature。
+
+另外，它也根据当前输入值渲染了BoilingVerdict。
+
+{% highlight ruby %}
+
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {temperature: ''};
+  }
+
+  handleChange(e) {
+    this.setState({temperature: e.target.value});
+  }
+
+  render() {
+    const temperature = this.state.temperature;
+    return (
+      <fieldset>
+        <legend>Enter temperature in Celsius:</legend>
+        <input
+          value={temperature}
+          onChange={this.handleChange} />
+
+        <BoilingVerdict
+          celsius={parseFloat(temperature)} />
+
+      </fieldset>
+    );
+  }
+}
+
+{% endhighlight %}
+
+#### 添加第二个Input
+
+我们的需求是：在摄氏输入的基础上，添加Fahrenheit华氏输入，并且使他们保持同步。
+
+我们以从Calculator中提取TemperatureInput组件作为开始。我们需要添加新的度量单位，它们可以是‘c’或‘f’。
+
+{% highlight ruby %}
+
+const scaleNames = {
+  c: 'Celsius',
+  f: 'Fahrenheit'
+};
+
+class TemperatureInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {temperature: ''};
+  }
+
+  handleChange(e) {
+    this.setState({temperature: e.target.value});
+  }
+
+  render() {
+    const temperature = this.state.temperature;
+    const scale = this.props.scale;
+    return (
+      <fieldset>
+        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <input value={temperature}
+               onChange={this.handleChange} />
+      </fieldset>
+    );
+  }
+}
+
+现在我们可以把Calculator组件变成渲染两个独立的温度输入组件：
+
+{% endhighlight %}
+
+class Calculator extends React.Component {
+  render() {
+    return (
+      <div>
+        <TemperatureInput scale="c" />
+        <TemperatureInput scale="f" />
+      </div>
+    );
+  }
+}
+
+{% highlight ruby %}
+
+我们现在有两个input输入框，但是当你在他们任何一个中输入温度，另外一个不会随之更新。这点和我们的需求相违背：我们想使他们保持同步。
+
+同样我们不能在Calculator中显示BoilingVerdict。Calculator并不知道当前温度因为BoilingVerdict不见了。
+
+#### 书写转换的函数
+
+首先，我们写两个函数是的Celsius和Fahrenheit之间得以转换：
+
+{% endhighlight %}
+
+function toCelsius(fahrenheit) {
+  return (fahrenheit - 32) * 5 / 9;
+}
+
+function toFahrenheit(celsius) {
+  return (celsius * 9 / 5) + 32;
+}
+
+这两个函数能转换数值。我们要写另外一个函数，接受一个String类型的temperature参数和一个转换函数作为参数，并返回String。我们将使用它根据其中一个input输入来计算另外的input的值。
+
+当不可用的温度值传入，函数将输出空字符串，并且，它保持了小数点后三位的输出：
+
+{% highlight ruby %}
+
+function tryConvert(temperature, convert) {
+  const input = parseFloat(temperature);
+  if (Number.isNaN(input)) {
+    return '';
+  }
+  const output = convert(input);
+  const rounded = Math.round(output * 1000) / 1000;
+  return rounded.toString();
+}
+
+{% endhighlight %}
+
+举例子来说：tryConvert('abc',toCelsius)返回空字符串，tryConvert('10.22', toFahrenheit)返回 '50.396'。
+
+#### 状态提升
+
+现在，两个TemperatureInput都在他们自己的状态中维护他们的值：
+
+{% highlight ruby %}
+
+class TemperatureInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {temperature: ''};
+  }
+
+  handleChange(e) {
+    this.setState({temperature: e.target.value});
+  }
+
+  render() {
+    const temperature = this.state.temperature;
+    // ...  
+
+{% endhighlight %}
+
+但我们想使他们彼此同步。当我们更新摄氏输入框，华氏输入框也要呈现出相应的转换后的华氏温度，反之亦然。
+
+在React中，共享状态是通过把某状态放到需要共享状态的组件们的最近共同祖先组件那里来实现的。这叫‘状态提升’。我们将把TemperatureInput的状态从组件中放到Calculator中。
+
+如果Calcutator组件拥有了共享状态，那它对于两个温度输入组件来说就是“真理之源”。它能指示两个输入的值相互保持一致性。由于所有的TemperatureInput组件的props都来自相同的父组件Calculator组件，所以两个温度输入组件会同步。
+
+让我们一步一步看看到底是怎么工作的：
+
+首先，在TemperatureInput组件中把this.state.temperature用this.props.temperature代替。到目前为止，尽管我们之后要从Calculator中传递this.props.temperature，但让我们先假设它是存在的。
+
+{% highlight ruby %}
+
+  render() {
+    // Before: const temperature = this.state.temperature;
+    const temperature = this.props.temperature;
+    // ...
+
+{% endhighlight %}
+
+要知道，props是只读属性。当temperature在TemperatureInput组件里面时，TemperatureInput组件可以通过调用this.setState()改变temperature。但是现在temperature来自于父组件传递的prop属性，这样，TemperatureInput组件就是去了对temperature的控制。
+
+在React中,通常解决这个问题是吧组建"控制"起来。就像原生DOM的input似的，它可以接受value和onChange属性，所以自定义的TemperatureInput组件也能从其父组件Calculator中接受temperature和onTemperatureChanged属性。
+
+现在，TemperatureInput组件想要更新它的temperature值时，它会调用this.props.onTemperatureChange:
+
+{% highlight ruby %}
+
+handleChange(e) {
+    // Before: this.setState({temperature: e.target.value});
+    this.props.onTemperatureChange(e.target.value);
+    // ...
+
+{% endhighlight %}
+
+>注意：
+>在自定义组件里是叫temperature还是onTemperatureChanged这样的props名字没啥特别含义。我们可以起任何名字，像是通用的习惯value或onChange等。
+
+父组件Calculator将会一并提供temperature属性和onTemperatureChange 属性。他将会更改本地状态来处理这些变化，而后重新用新值渲染子组件。我们很快将看到Calculator的实现。
+
+在深入Calculator的变化之前，让我们回顾对TemperatureInput组件的改变先。我们移除了本地的state状态,从读取this.state.temperature变成读取this.props.temperature。在我们想做些变化时，从调用this.setState()变成调用父组件提供的this.props.onTemperatureChanged()：
+
+
+{% highlight ruby %}
+
+class TemperatureInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.props.onTemperatureChange(e.target.value);
+  }
+
+  render() {
+    const temperature = this.props.temperature;
+    const scale = this.props.scale;
+    return (
+      <fieldset>
+        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <input value={temperature}
+               onChange={this.handleChange} />
+      </fieldset>
+    );
+  }
+}
+
+{% endhighlight %}
+
+现在让我们转向Calculator组件。
+
+我们把input的temperature和scale存在Calculator中。这是从input上提升起来的属性，它们将作为“唯一的真理之源”而存在。这是我们为了渲染两个input而所需要的最基本表达。
+
+例如，若是在摄氏输入中输入37，Calculator组件的state将会是：
+
+{% highlight ruby %}
+
+{
+  temperature: '37',
+  scale: 'c'
+}
+
+{% endhighlight %}
+
+接着在华氏输入中输入212，Calculator组件的state将会是：
+
+{% highlight ruby %}
+
+{
+  temperature: '212',
+  scale: 'f'
+}
+
+{% endhighlight %}
+
+我们本可以将两个input的值都存起来，但结果是没有必要。存一个最近变化的的input的value值和其所代表scale就够了。我们可以根据当前的temperature和scale来推算出另一个值。
+
+两个input现在保持同步是因为他们的值都是通过相同的state计算出的。
+
+{% highlight ruby %}
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+    this.state = {temperature: '', scale: 'c'};
+  }
+
+  handleCelsiusChange(temperature) {
+    this.setState({scale: 'c', temperature});
+  }
+
+  handleFahrenheitChange(temperature) {
+    this.setState({scale: 'f', temperature});
+  }
+
+  render() {
+    const scale = this.state.scale;
+    const temperature = this.state.temperature;
+    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+    const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+
+    return (
+      <div>
+        <TemperatureInput
+          scale="c"
+          temperature={celsius}
+          onTemperatureChange={this.handleCelsiusChange} />
+
+        <TemperatureInput
+          scale="f"
+          temperature={fahrenheit}
+          onTemperatureChange={this.handleFahrenheitChange} />
+
+        <BoilingVerdict
+          celsius={parseFloat(celsius)} />
+
+      </div>
+    );
+  }
+}
+
+{% endhighlight %}
+
+{% highlight ruby %}
+
+
+{% endhighlight %}
+
+
+{% highlight ruby %}
+
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+{% endhighlight %}
+
+既然value属性是我们表单自己设置的，那显示的值永远是this.state.value，反映着‘真理的源头’。由于在每一次键盘输入后都会调用handleChange来更新state状态，显示在界面的数值就会根据用户输入更新。
+
+使用控制组件，每一个可变状态将会关联一个处理函数。这使得它可以直接修改或者验证用户输入。举例来说，假如我们想强行的把name变成大写字母，我们可以再handleChange中这样写：
+
+{% highlight ruby %}
+
+handleChange(event) {
+  this.setState({value: event.target.value.toUpperCase()});
+}
+
+{% endhighlight %}
+
+#### 标签:textarea
+
+在HTML中，textarea标签通过其子元素定义它的文本。
+
+{% highlight ruby %}
+
+<textarea>
+  Hello there, this is some text in a text area
+</textarea>
+
+{% endhighlight %}
+
+在React中，textarea标签使用value属性代替。用这样的方式，使用<textarea>的表单就可以写得和单独使用input的表单极其相似：
+
+{% highlight ruby %}
+
+class EssayForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 'Please write an essay about your favorite DOM element.'
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('An essay was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <textarea value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+{% endhighlight %}
+
+注意我们在构造器中初始化this.state.value，这样textarea一开始就有文字在里面。
+
+#### 标签：select
+
+HTML中，<select> 标签生成下拉表单，举例，下面的HTML生成喜好的列表：
+
+{% highlight ruby %}
+
+<select>
+  <option value="grapefruit">Grapefruit</option>
+  <option value="lime">Lime</option>
+  <option selected value="coconut">Coconut</option>
+  <option value="mango">Mango</option>
+</select>
+
+{% endhighlight %}
+
+注意Coconut选项是默认初始选择的，因为设置了selected属性。React中，不用selected属性，用select根标签中的value属性。这样对于控制组件来说更方便因为你只需在一处更新，就像这样:
+
+{% highlight ruby %}
+
+class FlavorForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: 'coconut'};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('Your favorite flavor is: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Pick your favorite La Croix flavor:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+{% endhighlight %}
+
+总之，这样<input type="text">, <textarea>, 以及 <select> 工作起来就很相似-- 他们都接受value属性，通过value可以实现控制组件。
+
+>注意：
+你也能在value属性中传递一个数组,这样做能实现多选项选中：
+<select multiple={true} value={['B', 'C']}>
+
+#### 处理多种输入
+
+当你需要处理多个被控制的input元素，你需要在每一个元素中添加一个name属性并且让处理函数根据event.target.name的值来决定做什么。
+
+例如：
+
+{% highlight ruby %}
+
+class Reservation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isGoing: true,
+      numberOfGuests: 2
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+    alert(name + " : " + value);
+  }
+
+  render() {
+    return (
+      <form>
+        <label>
+          Is going:
+          <input
+            name="isGoing"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
+        </label>
+        <br />
+        <label>
+          Number of guests:
+          <input
+            name="numberOfGuests"
+            type="number"
+            value={this.state.numberOfGuests}
+            onChange={this.handleInputChange} />
+        </label>
+      </form>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Reservation />,
+  document.getElementById('root')
+);
+
+{% endhighlight %}
+
+记下你如何使用ES6[计算属性名语法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names)来更新与input name一致的state:
+
+{% highlight ruby %}
+
+this.setState({
+  [name]: value
+});
+
+{% endhighlight %}
+
+这和ES5中这样的代码等价:
+
+{% highlight ruby %}
+
+var partialState = {};
+partialState[name] = value;
+this.setState(partialState);
+
+{% endhighlight %}
+
+另外，由于setState()会自动合并部分state到当前state对象中,我们中需调用该方法更新改变的部分。
+
+#### 控制输入NULL值
+
+明晰在控制组件中value属性防止用户修改输入值，除非你就是这样想的。如果你是有一个明确的值但是这个组件依旧是可编辑的，那有可能会意外的收获udefined或者null这种值。
+
+下面的代码展示了这样的事：（input一开始是锁定着的但是短暂间隔之后又变得可编辑了‘<input value={null} />’--这样会变得可编辑）
+
+{% highlight ruby %}
+
+ReactDOM.render(<input value="hi" />, mountNode);
+
+setTimeout(function() {
+  ReactDOM.render(<input value={null} />, mountNode);
+}, 1000);
+
+{% endhighlight %}
+
+#### 控制组件的替代
+
+使用控制组件有时变的很冗长，因为你需要为每一个数据可以改变的书写事件处理并且通话React组件输送所有的输入状态。这样在当你把一个先前存在的代码库变成React时，或者在非React应用中集成React应用时尤其使人厌烦。着这些状况下，学习下[非控制组件](https://reactjs.org/docs/uncontrolled-components.html),这是一种控制组件的替代技术。
+
+[官网文章 Quick Start :Form](https://reactjs.org/docs/forms.html)
