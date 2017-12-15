@@ -1,0 +1,47 @@
+---
+layout: post
+title:  React-官网学习-QuickStart11-合成与继承
+date:   2017-12-15
+categories: react_learnning
+tags: [translations_React.js]
+---
+<big>React</big>拥有强大的合成模型，组件间代码复用，我们推荐使用合成来替代继承。
+
+这一节中，我们讨论一些React开发新人们关于继承的常见问题，并展示怎样使用合成来解决。
+
+
+
+{% highlight ruby %}
+
+
+{% endhighlight %}
+
+
+
+
+{% highlight ruby %}
+
+
+{% endhighlight %}
+
+
+
+
+
+{% highlight ruby %}
+
+
+{% endhighlight %}
+
+
+
+
+
+{% highlight ruby %}
+
+
+{% endhighlight %}
+
+
+
+[官网文章 Quick Start :Composition vs Inheritance](https://reactjs.org/docs/composition-vs-inheritance.html)
