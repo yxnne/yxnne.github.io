@@ -95,9 +95,11 @@ class TemperatureInput extends React.Component {
   }
 }
 
+{% endhighlight %}
+
 现在我们可以把Calculator组件变成渲染两个独立的温度输入组件：
 
-{% endhighlight %}
+{% highlight ruby %}
 
 class Calculator extends React.Component {
   render() {
@@ -110,7 +112,7 @@ class Calculator extends React.Component {
   }
 }
 
-{% highlight ruby %}
+{% endhighlight %}
 
 我们现在有两个input输入框，但是当你在他们任何一个中输入温度，另外一个不会随之更新。这点和我们的需求相违背：我们想使他们保持同步。
 
@@ -120,7 +122,7 @@ class Calculator extends React.Component {
 
 首先，我们写两个函数是的Celsius和Fahrenheit之间得以转换：
 
-{% endhighlight %}
+{% highlight ruby %}
 
 function toCelsius(fahrenheit) {
   return (fahrenheit - 32) * 5 / 9;
@@ -129,6 +131,8 @@ function toCelsius(fahrenheit) {
 function toFahrenheit(celsius) {
   return (celsius * 9 / 5) + 32;
 }
+
+{% endhighlight %}
 
 这两个函数能转换数值。我们要写另外一个函数，接受一个String类型的temperature参数和一个转换函数作为参数，并返回String。我们将使用它根据其中一个input输入来计算另外的input的值。
 
@@ -321,7 +325,7 @@ class Calculator extends React.Component {
 
 让我们看看当你输入时发生了什么：
 
-* 就像原生DOM的<input>一样，React调用指定的方法。在我们的例子中，这就是TemperatureInput组件中的handleChange。
+* 就像原生DOM的‘<input>’一样，React调用指定的方法。在我们的例子中，这就是TemperatureInput组件中的handleChange。
 
 * TemperatureInput组件中的handleChanges用新的参数值调用this.props.onTemperatureChange()。它的props属性，包括onTemperatureChange,都是父组件Calculator提供的。
 
