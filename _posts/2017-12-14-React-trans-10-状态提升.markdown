@@ -317,277 +317,37 @@ class Calculator extends React.Component {
 
 {% endhighlight %}
 
-{% highlight ruby %}
+现在，无论编辑哪个Input，Calculator中的this.state.temperature和this.state.scale都会得到更新。任何一个input得到value，用户的所有输入都会被存起，另外的input值总会基于这个值重新计算。
 
+让我们看看当你输入时发生了什么：
 
-{% endhighlight %}
+* 就像原生DOM的<input>一样，React调用指定的方法。在我们的例子中，这就是TemperatureInput组件中的handleChange。
 
+* TemperatureInput组件中的handleChanges用新的参数值调用this.props.onTemperatureChange()。它的props属性，包括onTemperatureChange,都是父组件Calculator提供的。
 
-{% highlight ruby %}
+* 当它最近一次渲染时，Calculator能明确Celsius摄氏输入的TemperatureInput属性是Calcuator的handleCelsiusChange()方法，Fahrenheit 华氏输入的TemperatureInput属性是Calcuator的handleFahrenheitChange()。这样，根据我们的输入Calculator调用其中的一个方法。
 
-class NameForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
+* 这些方法中，Calculator组件通过使用新的input中的value值调用setState()，且当前的input的scale更新了，这样使React重新渲染。
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+* React调用Calculator组件的render()方法来了解新的UI的模样。基于当前temperature和scale的两个input输入框中的值都是被重新计算的。温度装换的方法也是在这里使用的。
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
+* React再调用两个独立的TemperatureInput组件的render()方法，他们的props属性已经右父组件Calculator明晰。React知道UI该是什么样儿。
 
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
+* React DOM（虚拟DOM）更新原生DOM来匹配理想的值。一个是我们刚刚编辑过得input得到了它当前值，另一个是转换过温度的值得input也被更新。
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
-}
+每次更新的步骤都是这样，所以两个input能保持同步。
 
-{% endhighlight %}
+#### 课程收获
 
-既然value属性是我们表单自己设置的，那显示的值永远是this.state.value，反映着‘真理的源头’。由于在每一次键盘输入后都会调用handleChange来更新state状态，显示在界面的数值就会根据用户输入更新。
+任何在React中需要变化的数据都应该是来自于单一的“真理之源”。通常，state是第一个添加到组件中的渲染的。而后，要是另一个组件也需要这个状态，那就把改状态提升到组件们共同的祖先控件中。你应该使用这种[自顶向下数据模型]（https://reactjs.org/docs/lifting-state-up.html）而不是尝试让组件间通信。
 
-使用控制组件，每一个可变状态将会关联一个处理函数。这使得它可以直接修改或者验证用户输入。举例来说，假如我们想强行的把name变成大写字母，我们可以再handleChange中这样写：
+提升状态可能比两方绑定这种方式涉及写更多的“样板”代码。但是也有好处，那就是找出bug，隔离bug会轻松很多。由于任何“居住”在组件的状态是组件单独控制，那么界面上的bug就极大减少了。另外，你也能实现任何自定义逻辑注入或者转换在用户输入中。
 
-{% highlight ruby %}
+如果有些东西需要来自于props或者state,那么它可能不该是state。举个例子，为了代替存储celsiusValue和fahrenheitValue，我们只存储了最新编辑的temperature和它的scale。另一个组件的值在render()方法中是可以通过这两个计算出来的。这样也是我们得以清除或者取整另一个而不丢失精度。（？？）
 
-handleChange(event) {
-  this.setState({value: event.target.value.toUpperCase()});
-}
+当你发现一些UI上的错误，你可以使用 React Developer Tools 来检测props并在DOM树上挪一挪来找出那些正在更新state的组件。这样，你就能从源码中跟踪bug：
 
-{% endhighlight %}
+![官网图片：使用 React Developer Tools](https://d33wubrfki0l68.cloudfront.net/05ade6c3d5ae581cb542d01ac6980aaf703763c5/373b7/react-devtools-state-ef94afc3447d75cdc245c77efb0d63be.gif)
 
-#### 标签:textarea
 
-在HTML中，textarea标签通过其子元素定义它的文本。
-
-{% highlight ruby %}
-
-<textarea>
-  Hello there, this is some text in a text area
-</textarea>
-
-{% endhighlight %}
-
-在React中，textarea标签使用value属性代替。用这样的方式，使用<textarea>的表单就可以写得和单独使用input的表单极其相似：
-
-{% highlight ruby %}
-
-class EssayForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 'Please write an essay about your favorite DOM element.'
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('An essay was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <textarea value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
-}
-
-{% endhighlight %}
-
-注意我们在构造器中初始化this.state.value，这样textarea一开始就有文字在里面。
-
-#### 标签：select
-
-HTML中，<select> 标签生成下拉表单，举例，下面的HTML生成喜好的列表：
-
-{% highlight ruby %}
-
-<select>
-  <option value="grapefruit">Grapefruit</option>
-  <option value="lime">Lime</option>
-  <option selected value="coconut">Coconut</option>
-  <option value="mango">Mango</option>
-</select>
-
-{% endhighlight %}
-
-注意Coconut选项是默认初始选择的，因为设置了selected属性。React中，不用selected属性，用select根标签中的value属性。这样对于控制组件来说更方便因为你只需在一处更新，就像这样:
-
-{% highlight ruby %}
-
-class FlavorForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: 'coconut'};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('Your favorite flavor is: ' + this.state.value);
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Pick your favorite La Croix flavor:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
-          </select>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
-}
-
-{% endhighlight %}
-
-总之，这样<input type="text">, <textarea>, 以及 <select> 工作起来就很相似-- 他们都接受value属性，通过value可以实现控制组件。
-
->注意：
-你也能在value属性中传递一个数组,这样做能实现多选项选中：
-<select multiple={true} value={['B', 'C']}>
-
-#### 处理多种输入
-
-当你需要处理多个被控制的input元素，你需要在每一个元素中添加一个name属性并且让处理函数根据event.target.name的值来决定做什么。
-
-例如：
-
-{% highlight ruby %}
-
-class Reservation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isGoing: true,
-      numberOfGuests: 2
-    };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-    alert(name + " : " + value);
-  }
-
-  render() {
-    return (
-      <form>
-        <label>
-          Is going:
-          <input
-            name="isGoing"
-            type="checkbox"
-            checked={this.state.isGoing}
-            onChange={this.handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Number of guests:
-          <input
-            name="numberOfGuests"
-            type="number"
-            value={this.state.numberOfGuests}
-            onChange={this.handleInputChange} />
-        </label>
-      </form>
-    );
-  }
-}
-
-ReactDOM.render(
-  <Reservation />,
-  document.getElementById('root')
-);
-
-{% endhighlight %}
-
-记下你如何使用ES6[计算属性名语法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names)来更新与input name一致的state:
-
-{% highlight ruby %}
-
-this.setState({
-  [name]: value
-});
-
-{% endhighlight %}
-
-这和ES5中这样的代码等价:
-
-{% highlight ruby %}
-
-var partialState = {};
-partialState[name] = value;
-this.setState(partialState);
-
-{% endhighlight %}
-
-另外，由于setState()会自动合并部分state到当前state对象中,我们中需调用该方法更新改变的部分。
-
-#### 控制输入NULL值
-
-明晰在控制组件中value属性防止用户修改输入值，除非你就是这样想的。如果你是有一个明确的值但是这个组件依旧是可编辑的，那有可能会意外的收获udefined或者null这种值。
-
-下面的代码展示了这样的事：（input一开始是锁定着的但是短暂间隔之后又变得可编辑了‘<input value={null} />’--这样会变得可编辑）
-
-{% highlight ruby %}
-
-ReactDOM.render(<input value="hi" />, mountNode);
-
-setTimeout(function() {
-  ReactDOM.render(<input value={null} />, mountNode);
-}, 1000);
-
-{% endhighlight %}
-
-#### 控制组件的替代
-
-使用控制组件有时变的很冗长，因为你需要为每一个数据可以改变的书写事件处理并且通话React组件输送所有的输入状态。这样在当你把一个先前存在的代码库变成React时，或者在非React应用中集成React应用时尤其使人厌烦。着这些状况下，学习下[非控制组件](https://reactjs.org/docs/uncontrolled-components.html),这是一种控制组件的替代技术。
-
-[官网文章 Quick Start :Form](https://reactjs.org/docs/forms.html)
+[官网文章 Quick Start :lifting state up](https://reactjs.org/docs/lifting-state-up.html)
