@@ -325,7 +325,7 @@ class Calculator extends React.Component {
 
 让我们看看当你输入时发生了什么：
 
-* 就像原生DOM的‘<input>’一样，React调用指定的方法。在我们的例子中，这就是TemperatureInput组件中的handleChange。
+* 就像原生DOM的input标签一样，React调用指定的方法。在我们的例子中，这就是TemperatureInput组件中的handleChange。
 
 * TemperatureInput组件中的handleChanges用新的参数值调用this.props.onTemperatureChange()。它的props属性，包括onTemperatureChange,都是父组件Calculator提供的。
 
