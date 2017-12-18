@@ -7,12 +7,20 @@ tags: [Developing_React]
 ---
 <big>Webpack</big> 可以对React项目打包编
 
-#### 安装速查 (Windows和OSX一样)
+####安装React-Router
 
-**相关终端命令**
+安装的方式还是npm,或者cnpm，终端进入项目根目录下,敲:
 
 {% highlight ruby %}
 
+$ npm i --save react-router
+
+{% endhighlight %}
+
+另外，React Router 4 中对 hashHistory 做了迁移，你需要执行包安装命令 
+{% highlight ruby %}
+
+$ npm i --save react-router-dom 
 
 {% endhighlight %}
 
