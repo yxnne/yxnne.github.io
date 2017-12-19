@@ -21,7 +21,7 @@ $ npm i --save react-router-dom
 
 #### 最基本使用
 
-##### Route路由
+#### Route路由
 
 {% highlight ruby %}
 
@@ -76,7 +76,7 @@ ReactDOM.render(
 
 >它通过这个路径来访问后台，所以会出现404，而把historyApiFallback设置为true那么所有的路径都执行index.html。
 
-##### Route路由嵌套
+#### Route路由嵌套
 
 以前在React Route 2中,Router可以嵌套起来，例如下面写法，假设访问localhost/detail后就会显示AppRootComponent组件中嵌套了ComponentInMain组件：
 
