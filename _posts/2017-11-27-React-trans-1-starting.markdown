@@ -5,11 +5,10 @@ date:   2017-11-30
 categories: react_learnning
 tags: [translations_React.js]
 ---
-<big>React</big> ,来自于FaceBook,是一个JavaScript类库用于构建用户界面的。新的技术都是从HelloWorld开始。（参考的是[React官方文档](https://reactjs.org/docs/hello-world.html),算是简单的翻译了下吧）
-
-关于这部分功能的核心对象是eventEmitter（事件发生器）。
+<big>React</big> ,来自于FaceBook,是一个JavaScript类库用于构建用户界面的。新的技术都是从HelloWorld开始。（参考的是[React官方文档](https://reactjs.org/docs/hello-world.html),算是简单的翻译了下吧）。
 
 #### Hello World
+
 开始React的最简单方式是使用CodePen([一个在线编译平台，速度有点慢](https://codepen.io/pen?&editors=0010)),这样你就什么都不需要安装了。你要做的就是在浏览器的另一页，打开它，然后照着接下来的例子敲代码。如果你更偏向用本地环境开发，参照[安装引导](https://reactjs.org/docs/installation.html)
 
 最简单的React例子就像这样：
