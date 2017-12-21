@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  React + Webpack 环境搭建 简记
-date:   2017-12-9
+title:  基于Webpack来更改antd主题的相关配置笔记
+date:   2017-12-21
 categories: Developing_React
 tags: [Developing_React,antd]
 ---
