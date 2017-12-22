@@ -49,7 +49,7 @@ less-vars-to-js将less文件视作String，以对象形式返回其中的变量�
 
 {% highlight ruby %}
 
-$ npm install babel-plugin-import --save-dev
+$ npm install less-vars-to-js --save-dev
 
 {% endhighlight %}
 
