@@ -12,17 +12,18 @@ tags: [Developing_React]
 页头部分的布局主要使用了antd的[Grid栅格布局](https://ant.design/components/grid-cn/)
 
 >在多数业务情况下，Ant Design需要在设计区域内解决大量信息收纳的问题，因此在 12 栅格系统的基础上，我们将整个设计建议区域按照 24 等分的原则进行划分。
-划分之后的信息区块我们称之为『盒子』。建议横向排列的盒子数量最多四个，最少一个。『盒子』在整个屏幕上占比见上图。设计部分基于盒子的单位定制盒子内部的排版规则，以保证视觉层面的舒适感。
+划分之后的信息区块我们称之为『盒子』。
+>建议横向排列的盒子数量最多四个，最少一个。『盒子』在整个屏幕上占比见上图。设计部分基于盒子的单位定制盒子内部的排版规则，以保证视觉层面的舒适感。
 
 计划布局是，将栅格放入"<header>"中，其左侧放入logo和名字，中间放菜单，最右侧是用户操作（登录/注册 和 信息/登出）。中间很大部分都是导航菜单，用antd中Menu组件构建，最右侧部分是登录注册或者用户信息和登出，具体规划就是未登录时显示登录注册，登录后显示登录成功用户名和登出。
 
 假设点击登录注册，则会弹模态对话框，上面由Tab选项卡控制着两个Form表单的切换。
 
-##### Grid
+##### **Grid**
 
 antd中Grid的使用简单，就是行中Row嵌套列Col，嵌套的大小span属性控制，总大小24。[具体](https://ant.design/components/grid-cn/)
 
-##### Menu
+##### **Menu**
 
 Menu的使用也不难：最外层根部标签使用<Menu>，最基本的是每一项用<Menu.Item>，当然还有Menu.SubMenu等。Menu中selectedKeys可以设置是子项目中key，来表征当前选中的哪个。key是子Menu选项的标识，Menu还有onClick方法。[具体](https://ant.design/components/menu-cn/)
 
@@ -50,7 +51,7 @@ handleClick(e){
 
 {% endhighlight %}
 
-##### Modal
+##### **Modal**
 
 模态框也是简单的使用了下，主要用到了属性有：title，标题；visible，控制显示；onCancel，点击取消时的回调；onOk，点击ok时的回调，okText是ok上按键的文字；[具体](https://ant.design/components/modal-cn/)
 
@@ -73,12 +74,12 @@ setModalVisible(value){
 
 {% endhighlight %}
 
-##### Tabs
+##### **Tabs**
 
 比较简单，Tabs中嵌套TabPane。Tab属性中，type是样式 onChange是切换事件，例如onChange={this.tabCallback.bind(this)}；TabPane属性中tab="Login"设置标签页， key="1"就类似于Menu的key,所以，就可以想到tabCallback中势必也能拿到key,tab不用设置点击回调onClick。[具体](https://ant.design/components/tabs-cn/)
 
 
-##### Form
+##### **Form**
 
 Form还是比较复杂点。上代码先。[具体](https://ant.design/components/form-cn/)
 
