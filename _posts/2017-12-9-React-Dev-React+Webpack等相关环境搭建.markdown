@@ -91,6 +91,9 @@ $ webpack --watch
 //热加载+服务器 指定根目录
 $ webpack-dev-server --content-base src --hot
 
+//热加载+服务器 指定根目录 同时其他机器也可以访问
+$ webpack-dev-server --content-base src --hot --host 0.0.0.0
+
 {% endhighlight %}
 
 #### 简笔记
