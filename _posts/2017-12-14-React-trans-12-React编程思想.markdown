@@ -1,0 +1,175 @@
+---
+layout: post
+title:  React-官网学习-QuickStart11-合成与继承
+date:   2017-12-15
+categories: react_learnning
+tags: [translations_React.js]
+---
+<big>React</big>拥有强大的合成模型，组件间代码复用，我们推荐使用合成来替代继承。
+
+这一节中，我们讨论一些React开发新人们关于继承的常见问题，并展示怎样使用合成来解决。
+
+#### 阻隔
+
+一些组件预先并不知道自己的子组件是什么。这在诸如SideBar或Dialog这类盒子性组件中尤其普遍。
+
+我们推荐这样的组件用一种特别的prop属性叫：children，直接把子组件元素作为prop传入:
+
+{% highlight ruby %}
+
+function FancyBorder(props) {
+  return (
+    <div className={'FancyBorder FancyBorder-' + props.color}>
+      {props.children}
+    </div>
+  );
+}
+
+{% endhighlight %}
+
+这样就使得其他组件自主地给他们传递子组件到JSX的嵌套中（就是这：{props.children}）。
+
+{% highlight ruby %}
+
+function WelcomeDialog() {
+  return (
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        Welcome
+      </h1>
+      <p className="Dialog-message">
+        Thank you for visiting our spacecraft!
+      </p>
+    </FancyBorder>
+  );
+}
+
+{% endhighlight %}
+
+任何在<FancyBorder>之中的JSX标签都会作为children属性值被传递到FancyBorder组件中。由于FancyBorder对{props.children}进行了渲染，嵌套在‘<div>’中所以在最终的显示中有传递进来的元素。
+
+还有不常见的：有时候，你在一个组件上可能需要多个“holes（洞）”。这类情况下你就得提出自己的约定而不是用children了：
+
+{% highlight ruby %}
+
+function SplitPane(props) {
+  return (
+    <div className="SplitPane">
+      <div className="SplitPane-left">
+        {props.left}
+      </div>
+      <div className="SplitPane-right">
+        {props.right}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <SplitPane
+      left={
+        <Contacts />
+      }
+      right={
+        <Chat />
+      } />
+  );
+}
+
+{% endhighlight %}
+
+元素<Contacts>和<Chat>也不过是对象，所以，你能像其他props传递数据那样传递他们。这种方式可能让你想到其他框架中的‘slots’（槽子）,但在react中，你所使用props进行传递的东西是没有限制的。
+
+#### 特殊化
+
+有时候我们得把一些组件视作另一种组件的特殊化。就像我们将WelcomeDialog视作Dialog的特殊化。
+
+在React中，这样也是可以通过组合来达成，所为组合就是更特殊的组件渲染更一般的组件并用props来配置它：
+
+{% highlight ruby %}
+
+function Dialog(props) {
+  return (
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        {props.title}
+      </h1>
+      <p className="Dialog-message">
+        {props.message}
+      </p>
+    </FancyBorder>
+  );
+}
+
+function WelcomeDialog() {
+  return (
+    <Dialog
+      title="Welcome"
+      message="Thank you for visiting our spacecraft!" />
+
+  );
+}
+
+{% endhighlight %}
+
+同样，用类的方式定义的组件使用组合效果也很好。
+
+{% highlight ruby %}
+
+function Dialog(props) {
+  return (
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        {props.title}
+      </h1>
+      <p className="Dialog-message">
+        {props.message}
+      </p>
+      {props.children}
+    </FancyBorder>
+  );
+}
+
+class SignUpDialog extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+    this.state = {login: ''};
+  }
+
+  render() {
+    return (
+      <Dialog title="Mars Exploration Program"
+              message="How should we refer to you?">
+        <input value={this.state.login}
+               onChange={this.handleChange} />
+
+        <button onClick={this.handleSignUp}>
+          Sign Me Up!
+        </button>
+      </Dialog>
+    );
+  }
+
+  handleChange(e) {
+    this.setState({login: e.target.value});
+  }
+
+  handleSignUp() {
+    alert(`Welcome aboard, ${this.state.login}!`);
+  }
+}
+
+{% endhighlight %}
+
+#### 那么继承如何？
+
+在Facebook，我们在成千上万的组件中使用React构建，但我们还没有发现能有什么场景是让我们推荐使用组件间继承层级关系。
+
+Props和组合以一种安全的方式赋予你足够的弹性来实现组件外观和行为。记着，组件有主观的props，可以包括初始值，React元素以及函数。
+
+若你想要在组件间复用非UI函数，我们推荐将之提取成JavaScript独立模块。这样组件可以import模块来使用函数，对象，或者类，而不是去扩展模块。
+
+[官网文章 Quick Start :Composition vs Inheritance](https://reactjs.org/docs/composition-vs-inheritance.html)
