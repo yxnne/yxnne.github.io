@@ -102,7 +102,7 @@ ReactDOM.render(
 
 {% endhighlight %}
 
-不过这样的方法在React Router 4中是行不通的，在v4^版本，不让在<Route>中嵌套，嵌套的话会有warnning而且页面效果出不来：
+不过这样的方法在React Router 4中是行不通的，在v4^版本，不让在"<Route>"中嵌套，嵌套的话会有warnning而且页面效果出不来：
 
 >Warnnig: you should not use <Route component > and <Route children> in the same route ;<Route children> will be ignored.
 
