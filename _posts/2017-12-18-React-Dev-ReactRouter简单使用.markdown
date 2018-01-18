@@ -129,6 +129,35 @@ ReactDOM.render(
 
 其实这样写倒是更好理解的，因为我记得this.props.children本来不就是组件使用时标签内放的东西么。
 
+另外，举个小例子再说说，Switch标签中的东西的切换是这样的规则：
+
+{% highlight ruby %}
+
+<Router>
+    <Switch>
+        <Route exact path="/" component={A}> </Route>
+
+        <B>
+            <Route path="/b1" component={B1}/>
+            <Route path="/b2" component={B2}/>
+        </B>
+
+        <Route path="/c" component={C}/>
+
+     </Switch>
+</Router>
+
+{% endhighlight %}
+
+上述例子中：
+* "/"匹配后页面渲染A组件
+
+* "/b1"匹配后，渲染的应该是<B><B1></B>这个嵌套形式的，同理"/b2"也一样
+
+* "/c"匹配后页面渲染C组件
+
+* 另外，为什么"/"要加参数 exact 是因为要是不加的话，凡是带有"/"的都会匹配到"/"下，也就是说，"/b1"和"/"结果是一样的。
+
 [被多处引用的官方小例](https://reacttraining.com/react-router/web/example/basic)
 
 #### 基本跳转Link
@@ -169,6 +198,10 @@ ReactDOM.render(
 {% endhighlight %}
 
 Router中这样配置path="/list/:id"，冒号后面就是参数的名字
+
+传递的参数会在URL中显示比如/list/123456
+
+在页面组件中接收参数用 this.props.match.params.参数名字 ，这样就拿到了这个参数
 
 * 传递参数
 
