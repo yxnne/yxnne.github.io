@@ -1,25 +1,23 @@
 ---
 layout: post
-title:  "2018,计划"
-date:   2017-2-15
-categories: Personal
-comment: false
+title:  "Ant Motion 的简单使用"
+date:   2018-1-15
+categories: Developing_React
+tags: [Developing_React]
+comment: true
 ---
 
 
-每日计划
-
-月计划
-
-年度目标
- 
 
 {% highlight ruby %}
- 
-
- 
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
 {% endhighlight %}
- 
+
+Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
 [jekyll-docs]: http://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
