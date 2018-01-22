@@ -9,7 +9,7 @@ tags: [Developing_React]
 
 
 ###### <a href="#r1">[内容]尽量减少HTTP请求数</a>
-###### <a href="#r2">[服务器]使用CDN（Content Delivery Network）</a>
+######<a href="#r2">[服务器]使用CDN（Content Delivery Network）</a>
 ###### <a href="#r3">[服务器]添上Expires或者Cache-Control HTTP头</a>
 ###### <a href="#r4">[服务器]Gzip组件</a>
 ###### <a href="#r5">[css]把样式表放在顶部</a>
