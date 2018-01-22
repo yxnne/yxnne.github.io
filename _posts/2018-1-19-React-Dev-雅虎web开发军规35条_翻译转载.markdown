@@ -48,8 +48,8 @@ tags: [Developing_React]
 
 我们已经发现了不少给站点提速的最佳实践，分7类共35条。
 
-#### < a name="r1">1.尽量减少HTTP请求数</a>
-
+#### 1.尽量减少HTTP请求数</a>
+<a name="r1"></a>
 分类: 内容
 
 80%的终端用户响应时间都花在了前端上，其中大部分时间都在下载页面上的各种组件：图片，样式表，脚本，Flash等等。减少组件数必然能够减少页面提交的HTTP请求数。这是让页面更快的关键。
@@ -66,7 +66,7 @@ tags: [Developing_React]
 
 减少页面的HTTP请求数是个起点，这是提升站点首次访问速度的重要指导原则。就像Tenni Theurer的博客 Browser Cache Usage – Exposed! 里写到的,40%到60%的访客在访问你的站点时，缓存都是空的。所以，**加快页面首次访问速度对提高用户体验是极其重要的。**
 
-####< a name="r2">2.使用CDN（Content Delivery Network）</a>
+#### <a name="r2">2.使用CDN（Content Delivery Network）</a>
 
 分类: 服务器
 
