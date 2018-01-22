@@ -8,47 +8,47 @@ tags: [Developing_React]
 雅虎军规是雅虎关于web页面性能优化反面的一些总结，[本文是转载，原文在这里](https://www.tuicool.com/articles/J3uyaa)。
 
 
-##### [内容]尽量减少HTTP请求数
-##### [服务器]使用CDN（Content Delivery Network）
-##### [服务器]添上Expires或者Cache-Control HTTP头
-##### [服务器]Gzip组件
-##### [css]把样式表放在顶部
-##### [js]把脚本放在底部
-##### [css]避免使用CSS表达式
-##### [js, css]把JavaScript和CSS放到外面
-##### [内容]减少DNS查找
-##### [js, css]压缩JavaScript和CSS
-##### [内容]避免重定向
-##### [js]去除重复脚本
-##### [服务器]配置ETags
-##### [内容]让Ajax可缓存
-##### [服务器]尽早清空缓冲区
-##### [服务器]对Ajax用GET请求
-##### [内容]延迟加载组件
-##### [内容]预加载组件
-##### [内容]减少DOM元素的数量
-##### [内容]跨域分离组件
-##### [内容]尽量少用iframe
-##### [内容]杜绝404
-##### [cookie]给Cookie减肥
-##### [cookie]把组件放在不含cookie的域下
-##### [js]尽量减少DOM访问
-##### [js]用智能的事件处理器
-##### [css]选择 舍弃@import
-##### [css]避免使用滤镜
-##### [图片]优化图片
-##### [图片]优化CSS Sprite
-##### [图片]不要用HTML缩放图片
-##### [图片]用小的可缓存的favicon.ico（P.S. 收藏夹图标）
-##### [移动端]保证所有组件都小于25K
-##### [移动端]把组件打包到一个复合文档里
-##### [服务器]避免图片src属性为空
+###### <a href="#r1">[内容]尽量减少HTTP请求数</a>
+###### <a href="#r2">[服务器]使用CDN（Content Delivery Network）</a>
+###### <a href="#r3">[服务器]添上Expires或者Cache-Control HTTP头</a>
+###### <a href="#r4">[服务器]Gzip组件</a>
+###### <a href="#r5">[css]把样式表放在顶部</a>
+###### <a href="#r6">[js]把脚本放在底部</a>
+###### <a href="#r7">[css]避免使用CSS表达式</a>
+###### <a href="#r8">[js, css]把JavaScript和CSS放到外面</a>
+###### <a href="#r9">[内容]减少DNS查找</a>
+###### <a href="#r10">[js, css]压缩JavaScript和CSS</a>
+###### <a href="#r11">[内容]避免重定向</a>
+###### <a href="#r12">[js]去除重复脚本</a>
+###### <a href="#r13">[服务器]配置ETags</a>
+###### <a href="#r14">[内容]让Ajax可缓存</a>
+###### <a href="#r15">[服务器]尽早清空缓冲区</a>
+###### <a href="#r16">[服务器]对Ajax用GET请求</a>
+###### <a href="#r17">[内容]延迟加载组件</a>
+###### <a href="#r18">[内容]预加载组件</a>
+###### <a href="#r19">[内容]减少DOM元素的数量</a>
+###### <a href="#r20">[内容]跨域分离组件</a>
+###### <a href="#r21">[内容]尽量少用iframe</a>
+###### <a href="#r22">[内容]杜绝404</a>
+###### <a href="#r23">[cookie]给Cookie减肥</a>
+###### <a href="#r24">[cookie]把组件放在不含cookie的域下</a>
+###### <a href="#r25">[js]尽量减少DOM访问</a>
+###### <a href="#r26">[js]用智能的事件处理器</a>
+###### <a href="#r27">[css]选择 舍弃@import</a>
+###### <a href="#r28">[css]避免使用滤镜</a>
+###### <a href="#r29">[图片]优化图片</a>
+###### <a href="#r30">[图片]优化CSS Sprite</a>
+###### <a href="#r31">[图片]不要用HTML缩放图片</a>
+###### <a href="#r32">[图片]用小的可缓存的favicon.ico（P.S. 收藏夹图标）</a>
+###### <a href="#r33">[移动端]保证所有组件都小于25K</a>
+###### <a href="#r34">[移动端]把组件打包到一个复合文档里</a>
+###### <a href="#r35">[服务器]避免图片src属性为空</a>
 
 [译文](https://developer.yahoo.com/performance/rules.html)：给网站提速的最佳实践
 
 我们已经发现了不少给站点提速的最佳实践，分7类共35条。
 
-#### 1.尽量减少HTTP请求数
+#### < a name="r1">1.尽量减少HTTP请求数</a>
 
 分类: 内容
 
@@ -66,7 +66,7 @@ tags: [Developing_React]
 
 减少页面的HTTP请求数是个起点，这是提升站点首次访问速度的重要指导原则。就像Tenni Theurer的博客 Browser Cache Usage – Exposed! 里写到的,40%到60%的访客在访问你的站点时，缓存都是空的。所以，**加快页面首次访问速度对提高用户体验是极其重要的。**
 
-#### 2.使用CDN（Content Delivery Network）
+#### < a name="r2">2.使用CDN（Content Delivery Network）</a>
 
 分类: 服务器
 
@@ -80,7 +80,7 @@ __记住终端用户80%到90%的响应时间都花在下载页面组件上了__�
 
 一些互联网公司巨头拥有他们自己的CDN，但用一个CDN服务提供者(就是说第三方)是比较划算的，比如 Akamai Technologies ， EdgeCast ，或者 level3 。对刚刚起步的公司和个人网站来说，CDN服务的成本是很高的，但如果你的用户群却越来越大，越来越全球化，那么用CDN来换取更快的响应时间还是很有必要的。在Yahoo!，把静态内容从应用程序的web服务器搬到CDN(包括上面提到的3rd party和Yahoo自己的 CDN )能够提高终端用户20%甚至更多的响应时间。换到CDN是一个相当简单的代码变更，但这将急剧提升站点的响应速度。
 
-#### 3.添上Expires或者Cache-Control HTTP头
+#### < a name="r3">3.添上Expires或者Cache-Control HTTP头</a>
 
 分类: 服务器
 
@@ -102,7 +102,7 @@ ExpiresDefault "access plus 10 years"
 
 [关于Expires和Cache-Control参考 ](http://www.51testing.com/html/28/116228-238337.html)
 
-#### 4.Gzip组件
+#### < a name="r4">4.Gzip组件</a>
 
 分类: 服务器
 
@@ -124,7 +124,7 @@ Gzipping一般能够把响应压缩到70%左右，目前大约90%的通过浏览
 
 尽可能多地用gzip压缩能够给页面减肥，这也是提升用户体验最简单的方法。
 
-#### 5.把样式表放在顶部
+#### < a name="r5">5.把样式表放在顶部</a>
 
 分类: css
 
@@ -136,7 +136,7 @@ Gzipping一般能够把响应压缩到70%左右，目前大约90%的通过浏览
 
 HTML官方文档 清楚地描述了样式表应该放在页面的HEAD里面：”Unlike A, [LINK] may only appear in the HEAD section of a document, although it may appear any number of times.”（不像a标签，link标签可能只出现在HEAD部分，虽然它能可以出现任意多次）。空白屏幕或者没有样式的falsh内容都是不可取的。理想方案就是遵循HTML官方文档，把样式表放在HTML文档的HEAD部分。
 
-#### 6.把脚本放在底部
+#### < a name="r6">6.把脚本放在底部</a>
 
 分类: javascript
 
@@ -146,7 +146,7 @@ HTML官方文档 清楚地描述了样式表应该放在页面的HEAD里面：�
 
 一个常见的建议是用推迟（deferred）脚本，有 DEFER 属性的脚本意味着不能含有document.write，并且提示浏览器告诉他们可以继续渲染。不幸的是，Firefox不支持 DEFER 属性。在IE中，脚本可能被推迟，但不尽如人意。如果脚本可以推迟，我们就可以把它放到页面底部，页面就可以更快地载入。
 
-#### 7.避免使用CSS表达式
+#### < a name="r7">7.避免使用CSS表达式</a>
 
 分类: css
 
@@ -159,7 +159,7 @@ background-color: expression( (new Date()).getHours()%2 ? "#B8D4FF" : "#F08A00" 
 
 减少CSS表达式重新计算的一种方式就是用一次性表达式，即在表达式第一次计算后就把样式属性设置成一个明确的值，换掉表达式。如果必须要在页面的整个生命周期中动态设置样式属性，可以用事件处理器来代替CSS表达式。如果必须使用CSS表达式，要记得它们可能会被重复计算上千次，从而影响整个页面的性能。
 
-#### 8.把JavaScript和CSS放到外面
+#### < a name="r8">8.把JavaScript和CSS放到外面</a>
 
 分类: javascript, css
 
@@ -173,7 +173,7 @@ background-color: expression( (new Date()).getHours()%2 ? "#B8D4FF" : "#F08A00" 
 
 对典型的站点来说，首页是众多访问量的开始，有很多技术可以对减少HTTP请求起到杠杆作用，就像用外部文件缓存的好处一样。这样的一种技术就是在首页用行内JavaScript和CSS，但在页面载入完成之后动态加载外部文件，这样后续的页面所需的外部文件就已经被放到浏览器的缓存里了。
 
-#### 9.减少DNS查找
+#### < a name="r9">9.减少DNS查找</a>
 
 分类: 内容
 
@@ -187,7 +187,7 @@ IE默认缓存DNS查找30分钟，写在 DnsCacheTimeout 注册表设置中。Fi
 
 减少不同主机名的数量同时也减少了页面能够并行下载的组件数量，避免DNS查找削减了响应时间，而减少并行下载数量却增加了响应时间。我的原则是把组件分散在2到4个主机名下，这是同时减少DNS查找和允许高并发下载的折中方案。
 
-#### 10.压缩JavaScript和CSS
+#### < a name="r10">10.压缩JavaScript和CSS</a>
 
 分类: javascript, css
 
@@ -197,7 +197,7 @@ IE默认缓存DNS查找30分钟，写在 DnsCacheTimeout 注册表设置中。Fi
 
 除了压缩外部脚本和样式，行内的 <script> 和 <style> 块也可以压缩。即使启用了gzip模块，先进行压缩也能够缩小5%或者更多的大小。JavaScript和CSS的用处越来越多，所以压缩代码会有不错的效果。
 
-#### 11.避免重定向
+#### < a name="r11">11.避免重定向</a>
 
 分类: 内容
 
@@ -214,7 +214,7 @@ HTTP/1.1 301 Moved Permanently
 
 重定向最常见的用途是把旧站点连接到新的站点，还可以连接同一站点的不同部分，针对用户的不同情况（浏览器类型，用户帐号类型等等）做一些处理。用重定向来连接两个网站是最简单的，只需要少量的额外代码。虽然在这些时候使用重定向减少了开发人员的开发复杂度，但降低了用户体验。一种替代方案是用 Alias 和 mod_rewrite ，前提是两个代码路径都在相同的服务器上。如果是因为域名变化而使用了重定向，就可以创建一条CNAME（创建一个指向另一个域名的DNS记录作为别名）结合 Alias 或者 mod_rewrite 指令。
 
-#### 12.去除重复脚本
+#### < a name="r12">12.去除重复脚本</a>
 
 分类: javascript
 
@@ -232,7 +232,7 @@ PHP中一个可选方案是创建一个叫 insertScript 的函数：
 <?php insertScript("menu.js") ?>
 除了防止相同脚本被多次引入，这个函数还可以解决脚本相关的其它问题，比如依赖性检查和给脚本文件名添加版本号来支持“永久”有效期HTTP头。
 
-#### 13.配置ETags
+#### < a name="r13">13.配置ETags</a>
 
 分类: 服务器
 
@@ -260,7 +260,8 @@ IIS5.0和6.0也都存在类似的问题。IIS中ETags的格式是 Filetimestamp:
 如果不想用ETags提供的灵活的验证模型，最好把所有的Etag全都去掉，可以用基于组件的时间戳的 Last-Modified HTTP头验证，而且去掉ETag可以减少HTTP响应头以及后续请求的大小。 Microsoft Support article 里写了怎样移除ETags。在Apache中，可以简单地通过在Apache配置文件中添上如下代码来实现：
 
 FileETag none
-#### 14.让Ajax可缓存
+
+#### < a name="r14">14.让Ajax可缓存</a>
 
 分类: 内容
 
@@ -277,7 +278,7 @@ Gzip组件
 
 即使Ajax响应是动态创建的，而且可能只适用于单用户，它们也可以被缓存，而这样会让你的Web 2.0应用更快。
 
-#### 15.尽早清空缓冲区
+#### < a name="r15">15.尽早清空缓冲区</a>
 
 分类: 服务器
 
@@ -294,7 +295,7 @@ Gzip组件
       ... <!-- content -->
 Yahoo!搜索 开创了这项技术，而且真实用户测试研究也证明了使用这种技术的诸多好处。
 
-#### 16.对Ajax用GET请求
+#### < a name="r16">16.对Ajax用GET请求</a>
 
 分类: 服务器
 
@@ -302,7 +303,7 @@ Yahoo!邮箱 团队发现使用 XMLHttpRequest 时，**浏览器的POST请求是
 
 POST请求的一个有趣的副作用是实际上没有发送任何数据，就像GET请求一样。正如 HTTP说明文档 中描述的，GET请求是用来检索信息的。所以它的语义只是用GET请求来请求数据，而不是用来发送需要存储到服务器的数据。
 
-#### 17.延迟加载组件
+#### < a name="r17">17.延迟加载组件</a>
 
 分类: 内容
 
@@ -314,7 +315,7 @@ JavaScript是分隔onload事件之前和之后的一个理想选择。例如，�
 
 最好让性能目标符合其它web开发最佳实践，比如“渐进增强”。如果客户端支持JavaScript，可以提高用户体验，但必须确保页面在不支持JavaScript时也能正常工作。所以，在确定页面运行正常之后，可以用一些延迟加载脚本增强它，以支持一些拖放和动画之类的华丽效果。
 
-#### 18.预加载组件
+#### < a name="r18">18.预加载组件</a>
 
 分类: 内容
 
@@ -326,7 +327,7 @@ JavaScript是分隔onload事件之前和之后的一个理想选择。例如，�
 条件性 预加载——根据用户操作猜测用户将要跳转到哪里并据此预加载。在 search.yahoo.com 的输入框里键入内容后，可以看到那些额外组件是怎样请求加载的。
 提前 预加载——在推出新设计之前预加载。经常在重新设计之后会听到：“这个新网站不错，但比以前更慢了”，一部分原因是用户访问先前的页面都是有旧缓存的，但新的却是一种空缓存状态下的体验。可以通过在将要推出新设计之前预加载一些组件来减轻这种负面影响，老站可以利用浏览器空闲的时间来请求那些新站需要的图片和脚本。
 
-#### 19.减少DOM元素的数量
+#### < a name="r19">19.减少DOM元素的数量</a>
 
 分类: 内容
 
@@ -341,7 +342,7 @@ DOM元素的数量很容易测试，只需要在Firebug的控制台里输入：
 document.getElementsByTagName('*').length
 那么多少DOM元素才算是太多呢？可以参考其它类似的标记良好的页面，例如 Yahoo!主页 是一个相当繁忙的页面，但只有不到700个元素（HTML标签）。
 
-#### 20.跨域分离组件
+#### < a name="r20">20.跨域分离组件</a>
 
 分类: 内容
 
@@ -349,7 +350,7 @@ document.getElementsByTagName('*').length
 
 更多信息请查看Tenni Theurer和Patty Chi的文章： Maximizing Parallel Downloads in the Carpool Lane
 
-#### 21.尽量少用iframe
+#### < a name="r21">21.尽量少用iframe</a>
 
 分类: 内容
 
@@ -366,7 +367,7 @@ document.getElementsByTagName('*').length
 阻塞页面加载
 非语义
 
-#### 22.杜绝404
+#### < a name="r22">22.杜绝404</a>
 
 分类: 内容
 
@@ -374,7 +375,7 @@ HTTP请求代价高昂，完全没有必要用一个HTTP请求去获取一个无
 
 有些站点用的是有帮助的404——“你的意思是xxx？”，这样做有利于用户体验，，但也浪费了服务器资源（比如数据库等等）。最糟糕的是链接到的外部JavaScript有错误而且结果是404。首先，这种下载将阻塞并行下载。其次，浏览器会试图解析404响应体，因为它是JavaScript代码，需要找出其中可用的部分。
 
-#### 23.给Cookie减肥
+#### < a name="r23">23.给Cookie减肥</a>
 
 分类: cookie
 
@@ -387,7 +388,7 @@ HTTP请求代价高昂，完全没有必要用一个HTTP请求去获取一个无
 注意给cookie设置合适的域级别，以免影响其它子域
 设置合适的有效期，更早的有效期或者none可以更快的删除cookie，提高用户响应时间
 
-#### 24.把组件放在不含cookie的域下
+#### < a name="r24">24.把组件放在不含cookie的域下</a>
 
 分类: cookie
 
@@ -397,7 +398,7 @@ HTTP请求代价高昂，完全没有必要用一个HTTP请求去获取一个无
 
 把静态组件部署在不含cookie的域下还有一个好处是有些代理可能会拒绝缓存带cookie的组件。有一点需要注意：如果不知道应该用example.org还是www.example.org作为主页，可以考虑一下cookie的影响。省略www的话，就只能把cookie写到 *.example.org ，所以因为性能原因最好用www子域，并且把cookie写到这个子域下。
 
-#### 25.尽量减少DOM访问
+#### < a name="r25">25.尽量减少DOM访问</a>
 
 分类: javascript
 
@@ -408,7 +409,7 @@ HTTP请求代价高昂，完全没有必要用一个HTTP请求去获取一个无
 避免用JavaScript修复布局问题
 更多信息请查看YUI影院里Julien Lecomte的文章： High Performance Ajax Applications
 
-#### 26.用智能的事件处理器
+#### < a name="r26">26.用智能的事件处理器</a>
 
 分类: javascript
 
@@ -418,7 +419,7 @@ HTTP请求代价高昂，完全没有必要用一个HTTP请求去获取一个无
 
 更多信息请查看YUI影院里Julien Lecomte的文章： High Performance Ajax Applications
 
-#### 27.选择<link>舍弃@import
+#### < a name="r27">27.选择<link>舍弃@import</a>
 
 分类: css
 
@@ -426,7 +427,7 @@ HTTP请求代价高昂，完全没有必要用一个HTTP请求去获取一个无
 
 在IE中用 @import 与在底部用  link  效果一样，所以最好不要用它。
 
-#### 28.避免使用滤镜
+#### < a name="r28">28.避免使用滤镜</a>
 
 分类: css
 
@@ -434,7 +435,7 @@ IE专有的 AlphaImageLoader 滤镜可以用来修复IE7之前的版本中半透
 
 最好的方法是干脆不要用 AlphaImageLoader ，而优雅地降级到用在IE中支持性很好的PNG8图片来代替。如果非要用 AlphaImageLoader ，应该用下划线hack： _filter 来避免影响IE7及更高版本的用户。
 
-#### 29.优化图片
+#### < a name="r29">29.优化图片</a>
 
 分类: 图片
 
@@ -451,7 +452,7 @@ pngcrush image.png -rem alla -reduce -brute result.png
 用jpegtran处理所有JPEG图片，这个工具支持对JPEG图片的无损操作比如旋转，还可以用来去除注释和其它无用信息（比如EXIF信息 P.S. 数码照片信息，焦距光圈之类的）： 
 jpegtran -copy none -optimize -perfect src.jpg dest.jpg
 
-#### 30.优化CSS Sprite
+#### < a name="r30">30.优化CSS Sprite</a>
 
 分类: 图片
 
@@ -459,7 +460,7 @@ jpegtran -copy none -optimize -perfect src.jpg dest.jpg
 组合Sprite图片中的相似颜色可以保持低色数，最理想的是256色以下PNG8格式
 “对移动端友好”，不要在Sprite图片中留下太大的空隙。虽然不会在很大程度上影响图片文件的大小，但这样做可以节省用户代理把图片解压成像素映射时消耗的内存。100×100的图片是1万个像素，而1000×1000的图片就是100万个像素了。
 
-#### 31.不要用HTML缩放图片
+#### < a name="r31">31.不要用HTML缩放图片</a>
 
 分类: 图片
 
@@ -468,7 +469,7 @@ jpegtran -copy none -optimize -perfect src.jpg dest.jpg
 img width="100" height="100" src="mycat.jpg" alt="My Cat" 
 那么图片本身（mycat.jpg）应该是100x100px的，而不是去缩小500x500px的图片。
 
-#### 32.用小的可缓存的favicon.ico（P.S. 收藏夹图标）
+#### < a name="r32">32.用小的可缓存的favicon.ico（P.S. 收藏夹图标）</a>
 
 分类: 图片
 
@@ -480,7 +481,7 @@ favicon.ico是放在服务器根目录的图片，它会带来一堆麻烦，因
 设置合适的有效期HTTP头（以后如果想换的话就不能重命名了），把有效期设置为几个月后一般比较安全，可以通过检查当前favicon.ico的最后修改日期来确保变更能让浏览器知道。
 Imagemagick 可以用来处理小收藏夹图标
 
-#### 33.保证所有组件都小于25K
+#### < a name="r33">33.保证所有组件都小于25K</a>
 
 分类: 移动
 
@@ -488,13 +489,13 @@ Imagemagick 可以用来处理小收藏夹图标
 
 更多信息请查看Wayne Shea和Tenni Theurer的文章： Performance Research, Part 5: iPhone Cacheability – Making it Stick
 
-#### 34.把组件打包到一个复合文档里
+#### < a name="r34">34.把组件打包到一个复合文档里</a>
 
 分类: 移动
 
 把各个组件打包成一个像有附件的电子邮件一样的复合文档里，可以用一个HTTP请求获取多个组件（记住一点：HTTP请求是代价高昂的）。用这种方式的时候，要先检查用户代理是否支持（iPhone就不支持）。
 
-#### 35.避免图片src属性为空
+#### < a name="r35">35.避免图片src属性为空</a>
 
 分类: 服务器
 
