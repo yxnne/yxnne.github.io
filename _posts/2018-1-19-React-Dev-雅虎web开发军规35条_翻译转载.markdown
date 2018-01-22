@@ -9,7 +9,7 @@ tags: [Developing_React]
 
 
 ###### <a href="#r1">[内容]尽量减少HTTP请求数</a>
-######<a href="#r2">[服务器]使用CDN（Content Delivery Network）</a>
+###### <a href="#r2">[服务器]使用CDN（Content Delivery Network）</a>
 ###### <a href="#r3">[服务器]添上Expires或者Cache-Control HTTP头</a>
 ###### <a href="#r4">[服务器]Gzip组件</a>
 ###### <a href="#r5">[css]把样式表放在顶部</a>
@@ -66,7 +66,7 @@ tags: [Developing_React]
 
 减少页面的HTTP请求数是个起点，这是提升站点首次访问速度的重要指导原则。就像Tenni Theurer的博客 Browser Cache Usage – Exposed! 里写到的,40%到60%的访客在访问你的站点时，缓存都是空的。所以，**加快页面首次访问速度对提高用户体验是极其重要的。**
 
-#### < a name="r2">2.使用CDN（Content Delivery Network）</a>
+####< a name="r2">2.使用CDN（Content Delivery Network）</a>
 
 分类: 服务器
 
