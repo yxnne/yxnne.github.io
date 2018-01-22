@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  雅虎web开发军规35条_翻译_转载
-date:   2017-12-18
+date:   2018-01-19
 categories: Developing_React
 tags: [Developing_React]
 ---
@@ -355,12 +355,12 @@ document.getElementsByTagName('*').length
 
 用iframe可以把一个HTML文档插入到父文档里，重要的是明白iframe是如何工作的并高效地使用它。
 
-<iframe> 的优点：
+ 的优点：
 
 引入缓慢的第三方内容，比如标志和广告
 安全沙箱
 并行下载脚本
-<iframe> 的缺点：
+ 的缺点：
 
 代价高昂，即使是空白的iframe
 阻塞页面加载
@@ -424,7 +424,7 @@ HTTP请求代价高昂，完全没有必要用一个HTTP请求去获取一个无
 
 前面提到了一个最佳实践：为了实现逐步渲染，CSS应该放在顶部。
 
-在IE中用 @import 与在底部用 <link> 效果一样，所以最好不要用它。
+在IE中用 @import 与在底部用  link  效果一样，所以最好不要用它。
 
 #### 28.避免使用滤镜
 
@@ -465,7 +465,7 @@ jpegtran -copy none -optimize -perfect src.jpg dest.jpg
 
 不要因为在HTML中可以设置宽高而使用本不需要的大图。如果需要
 
-<img width="100" height="100" src="mycat.jpg" alt="My Cat" />
+img width="100" height="100" src="mycat.jpg" alt="My Cat" 
 那么图片本身（mycat.jpg）应该是100x100px的，而不是去缩小500x500px的图片。
 
 #### 32.用小的可缓存的favicon.ico（P.S. 收藏夹图标）
@@ -501,7 +501,7 @@ Imagemagick 可以用来处理小收藏夹图标
 Image with empty string src 属性是空字符串的图片很常见，主要以两种形式出现：
 
 straight HTML 
-<img src=””>
+img src=”” 
 
 JavaScript 
 var img = new Image();img.src = “”;
@@ -523,7 +523,7 @@ HTML5的4.8.2节有关于<img>标签src属性的描述，规定浏览器不再�
 
 The src attribute must be present, and must contain a valid URL referencing a non-interactive, optionally animated, image resource that is neither paged nor scripted. If the base URI of the element is the same as the document’s address, then the src attribute’s value must not be the empty string.（P.S. “src属性必须存在，而且必须有一个合法的URL引用非交互式的动画或者图像资源，不能分页也不能含有脚本。如果元素的基URI和文档地址相同，那么src属性的值就不能是空串。”）
 
-希望将来浏览器不会存在这个问题，不幸的是，没有针对<script src=””>和<link href=””>条款，也许还有时间调整，以确保浏览器不会意外地实现这一行为。
+希望将来浏览器不会存在这个问题，不幸的是，没有针对 script src=”” 和 link href=”” 条款，也许还有时间调整，以确保浏览器不会意外地实现这一行为。
 
 这条原则是受了Yahoo!的JavaScript大师Nicolas C. Zakas的启发，更多信息请查看他的文章： Empty image src can destroy your site
 
