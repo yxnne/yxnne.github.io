@@ -26,7 +26,7 @@ __God bless me!__
 2.在登录页使用了UINavigationController，并让他变成透明的了
 3.控件加上了Outlet和Action，等待后续具体实现吧 （用的xCode assistant 编辑模式还是比较快）
 
-_**学到的东西**_
+_**学到的东西**_<br/>
    self.navigationController?.navigationBar.isTranslucent = true //改变透明度的属性
 
 ###  7 / 19 / 2017
@@ -37,7 +37,7 @@ _这里有个问题，因为上一次提交的时候，在登录页面集成的n
 登录页跳转到ServerConfig使用模态Segue(show Modally)
 我知道这样不是最好....
 
-_**学到的东西**_
+_**学到的东西**_<br/>
 
     跳转页面的方法：
     self.performSegue(withIdentifier: "login", sender: self)
@@ -69,7 +69,7 @@ PS:InterfaceBuilder(.stroyboard)从一个AndroidDeveloper的角度来看，是�
 5.个人主页的顶上导航navigationItem添加了通往设置的按钮，并且增加了设置的ViewController；
 6.设置的SettingViewController中利用生命周期方法控制TabBar的隐藏属性，解决了跳转到设置页面依然可见TabBar的问题；
 
-_**学到的东西**_
+_**学到的东西**_<br/>
 
 1.view添加了TapGestrueRecognizer
 
@@ -108,7 +108,7 @@ _**参考的文章**_
 这样子的话正常页面大小是放不下的，所以需要scrllView。
 ScrollView这个东西在InterfaceBuidler上不太好控制，应该是我不会，不过时间有限，用代码在viewcontroller里面写吧。
 
-_**学到的东西**_
+_**学到的东西**_<br/>
  1.
 一个UIView 的Frame决定了他能在页面上呈现的位置和大小，Frame需要给他一个CGRect作为参数。
 UIScrollView还需要一个contentSize，这个是ScrollView的内部实际大小，决定了他滚动的范围
