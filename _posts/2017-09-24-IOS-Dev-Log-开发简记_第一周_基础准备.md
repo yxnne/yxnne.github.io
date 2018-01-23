@@ -16,20 +16,20 @@ Web系统基本稳定，Android版本六月底也基本写完了，不过，领�
 __God bless me!__
 作为一个iOS开发菜鸟，过程全程记录下，以便于以后回顾学习和鄙视自己。
 
-#### 7 / 17 / 2017
+###  7 / 17 / 2017
 项目初始化，在公司的阿里云的gitblit上新建了iOS项目。
 确定页面按UI设计的安卓版本做。
 计划先实现UI，再对接后台，项目难度不算大。
 
-#### 7 / 18 / 2017
+###  7 / 18 / 2017
 1.做了最基本的两个页面，登录页面 和 服务器配置页面
 2.在登录页使用了UINavigationController，并让他变成透明的了
 3.控件加上了Outlet和Action，等待后续具体实现吧 （用的xCode assistant 编辑模式还是比较快）
 
 _**学到的东西**_
->  self.navigationController?.navigationBar.isTranslucent = true //改变透明度的属性
+   self.navigationController?.navigationBar.isTranslucent = true //改变透明度的属性
 
-#### 7 / 19 / 2017
+###  7 / 19 / 2017
 增加了跳转流程：
 逻辑是这样：登录跳转到主页，主页上底部四个tab，每一个tab对应的viewController都给他集成了NavigationBar。
 _这里有个问题，因为上一次提交的时候，在登录页面集成的navigationBar，想让他跳转到ServerConfiguration的时候跳转回来方便点，但是这样就导致了，从login登录成功跳转到主页的时候，主页也在navigationBar的栈里面，也就是说，主页左上角有个小箭头，一点击又返回登录页面了。_
@@ -39,8 +39,8 @@ _这里有个问题，因为上一次提交的时候，在登录页面集成的n
 
 _**学到的东西**_
 
->   跳转页面的方法：
->   self.performSegue(withIdentifier: "login", sender: self)
+    跳转页面的方法：
+    self.performSegue(withIdentifier: "login", sender: self)
   
 比如说登录：
 ```
@@ -52,7 +52,7 @@ _**学到的东西**_
             } else {//用户名密码不正确，提示下
             }
 ```
->   页面关闭方法：
+    页面关闭方法：
 ```
            self.dismiss(animated: true, completion: nil)
 ```
@@ -60,7 +60,7 @@ _**心得感想**_
 (.stroyboard)里面操作布局，增加约束现在比原来玩的⑥
 PS:InterfaceBuilder(.stroyboard)从一个AndroidDeveloper的角度来看，是好还是不好呢？
 
-#### 7 / 20 / 2017
+###  7 / 20 / 2017
 做了这么几件事情：
 1.用UIView 以及StackView和静态的TableView布局了ProfilePage(个人主页)，以及Outlet了未来将动态改变的一些控件；
 2.在个人主页上使用了view添加了TapGestrueRecognizer响应点击事件，这个作为一个btn,提供了空的回调，以后待实现；
@@ -75,7 +75,7 @@ _**学到的东西**_
 
 ```
        let viewBtnTapRecognizerRight = UITapGestureRecognizer(
-            target:self,action:#### selector(repondTap(_:))
+            target:self,action:###  selector(repondTap(_:))
        )
        // 在两个view上添加手势识别器 两个view的点击事件是一样的
        viewLeftAsBtn.addGestureRecognizer(viewBtnTapRecognizerLeft)
@@ -102,14 +102,14 @@ _**参考的文章**_
 [一篇关于类似CardView的方案](https://stackoverflow.com/questions/28141021/do-card-view-with-swift)
 
 
-#### 7 / 22 / 2017
+###  7 / 22 / 2017
 这两天这要在完成主页设计：
 主页是登录app后的第一个tab，该页面上除去navigationBar和TabBar之外分为四个区域，从上到下线性布局，依次是轮播banner，卡片1-3（图表展示）
 这样子的话正常页面大小是放不下的，所以需要scrllView。
 ScrollView这个东西在InterfaceBuidler上不太好控制，应该是我不会，不过时间有限，用代码在viewcontroller里面写吧。
 
 _**学到的东西**_
->1.
+ 1.
 一个UIView 的Frame决定了他能在页面上呈现的位置和大小，Frame需要给他一个CGRect作为参数。
 UIScrollView还需要一个contentSize，这个是ScrollView的内部实际大小，决定了他滚动的范围
 UIScrollView还要设置一个代理遵循UIScrollViewDelegate协议
@@ -124,7 +124,7 @@ let scrollview = UIScrollView()
 //当然 ，最后要把这个scrollView添加到View上
 ```
 
->2.
+ 2.
 这种get set的写法很有意思
 
 ```
@@ -136,7 +136,7 @@ let scrollview = UIScrollView()
     }
     
 ```
->3.
+ 3.
 给一个View加上阴影让它类似于android的CardView
 
 ```
@@ -152,7 +152,7 @@ let scrollview = UIScrollView()
         viewAdd_1.layer.shadowPath = shadowPath.cgPath
 ```
 
->4.
+ 4.
 该UILabel文字大小但是不改变字体
 
 ```
