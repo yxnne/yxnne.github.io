@@ -49,6 +49,8 @@ layout: default
   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <link rel="stylesheet" href="{{ '/css/comment.css' | prepend: site.baseurl }}">
   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+
+
   <script>
   const myTheme = {
     render(state, instance) {
@@ -74,5 +76,21 @@ layout: default
   });
   gitment.render('gitmentContainer');
   </script>
+  
 
+  <style type="text/css"> 
+  
+    .gitment-comment-main, .gitment-editor-main {
+
+      background-color: white;
+    }
+    .gitment-editor-tabs {
+      background-color: #5c6bc0;
+      color: white;
+    }
+    .gitment-editor-login{
+      background-color: white;
+    }
+
+  </style>
 </div>
