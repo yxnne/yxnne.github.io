@@ -193,7 +193,7 @@
       yxnne
       &nbsp;&nbsp;<i class="mdi mdi-label"></i>&nbsp;
       <span class="capitalize">node.js_learnning</span>
-      &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Nov 27, 2017
+      &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Dec 25, 2017
     </p>
 
     <div class="post-header">
@@ -217,7 +217,7 @@
   <li>Node.js 就是运行在服务端的 JavaScript。</li>
 </ul>
 
-<p>既然是node.js是服务器端运行的js代码，那么初窥node.js最好就是写一个服务端小程序了：</p>
+<p>既然是node.js是服务器端运行的js代码，那么初窥node.js最好就是写一个服务端小程序了（新建一个test.js文件并键入下面代码）：</p>
 
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//im</span><span class="n">port</span> <span class="k">module</span> <span class="nn">using</span> <span class="nb">require</span><span class="p">()</span> 
 <span class="sr">//ins</span><span class="n">tance</span> <span class="s1">'http object'</span>
@@ -235,6 +235,8 @@
 
 <span class="sr">//</span> <span class="n">out</span> <span class="n">put</span> <span class="k">in</span> <span class="n">the</span> <span class="n">console</span> 
 <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">"the server has started"</span><span class="p">);</span></code></pre></figure>
+
+<p>最后，在终端里面执行：node test.js ，接着访问http://localhost：8888试试，终端里Ctrl+C结束服务</p>
 
 <ul>
   <li>
@@ -279,6 +281,25 @@
 
   
 
+  
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: 'yxnne',
+    repo: 'https://github.com/yxnne/yxnne.github.io.git',
+    oauth: {
+        client_id: '5e768409612b3e27d186',
+        client_secret: 'a3f238eed1df9d94daa41eb627729fbaedf0596a',
+    },
+});
+gitment.render('gitmentContainer');
+</script>
+
+
+  
 </div>
 
       </div>

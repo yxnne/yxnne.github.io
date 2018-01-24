@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="theme-color" content="#5c6bc0">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>React-官网学习-QuickStart9-表单</title>
+  <meta name="description" content="React中，表单元素和其他元素的工作有些差异 ，因为表单元素天生包括一些内置状态。举例来说，这个原生HTML表单接受一个name:">
+  <link rel="canonical" href="/posts/react_learnning/React-trans-9-%E8%A1%A8%E5%8D%95.html">
+  <link rel="alternate" type="application/rss+xml" title="noty Yxnne" href="/feed.xml" />
+
+  <link rel="stylesheet" href="/lib/materialize/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link media="all" rel="stylesheet" type="text/css" href="/lib/mdi/css/materialdesignicons.min.css" >
+  <link rel="stylesheet" href="/lib/material-scrolltop/material-scrolltop.css">
+
+  <noscript>
+  <div class="notice-warning noscript">You don't have javascript enabled. Good luck! :(</div>
+</noscript>
+
+<!--[if IE]>
+  <div class="notice-warning">Oh, you are using Internet Explorer! Good luck... :(</div>
+<![endif]-->
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+      <nav class="nav-extended indigo lighten-1">
+        <!-- 这一页是菜单侧滑栏 -->
+<div class="nav-wrapper">
+      <span class="site-title">noty Yxnne</span>
+
+      <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="mdi mdi-menu white-text"></i></a>
+      
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/" class="white-text">
+            <i class="mdi mdi-home left indigo-text text-lighten-3"></i>Home
+        </a></li>
+        <li><a href="/about" class="white-text">
+            <i class="mdi mdi-account-circle left indigo-text text-lighten-3"></i>About
+        </a></li>
+        <li><a href="/category" class="white-text">
+            <i class="mdi mdi-folder-multiple left indigo-text text-lighten-3"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="white-text">
+            <i class="mdi mdi-rss left indigo-text text-lighten-3"></i>RSS
+        </a></li>
+      </ul>
+
+
+      <ul class="side-nav" id="mobile-navbar">
+        <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images/bg_office.jpg" >
+            </div>
+              <a href="#!user"><img class="circle" src="images/portraits/portrait_qq.jpeg"></a>
+              <a href="#!name"><span class="white-text name">yxnne</span></a>
+              <a href="#!email"><span class="white-text email">506524339@qq.com</span></a>
+            </div>
+
+        </li>
+        <li><a href="/" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-home left green-text"></i>Home
+        </a></li>
+        <li><a href="/about" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-account-circle left blue-text"></i>About
+        </a></li>
+        <li><a href="/category" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-folder-multiple left yellow-text text-darken-1"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-rss left red-text"></i>RSS
+        </a></li>
+      </ul>
+</div>
+
+
+
+
+        <div class="nav-content">
+          <ul class="tabs tabs-transparent">
+            <li class="tab"><a class="active" href="#tab-main">Articles</a></li>
+          
+            <li class="tab "><a href="#tab-test">Favors</a></li>
+          
+            <li class="tab "><a href="#tab-test1">Favors</a></li>
+          
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+  
+    <div id="tab-test">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+    <div id="tab-test1">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+
+    <div class="site-container" id="tab-main"> 
+      <div class="wrapper">
+        <div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="post-section">
+
+    <p class="grey-text">
+      <i class="mdi mdi-calendar"></i>&nbsp;
+      Dec 12, 2017
+      &nbsp;&nbsp;<i class="mdi mdi-account-circle"></i>&nbsp;
+      yxnne
+      &nbsp;&nbsp;<i class="mdi mdi-label"></i>&nbsp;
+      <span class="capitalize">react_learnning</span>
+      &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Dec 25, 2017
+    </p>
+
+    <div class="post-header">
+      <h1 class="post-title">React-官网学习-QuickStart9-表单</h1>
+
+      
+        <i class="post-tag mdi mdi-tag-multiple waves-effect waves-light"></i>
+        
+        <div class="chip">translations_React.js</div>
+        
+      
+    </div>
+
+    <article class="post-content">
+      <p><big>React中，表单元素</big>和其他元素的工作有些差异 ，因为表单元素天生包括一些内置状态。举例来说，这个原生HTML表单接受一个name:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">form</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span>
+    <span class="no">Name</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"name"</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="sr">/label&gt;
+  &lt;input type="submit" value="Submit" /</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="sr">/form&gt;</span></code></pre></figure>
+
+<p>该表单具有原生HTML行为：当用户点击提交，浏览修的页面。你希望React中也有这样的行为也是奏效的。但是更普遍的场景中，使用一个JavaScript函数处理表单提交，并且访问用户在表单中输入的数据是很方便的。标准的方式来完成上述功能使用技术叫“控制组件”（Controlled Component）。</p>
+
+<h4 id="控制组件">控制组件</h4>
+
+<p>HTML中，像<input />,<textarea>和<select>这样的元素，通常维持他们自己的状态并根据用户输入更新。在React中，可变的状态通常在组件的state中体现并且只能由setState()更新。</select></textarea></p>
+
+<p>将React状态变成“真理的唯一源头”，我们就能将这两点结合起来。接着，渲染了表单的React组件也能在用户随之而来的输入中控制着表单。一个由React控制着的输入表单元素在这种方式下就叫“控制组件”。</p>
+
+<p>举例，如果我们想将先前的例子变成点击提交后输出name，我们可以把表单写成像控制组件那样：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">NameForm</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">value: </span><span class="s1">''</span><span class="p">};</span>
+
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleSubmit</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleSubmit</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">handleChange</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">value: </span><span class="n">event</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">value</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="n">handleSubmit</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">alert</span><span class="p">(</span><span class="s1">'A name was submitted: '</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">value</span><span class="p">);</span>
+    <span class="n">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">form</span> <span class="n">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleSubmit</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span>
+          <span class="no">Name</span><span class="p">:</span>
+          <span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">value</span><span class="p">}</span> <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">}</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/label&gt;
+        &lt;input type="submit" value="Submit" /</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/form&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>既然value属性是我们表单自己设置的，那显示的值永远是this.state.value，反映着‘真理的源头’。由于在每一次键盘输入后都会调用handleChange来更新state状态，显示在界面的数值就会根据用户输入更新。</p>
+
+<p>使用控制组件，每一个可变状态将会关联一个处理函数。这使得它可以直接修改或者验证用户输入。举例来说，假如我们想强行的把name变成大写字母，我们可以再handleChange中这样写：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">handleChange</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">value: </span><span class="n">event</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">value</span><span class="p">.</span><span class="nf">toUpperCase</span><span class="p">()});</span>
+<span class="p">}</span></code></pre></figure>
+
+<h4 id="标签textarea">标签:textarea</h4>
+
+<p>在HTML中，textarea标签通过其子元素定义它的文本。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">textarea</span><span class="o">&gt;</span>
+  <span class="no">Hello</span> <span class="n">there</span><span class="p">,</span> <span class="n">this</span> <span class="n">is</span> <span class="n">some</span> <span class="n">text</span> <span class="k">in</span> <span class="n">a</span> <span class="n">text</span> <span class="n">area</span>
+<span class="o">&lt;</span><span class="sr">/textarea&gt;</span></code></pre></figure>
+
+<p>在React中，textarea标签使用value属性代替。用这样的方式，使用<textarea>的表单就可以写得和单独使用input的表单极其相似：</textarea></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">EssayForm</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="ss">value: </span><span class="s1">'Please write an essay about your favorite DOM element.'</span>
+    <span class="p">};</span>
+
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleSubmit</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleSubmit</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">handleChange</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">value: </span><span class="n">event</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">value</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="n">handleSubmit</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">alert</span><span class="p">(</span><span class="s1">'An essay was submitted: '</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">value</span><span class="p">);</span>
+    <span class="n">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">form</span> <span class="n">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleSubmit</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span>
+          <span class="no">Name</span><span class="p">:</span>
+          <span class="o">&lt;</span><span class="n">textarea</span> <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">value</span><span class="p">}</span> <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">}</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/label&gt;
+        &lt;input type="submit" value="Submit" /</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/form&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>注意我们在构造器中初始化this.state.value，这样textarea一开始就有文字在里面。</p>
+
+<h4 id="标签select">标签：select</h4>
+
+<p>HTML中，<select> 标签生成下拉表单，举例，下面的HTML生成喜好的列表：</select></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="nb">select</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">"grapefruit"</span><span class="o">&gt;</span><span class="no">Grapefruit</span><span class="o">&lt;</span><span class="sr">/option&gt;
+  &lt;option value="lime"&gt;Lime&lt;/o</span><span class="n">ption</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">option</span> <span class="n">selected</span> <span class="n">value</span><span class="o">=</span><span class="s2">"coconut"</span><span class="o">&gt;</span><span class="no">Coconut</span><span class="o">&lt;</span><span class="sr">/option&gt;
+  &lt;option value="mango"&gt;Mango&lt;/o</span><span class="n">ption</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="sr">/select&gt;</span></code></pre></figure>
+
+<p>注意Coconut选项是默认初始选择的，因为设置了selected属性。React中，不用selected属性，用select根标签中的value属性。这样对于控制组件来说更方便因为你只需在一处更新，就像这样:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">FlavorForm</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">value: </span><span class="s1">'coconut'</span><span class="p">};</span>
+
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleSubmit</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleSubmit</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">handleChange</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">value: </span><span class="n">event</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">value</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="n">handleSubmit</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">alert</span><span class="p">(</span><span class="s1">'Your favorite flavor is: '</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">value</span><span class="p">);</span>
+    <span class="n">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">form</span> <span class="n">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleSubmit</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span>
+          <span class="no">Pick</span> <span class="n">your</span> <span class="n">favorite</span> <span class="no">La</span> <span class="no">Croix</span> <span class="ss">flavor:
+          </span><span class="o">&lt;</span><span class="nb">select</span> <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">value</span><span class="p">}</span> <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">"grapefruit"</span><span class="o">&gt;</span><span class="no">Grapefruit</span><span class="o">&lt;</span><span class="sr">/option&gt;
+            &lt;option value="lime"&gt;Lime&lt;/o</span><span class="n">ption</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">"coconut"</span><span class="o">&gt;</span><span class="no">Coconut</span><span class="o">&lt;</span><span class="sr">/option&gt;
+            &lt;option value="mango"&gt;Mango&lt;/o</span><span class="n">ption</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="sr">/select&gt;
+        &lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s2">"submit"</span> <span class="n">value</span><span class="o">=</span><span class="s2">"Submit"</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/form&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>总之，这样<input type="text" />, <textarea>, 以及 <select> 工作起来就很相似-- 他们都接受value属性，通过value可以实现控制组件。</select></textarea></p>
+
+<blockquote>
+  <p>注意：
+你也能在value属性中传递一个数组,这样做能实现多选项选中：
+&lt;select multiple={true} value={[‘B’, ‘C’]}&gt;</p>
+</blockquote>
+
+<h4 id="处理多种输入">处理多种输入</h4>
+
+<p>当你需要处理多个被控制的input元素，你需要在每一个元素中添加一个name属性并且让处理函数根据event.target.name的值来决定做什么。</p>
+
+<p>例如：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Reservation</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="ss">isGoing: </span><span class="kp">true</span><span class="p">,</span>
+      <span class="ss">numberOfGuests: </span><span class="mi">2</span>
+    <span class="p">};</span>
+
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleInputChange</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleInputChange</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">handleInputChange</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">target</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="nf">target</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">value</span> <span class="o">=</span> <span class="n">target</span><span class="p">.</span><span class="nf">type</span> <span class="o">===</span> <span class="s1">'checkbox'</span> <span class="p">?</span> <span class="n">target</span><span class="p">.</span><span class="nf">checked</span> <span class="p">:</span> <span class="n">target</span><span class="p">.</span><span class="nf">value</span><span class="p">;</span>
+    <span class="n">const</span> <span class="nb">name</span> <span class="o">=</span> <span class="n">target</span><span class="p">.</span><span class="nf">name</span><span class="p">;</span>
+
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span>
+      <span class="p">[</span><span class="nb">name</span><span class="p">]:</span> <span class="n">value</span>
+    <span class="p">});</span>
+    <span class="n">alert</span><span class="p">(</span><span class="nb">name</span> <span class="o">+</span> <span class="s2">" : "</span> <span class="o">+</span> <span class="n">value</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">form</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span>
+          <span class="no">Is</span> <span class="ss">going:
+          </span><span class="o">&lt;</span><span class="n">input</span>
+            <span class="nb">name</span><span class="o">=</span><span class="s2">"isGoing"</span>
+            <span class="n">type</span><span class="o">=</span><span class="s2">"checkbox"</span>
+            <span class="n">checked</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">isGoing</span><span class="p">}</span>
+            <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleInputChange</span><span class="p">}</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/label&gt;
+        &lt;br /</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span>
+          <span class="no">Number</span> <span class="n">of</span> <span class="ss">guests:
+          </span><span class="o">&lt;</span><span class="n">input</span>
+            <span class="nb">name</span><span class="o">=</span><span class="s2">"numberOfGuests"</span>
+            <span class="n">type</span><span class="o">=</span><span class="s2">"number"</span>
+            <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">numberOfGuests</span><span class="p">}</span>
+            <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleInputChange</span><span class="p">}</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/label&gt;
+      &lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="no">ReactDOM</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="no">Reservation</span> <span class="sr">/&gt;,
+  document.getElementById('root')
+);</span></code></pre></figure>
+
+<p>记下你如何使用ES6<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names">计算属性名语法</a>来更新与input name一致的state:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span>
+  <span class="p">[</span><span class="nb">name</span><span class="p">]:</span> <span class="n">value</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>这和ES5中这样的代码等价:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">var</span> <span class="n">partialState</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="n">partialState</span><span class="p">[</span><span class="nb">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+<span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">(</span><span class="n">partialState</span><span class="p">);</span></code></pre></figure>
+
+<p>另外，由于setState()会自动合并部分state到当前state对象中,我们中需调用该方法更新改变的部分。</p>
+
+<h4 id="控制输入null值">控制输入NULL值</h4>
+
+<p>明晰在控制组件中value属性防止用户修改输入值，除非你就是这样想的。如果你是有一个明确的值但是这个组件依旧是可编辑的，那有可能会意外的收获udefined或者null这种值。</p>
+
+<p>下面的代码展示了这样的事：（input一开始是锁定着的但是短暂间隔之后又变得可编辑了‘&lt;input value={null} /&gt;’–这样会变得可编辑）</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">ReactDOM</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">input</span> <span class="n">value</span><span class="o">=</span><span class="s2">"hi"</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="n">mountNode</span><span class="p">);</span>
+
+<span class="n">setTimeout</span><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="no">ReactDOM</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">input</span> <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">null</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="n">mountNode</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span></code></pre></figure>
+
+<h4 id="控制组件的替代">控制组件的替代</h4>
+
+<p>使用控制组件有时变的很冗长，因为你需要为每一个数据可以改变的书写事件处理并且通话React组件输送所有的输入状态。这样在当你把一个先前存在的代码库变成React时，或者在非React应用中集成React应用时尤其使人厌烦。着这些状况下，学习下<a href="https://reactjs.org/docs/uncontrolled-components.html">非控制组件</a>,这是一种控制组件的替代技术。</p>
+
+<p><a href="https://reactjs.org/docs/forms.html">官网文章 Quick Start :Form</a></p>
+
+    </article>
+
+    <div class="post-share">
+
+<!-- desktop and tablet-->
+<div class="hide-on-small-only">
+  <i class="mdi mdi-share-variant material-icons small grey-text waves-effect waves-light"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/react_learnning/React-trans-9-%E8%A1%A8%E5%8D%95.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React-官网学习-QuickStart9-表单&url=/posts/react_learnning/React-trans-9-%E8%A1%A8%E5%8D%95.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/react_learnning/React-trans-9-%E8%A1%A8%E5%8D%95.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+<!-- small screen device -->
+<div class="hide-on-med-and-up">
+  <i class="mdi mdi-share-variant waves-effect waves-light small tooltipped grey-text" data-position="bottom" data-delay="50" data-tooltip="Share"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/react_learnning/React-trans-9-%E8%A1%A8%E5%8D%95.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React-官网学习-QuickStart9-表单&url=/posts/react_learnning/React-trans-9-%E8%A1%A8%E5%8D%95.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/react_learnning/React-trans-9-%E8%A1%A8%E5%8D%95.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+</div>
+
+
+  </div>
+  </div>
+
+  
+
+  
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: 'yxnne',
+    repo: 'https://github.com/yxnne/yxnne.github.io.git',
+    oauth: {
+        client_id: '5e768409612b3e27d186',
+        client_secret: 'a3f238eed1df9d94daa41eb627729fbaedf0596a',
+    },
+});
+gitment.render('gitmentContainer');
+</script>
+
+
+  
+</div>
+
+      </div>
+    </div>
+
+    <footer class="page-footer indigo lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l4 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">
+              "I know that what I'm doing looks stupid, but I'm a big boy and really want to do this."
+          </p>
+        </div>
+
+        <div class="col l4 s12 right">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            
+            <li><a href="https://github.com/506524339@qq.com" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-github-circle"></i></a></li>
+            
+            
+            <li><a href="https://plus.google.com/+google" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-google-plus"></i></a></li>
+            
+            
+            <li><a href="https://twitter.com/twitter" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-twitter"></i></a></li>
+            
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Copyright © yxnne, under<a class="red-text text-accent-1" href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0</a> Powered by <a class="red-text text-accent-1" href="http://jekyllrb.com/">Jekyll</a>.
+        <a class="btn waves-effect waves-light indigo lighten-2 lighten-1 right white-text" href="/about" >Contact me</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+    <!-- scrolltop button -->
+    <button class="material-scrolltop waves-effect waves-light hide-on-small-only" type="button"><i class="mdi mdi-arrow-up-bold small white-text"></i></button>
+
+    <!-- jquery -->
+    <script type="text/javascript" src="/lib/jquery-min.js"></script>
+    <!-- materialize -->
+    <script src="/lib/materialize/js/materialize.min.js"></script>
+    <!-- Material ScrollTop plugin -->
+    <script src="/lib/material-scrolltop/material-scrolltop.js"></script>
+    <!-- main -->
+    <script src="/js/init.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- google analytics -->
+    <script src="/js/google-analytics.js"></script>
+  </body>
+
+</html>

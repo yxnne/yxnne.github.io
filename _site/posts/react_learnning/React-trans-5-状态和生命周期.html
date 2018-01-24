@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="theme-color" content="#5c6bc0">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>React-官网学习-QuickStart5-状态和生命周期</title>
+  <meta name="description" content="考虑下 之前章节学习的时钟的例子。在本章，我们将要学习怎样真正复用和封装这个‘时钟’，它会拥有自己的计时器并没秒自己更新自己。">
+  <link rel="canonical" href="/posts/react_learnning/React-trans-5-%E7%8A%B6%E6%80%81%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html">
+  <link rel="alternate" type="application/rss+xml" title="noty Yxnne" href="/feed.xml" />
+
+  <link rel="stylesheet" href="/lib/materialize/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link media="all" rel="stylesheet" type="text/css" href="/lib/mdi/css/materialdesignicons.min.css" >
+  <link rel="stylesheet" href="/lib/material-scrolltop/material-scrolltop.css">
+
+  <noscript>
+  <div class="notice-warning noscript">You don't have javascript enabled. Good luck! :(</div>
+</noscript>
+
+<!--[if IE]>
+  <div class="notice-warning">Oh, you are using Internet Explorer! Good luck... :(</div>
+<![endif]-->
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+      <nav class="nav-extended indigo lighten-1">
+        <!-- 这一页是菜单侧滑栏 -->
+<div class="nav-wrapper">
+      <span class="site-title">noty Yxnne</span>
+
+      <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="mdi mdi-menu white-text"></i></a>
+      
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/" class="white-text">
+            <i class="mdi mdi-home left indigo-text text-lighten-3"></i>Home
+        </a></li>
+        <li><a href="/about" class="white-text">
+            <i class="mdi mdi-account-circle left indigo-text text-lighten-3"></i>About
+        </a></li>
+        <li><a href="/category" class="white-text">
+            <i class="mdi mdi-folder-multiple left indigo-text text-lighten-3"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="white-text">
+            <i class="mdi mdi-rss left indigo-text text-lighten-3"></i>RSS
+        </a></li>
+      </ul>
+
+
+      <ul class="side-nav" id="mobile-navbar">
+        <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images/bg_office.jpg" >
+            </div>
+              <a href="#!user"><img class="circle" src="images/portraits/portrait_qq.jpeg"></a>
+              <a href="#!name"><span class="white-text name">yxnne</span></a>
+              <a href="#!email"><span class="white-text email">506524339@qq.com</span></a>
+            </div>
+
+        </li>
+        <li><a href="/" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-home left green-text"></i>Home
+        </a></li>
+        <li><a href="/about" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-account-circle left blue-text"></i>About
+        </a></li>
+        <li><a href="/category" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-folder-multiple left yellow-text text-darken-1"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-rss left red-text"></i>RSS
+        </a></li>
+      </ul>
+</div>
+
+
+
+
+        <div class="nav-content">
+          <ul class="tabs tabs-transparent">
+            <li class="tab"><a class="active" href="#tab-main">Articles</a></li>
+          
+            <li class="tab "><a href="#tab-test">Favors</a></li>
+          
+            <li class="tab "><a href="#tab-test1">Favors</a></li>
+          
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+  
+    <div id="tab-test">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+    <div id="tab-test1">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+
+    <div class="site-container" id="tab-main"> 
+      <div class="wrapper">
+        <div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="post-section">
+
+    <p class="grey-text">
+      <i class="mdi mdi-calendar"></i>&nbsp;
+      Dec 6, 2017
+      &nbsp;&nbsp;<i class="mdi mdi-account-circle"></i>&nbsp;
+      yxnne
+      &nbsp;&nbsp;<i class="mdi mdi-label"></i>&nbsp;
+      <span class="capitalize">react_learnning</span>
+      &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Dec 25, 2017
+    </p>
+
+    <div class="post-header">
+      <h1 class="post-title">React-官网学习-QuickStart5-状态和生命周期</h1>
+
+      
+        <i class="post-tag mdi mdi-tag-multiple waves-effect waves-light"></i>
+        
+        <div class="chip">translations_React.js</div>
+        
+      
+    </div>
+
+    <article class="post-content">
+      <p><big>考虑下</big> 之前章节学习的时钟的例子。在本章，我们将要学习怎样真正复用和封装这个‘时钟’，它会拥有自己的计时器并没秒自己更新自己。</p>
+
+<p>到目前为止，我们只有一种途径更新UI。</p>
+
+<p>那就是调用ReactDOM.render()方法来改变渲染输出。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="n">tick</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="n">element</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world!</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+      &lt;h2&gt;It is {new Date().toLocaleTimeString()}.&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div&gt;
+  );
+  ReactDOM.render(
+    element,
+    document.getElementById('root')
+  );
+}
+
+setInterval(tick, 1000);</span></code></pre></figure>
+
+<p>在本章，我们将要学习怎样真正复用和封装这个‘时钟’，它会拥有自己的计时器并没秒自己更新自己。</p>
+
+<p>让我们开始于封装它的外观。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="no">Clock</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world!</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+      &lt;h2&gt;It is {props.date.toLocaleTimeString()}.&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div&gt;
+  );
+}
+
+function tick() {
+  ReactDOM.render(
+    &lt;Clock date={new Date()} /</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">)</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">setInterval</span><span class="p">(</span><span class="n">tick</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span></code></pre></figure>
+
+<p>不过这样少了重要的一点：实际上，钟表应该有这么个细节实现，那就是钟表自身维护一个计时器然后每秒更新自己的UI。</p>
+
+<p>理想情况是，我们想一次性写成然后让它自己更新：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">ReactDOM</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="no">Clock</span> <span class="sr">/&gt;,
+  document.getElementById('root')
+);</span></code></pre></figure>
+
+<p>为了实现这样，我们需要为组件引入State（状态）。</p>
+
+<p>State（状态）有点像props（属性），但是state状态是私有的，而且完全由组件自身管理。</p>
+
+<p>我们之前谈到过，说组件如果定义成了class形式（不是函数式）将会有很多额外的特性。那么State就是这样：一种只有class形式定义组件才可用的特性。</p>
+
+<h4 id="把函数式转换成class形式">把函数式转换成class形式</h4>
+
+<p>把一个类似钟表的组件，从函数式转换一个class形式，需要5个步骤：</p>
+
+<p>1.创建一个es6新特性的class，和函数同名且继承自React.Component；</p>
+
+<p>2.给它添加一个叫render()的新方法；</p>
+
+<p>3.把函数体放到render()方法里；</p>
+
+<p>4.把props都用this.props代替；</p>
+
+<p>5.删除掉余下的空方法声明;</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Clock</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world!</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+        &lt;h2&gt;It is {this.props.date.toLocaleTimeString()}.&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>‘时钟’组件现在是CLass的而不是函数式了。</p>
+
+<p>那就让我们使用额外诸如local State（本地状态）和lifecycle hook(生命周期回调钩子)的新特性吧。</p>
+
+<h4 id="在class的基础上增加state状态">在class的基础上增加State状态</h4>
+
+<p>我们把props里面的数据移入state需要三步：</p>
+
+<p>1.在render()方法中，把this.props.date换成this.state.date：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Clock</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world!</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+        &lt;h2&gt;It is {this.state.date.toLocaleTimeString()}.&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>2.添加class构造器并初始化this.state:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Clock</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">date: </span><span class="kp">new</span> <span class="no">Date</span><span class="p">()};</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world!</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+        &lt;h2&gt;It is {this.state.date.toLocaleTimeString()}.&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>留心我们怎么把props属性传递给这个基础构造器的：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"> <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">date: </span><span class="kp">new</span> <span class="no">Date</span><span class="p">()};</span>
+  <span class="p">}</span></code></pre></figure>
+
+<p>class组件总是带着props去调用基础构造器</p>
+
+<p>3.从<Clock></Clock>元素中移除date属性:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">ReactDOM</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="no">Clock</span> <span class="sr">/&gt;,
+  document.getElementById('root')
+);</span></code></pre></figure>
+
+<p>过会儿我们将把定时器的代码再添加回组件自身。</p>
+
+<p>现在结果看上去是这样：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Clock</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">date: </span><span class="kp">new</span> <span class="no">Date</span><span class="p">()};</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world!</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+        &lt;h2&gt;It is {this.state.date.toLocaleTimeString()}.&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+    );
+  }
+}
+
+ReactDOM.render(
+  &lt;Clock /</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">)</span>
+<span class="p">);</span></code></pre></figure>
+
+<p>下面，我们将把定时器的代码再添加回组件自身并每秒更新它。</p>
+
+<h4 id="添加class的生命周期方法">添加Class的生命周期方法</h4>
+
+<p>应用Application是由很多组件组成，那么在当一个组件销毁时，把它所持有的资源释放就显得尤为重要。</p>
+
+<p>我们写这样一个计时器：在最开始的时候Clock被渲染到DOM上的时候’安装’计时器，这在React里面叫mounting（挂载）。</p>
+
+<p>同样我们在Clock移除的时候清除这个计时器，这在React里面叫unmounting（卸载）。</p>
+
+<p>我们在组件类的一些特殊的方法中写一些代码，那么当组件卸载或者挂载的时候代码就会执行：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Clock</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">date: </span><span class="kp">new</span> <span class="no">Date</span><span class="p">()};</span>
+  <span class="p">}</span>
+  <span class="sr">//</span><span class="n">whenever</span>  <span class="n">mounting</span>
+  <span class="n">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+  <span class="sr">//</span><span class="n">whenever</span> <span class="n">unmounting</span>
+  <span class="n">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world!</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+        &lt;h2&gt;It is {this.state.date.toLocaleTimeString()}.&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>这些方法叫声明周期方法（钩子函数）。</p>
+
+<p>方法：componentDidMount()在组件被渲染到DOM之后调用，这是个安装定时器的好时机：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="n">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">timerID</span> <span class="o">=</span> <span class="n">setInterval</span><span class="p">(</span>
+      <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="p">.</span><span class="nf">tick</span><span class="p">(),</span>
+      <span class="mi">1000</span>
+    <span class="p">);</span>
+  <span class="p">}</span></code></pre></figure>
+
+<p>注意我们怎样在this的右边保存定时器的ID（定时器的ID是定时器的标志）。</p>
+
+<p>好吧，既然this.props是被React自己调用的，this.state有特殊的含义，如果你还需要存储一些其他不需要在显示层输出的信息，那么你也可以自主地随便加些字段属性。</p>
+
+<p>当componentWillUnmount()调用的时候我们销毁定时器：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="n">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">clearInterval</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="nf">timerID</span><span class="p">);</span>
+  <span class="p">}</span></code></pre></figure>
+
+<p>最后，我们实现一个tick()方法，让组件每秒都运行这个方法.</p>
+
+<p>它将使用this.setState（）来调度更新组件的当前状态。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Clock</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">date: </span><span class="kp">new</span> <span class="no">Date</span><span class="p">()};</span>
+  <span class="p">}</span>
+
+  <span class="n">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">timerID</span> <span class="o">=</span> <span class="n">setInterval</span><span class="p">(</span>
+      <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="p">.</span><span class="nf">tick</span><span class="p">(),</span>
+      <span class="mi">1000</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">clearInterval</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="nf">timerID</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">tick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span>
+      <span class="ss">date: </span><span class="kp">new</span> <span class="no">Date</span><span class="p">()</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world!</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+        &lt;h2&gt;It is {this.state.date.toLocaleTimeString()}.&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+    );
+  }
+}
+
+ReactDOM.render(
+  &lt;Clock /</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">)</span>
+<span class="p">);</span></code></pre></figure>
+
+<p>现在，它每秒都在运行。</p>
+
+<p>让我们快速回顾发生了什并整理方法调用的次序：</p>
+
+<p>1.当<Clock></Clock>被传递到ReactDOM.render(),React调用了组件Clock的构造方法.组件需要呈现当前时间，它初始化了this.state状态，初始化的值是一个包含了当前时间的对象。我们稍后会更新这个状态。</p>
+
+<p>2.React然后调用了Clock组件的render方法。这就是为啥React知道往页面上呈现什么的原因。React而后会根据<Clock></Clock>的输出更新DOM。</p>
+
+<p>3.当Clock的输出插入到DOM的时候，React调用了生命周期方法：componentDidMount()，在方法里面，Clock组件去委托浏览器每一秒都调用组件的方法tick()一次。</p>
+
+<p>4.每当浏览器调用了一次tick()方法。Clock组件通过setState()设置一个包含当前时间的对象来调度UI更新。感谢这个setState()调用，React得以知晓state状态发生了变化，然后就再次调用render()方法更新其所呈现。这时，this.state.date在render()方法里面已经发生了变化，所以渲染输出就是当前的时间，React于是相应的更新DOM。</p>
+
+<p>5.如若Clock最终从DOM中被移除，React就调用componentWillUnmount()保证定时器被停止。</p>
+
+<h4 id="正确使用状态">正确使用状态</h4>
+
+<p>关于setState()，你得了解3点：</p>
+
+<h5 id="不要直接更新状态">不要直接更新状态</h5>
+
+<p>举例，这样不会重新渲染一个组件：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//</span> <span class="no">Wrong</span>
+<span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">comment</span> <span class="o">=</span> <span class="s1">'Hello'</span><span class="p">;</span></code></pre></figure>
+
+<p>取而代之，用setState():</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//</span> <span class="no">Correct</span>
+<span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">comment: </span><span class="s1">'Hello'</span><span class="p">});</span></code></pre></figure>
+
+<p>只有一个地方可以允许你直接设置属性，那就是构造器里。</p>
+
+<h5 id="状态的更新可能不同步异步">状态的更新可能不同步（异步）</h5>
+
+<p>React有可能会收集一批setState()调用以后统一更新。</p>
+
+<p>那是因为this.props和this.state也可能不同步，你不能依靠这些值去推算下一个状态。</p>
+
+<p>举例来说，用下面的代码来更新计数器counter可能要失败：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//</span> <span class="no">Wrong</span>
+<span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span>
+  <span class="ss">counter: </span><span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">counter</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">increment</span><span class="p">,</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>修复它，需要用setState()的另一种形式：setState()接受一个函数作为参数而不是对象。那个作为参数的函数的第一个参数是先前状态（previous state），第二个参数是当前属性：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//</span> <span class="no">Correct</span>
+<span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">((</span><span class="n">prevState</span><span class="p">,</span> <span class="n">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+  <span class="ss">counter: </span><span class="n">prevState</span><span class="p">.</span><span class="nf">counter</span> <span class="o">+</span> <span class="n">props</span><span class="p">.</span><span class="nf">increment</span>
+<span class="p">}));</span></code></pre></figure>
+
+<p>上面我们用到了箭头函数，不过用常规的函数它也能正常工作：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//</span> <span class="no">Correct</span>
+<span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">prevState</span><span class="p">,</span> <span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="ss">counter: </span><span class="n">prevState</span><span class="p">.</span><span class="nf">counter</span> <span class="o">+</span> <span class="n">props</span><span class="p">.</span><span class="nf">increment</span>
+  <span class="p">};</span>
+<span class="p">});</span></code></pre></figure>
+
+<h5 id="状态的更新是合入式的">状态的更新是合入式的</h5>
+
+<p>当你调用setState()，React将你提供的对象合入当前的状态。</p>
+
+<p>举例说，你的状态可能包含了一些彼此独立的变量：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="ss">posts: </span><span class="p">[],</span>
+      <span class="ss">comments: </span><span class="p">[]</span>
+    <span class="p">};</span>
+  <span class="p">}</span></code></pre></figure>
+
+<p>你可以分别在不同的setState()中更新他们：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fetchPosts</span><span class="p">().</span><span class="nf">then</span><span class="p">(</span><span class="n">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span>
+        <span class="ss">posts: </span><span class="n">response</span><span class="p">.</span><span class="nf">posts</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="n">fetchComments</span><span class="p">().</span><span class="nf">then</span><span class="p">(</span><span class="n">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span>
+        <span class="ss">comments: </span><span class="n">response</span><span class="p">.</span><span class="nf">comments</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">}</span></code></pre></figure>
+
+<p>合入式是浅的，所以this.setState({comments})也保留了this.state.posts的完整，但却完全代替了过去的this.state.comments。</p>
+
+<h5 id="数据向下走">数据向下走</h5>
+
+<p>不管是子组件还是父组件，都不知道一个确定的组件彼是有状态还是没有状态，并且他们也不关心定义方式是函数式还是类形式。</p>
+
+<p>这就是为什么我们把state状态叫做本地的或者封装的。因为对于别的组件来说它们是不可访问的。</p>
+
+<p>一个组件可以选择把自己的state状态以props属性的方式下发给子组件：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="no">It</span> <span class="n">is</span> <span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">date</span><span class="p">.</span><span class="nf">toLocaleTimeString</span><span class="p">()}.</span><span class="nf">&lt;</span><span class="o">/</span><span class="n">h2</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>这同样适用于用户自定义组件中：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="no">FormattedDate</span> <span class="n">date</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">date</span><span class="p">}</span> <span class="o">/&gt;</span></code></pre></figure>
+
+<p>组件FormattedDate收到data在它的props中，而且不知道是否data来自于Clock的state或者props或者其他：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="no">FormattedDate</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="no">It</span> <span class="n">is</span> <span class="p">{</span><span class="n">props</span><span class="p">.</span><span class="nf">date</span><span class="p">.</span><span class="nf">toLocaleTimeString</span><span class="p">()}.</span><span class="nf">&lt;</span><span class="o">/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>这就是通常所说的”自顶向下”或者说”单向性”(unidirectional)数据流。任何状态都是属于一些特殊的组件，任何数据或由状态衍生的UI只能影响那些下层的组件。</p>
+
+<p>如果你将组件树看作是props瀑布，那么每一个组件的state就像是那额外的水源，这些水源在任意点加入瀑布并只向下流动。</p>
+
+<p>为了展示所有的组件都是完全孤立的，我们创建了一个APP组件，渲染了三个<Clock></Clock></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="no">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="no">Clock</span> <span class="sr">/&gt;
+      &lt;Clock /</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="no">Clock</span> <span class="sr">/&gt;
+    &lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="no">ReactDOM</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="no">App</span> <span class="sr">/&gt;,
+  document.getElementById('root')
+);</span></code></pre></figure>
+
+<p>在React APP中，一个组件有很多状态或者一个状态也没有是由组件的实现细节决定，而这些细节也是可能变化的。你可以把丰富状态的组件放到鲜有状态的组件之中，反之亦然。</p>
+
+<p><a href="https://reactjs.org/docs/state-and-lifecycle.html">官网文章 Quick Start :State and LifeCycle</a></p>
+
+    </article>
+
+    <div class="post-share">
+
+<!-- desktop and tablet-->
+<div class="hide-on-small-only">
+  <i class="mdi mdi-share-variant material-icons small grey-text waves-effect waves-light"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/react_learnning/React-trans-5-%E7%8A%B6%E6%80%81%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React-官网学习-QuickStart5-状态和生命周期&url=/posts/react_learnning/React-trans-5-%E7%8A%B6%E6%80%81%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/react_learnning/React-trans-5-%E7%8A%B6%E6%80%81%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+<!-- small screen device -->
+<div class="hide-on-med-and-up">
+  <i class="mdi mdi-share-variant waves-effect waves-light small tooltipped grey-text" data-position="bottom" data-delay="50" data-tooltip="Share"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/react_learnning/React-trans-5-%E7%8A%B6%E6%80%81%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React-官网学习-QuickStart5-状态和生命周期&url=/posts/react_learnning/React-trans-5-%E7%8A%B6%E6%80%81%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/react_learnning/React-trans-5-%E7%8A%B6%E6%80%81%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+</div>
+
+
+  </div>
+  </div>
+
+  
+
+  
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: 'yxnne',
+    repo: 'https://github.com/yxnne/yxnne.github.io.git',
+    oauth: {
+        client_id: '5e768409612b3e27d186',
+        client_secret: 'a3f238eed1df9d94daa41eb627729fbaedf0596a',
+    },
+});
+gitment.render('gitmentContainer');
+</script>
+
+
+  
+</div>
+
+      </div>
+    </div>
+
+    <footer class="page-footer indigo lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l4 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">
+              "I know that what I'm doing looks stupid, but I'm a big boy and really want to do this."
+          </p>
+        </div>
+
+        <div class="col l4 s12 right">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            
+            <li><a href="https://github.com/506524339@qq.com" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-github-circle"></i></a></li>
+            
+            
+            <li><a href="https://plus.google.com/+google" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-google-plus"></i></a></li>
+            
+            
+            <li><a href="https://twitter.com/twitter" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-twitter"></i></a></li>
+            
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Copyright © yxnne, under<a class="red-text text-accent-1" href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0</a> Powered by <a class="red-text text-accent-1" href="http://jekyllrb.com/">Jekyll</a>.
+        <a class="btn waves-effect waves-light indigo lighten-2 lighten-1 right white-text" href="/about" >Contact me</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+    <!-- scrolltop button -->
+    <button class="material-scrolltop waves-effect waves-light hide-on-small-only" type="button"><i class="mdi mdi-arrow-up-bold small white-text"></i></button>
+
+    <!-- jquery -->
+    <script type="text/javascript" src="/lib/jquery-min.js"></script>
+    <!-- materialize -->
+    <script src="/lib/materialize/js/materialize.min.js"></script>
+    <!-- Material ScrollTop plugin -->
+    <script src="/lib/material-scrolltop/material-scrolltop.js"></script>
+    <!-- main -->
+    <script src="/js/init.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- google analytics -->
+    <script src="/js/google-analytics.js"></script>
+  </body>
+
+</html>

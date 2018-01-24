@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="theme-color" content="#5c6bc0">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>React-官网学习-QuickStart10-状态提升</title>
+  <meta name="description" content="通常情况下，许多组件需要共同反应数据变化。我们推荐将共享的状态提升到距离他们最近的共同父控件上。让我们看看这样是怎么工作的。">
+  <link rel="canonical" href="/posts/react_learnning/React-trans-10-%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87.html">
+  <link rel="alternate" type="application/rss+xml" title="noty Yxnne" href="/feed.xml" />
+
+  <link rel="stylesheet" href="/lib/materialize/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link media="all" rel="stylesheet" type="text/css" href="/lib/mdi/css/materialdesignicons.min.css" >
+  <link rel="stylesheet" href="/lib/material-scrolltop/material-scrolltop.css">
+
+  <noscript>
+  <div class="notice-warning noscript">You don't have javascript enabled. Good luck! :(</div>
+</noscript>
+
+<!--[if IE]>
+  <div class="notice-warning">Oh, you are using Internet Explorer! Good luck... :(</div>
+<![endif]-->
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+      <nav class="nav-extended indigo lighten-1">
+        <!-- 这一页是菜单侧滑栏 -->
+<div class="nav-wrapper">
+      <span class="site-title">noty Yxnne</span>
+
+      <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="mdi mdi-menu white-text"></i></a>
+      
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/" class="white-text">
+            <i class="mdi mdi-home left indigo-text text-lighten-3"></i>Home
+        </a></li>
+        <li><a href="/about" class="white-text">
+            <i class="mdi mdi-account-circle left indigo-text text-lighten-3"></i>About
+        </a></li>
+        <li><a href="/category" class="white-text">
+            <i class="mdi mdi-folder-multiple left indigo-text text-lighten-3"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="white-text">
+            <i class="mdi mdi-rss left indigo-text text-lighten-3"></i>RSS
+        </a></li>
+      </ul>
+
+
+      <ul class="side-nav" id="mobile-navbar">
+        <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images/bg_office.jpg" >
+            </div>
+              <a href="#!user"><img class="circle" src="images/portraits/portrait_qq.jpeg"></a>
+              <a href="#!name"><span class="white-text name">yxnne</span></a>
+              <a href="#!email"><span class="white-text email">506524339@qq.com</span></a>
+            </div>
+
+        </li>
+        <li><a href="/" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-home left green-text"></i>Home
+        </a></li>
+        <li><a href="/about" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-account-circle left blue-text"></i>About
+        </a></li>
+        <li><a href="/category" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-folder-multiple left yellow-text text-darken-1"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-rss left red-text"></i>RSS
+        </a></li>
+      </ul>
+</div>
+
+
+
+
+        <div class="nav-content">
+          <ul class="tabs tabs-transparent">
+            <li class="tab"><a class="active" href="#tab-main">Articles</a></li>
+          
+            <li class="tab "><a href="#tab-test">Favors</a></li>
+          
+            <li class="tab "><a href="#tab-test1">Favors</a></li>
+          
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+  
+    <div id="tab-test">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+    <div id="tab-test1">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+
+    <div class="site-container" id="tab-main"> 
+      <div class="wrapper">
+        <div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="post-section">
+
+    <p class="grey-text">
+      <i class="mdi mdi-calendar"></i>&nbsp;
+      Dec 14, 2017
+      &nbsp;&nbsp;<i class="mdi mdi-account-circle"></i>&nbsp;
+      yxnne
+      &nbsp;&nbsp;<i class="mdi mdi-label"></i>&nbsp;
+      <span class="capitalize">react_learnning</span>
+      &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Dec 25, 2017
+    </p>
+
+    <div class="post-header">
+      <h1 class="post-title">React-官网学习-QuickStart10-状态提升</h1>
+
+      
+        <i class="post-tag mdi mdi-tag-multiple waves-effect waves-light"></i>
+        
+        <div class="chip">translations_React.js</div>
+        
+      
+    </div>
+
+    <article class="post-content">
+      <p><big>通常</big>情况下，许多组件需要共同反应数据变化。我们推荐将共享的状态提升到距离他们最近的共同父控件上。让我们看看这样是怎么工作的。</p>
+
+<p>这一节中，我们将创造一个温度计算器根据给定温度来计算水是否沸腾。</p>
+
+<p>我们开始于组件<BoilingVerdict>(沸腾裁决)。这个组件接受一个Celsius（摄氏）温度作为prop参数，打印它是否足够使得水烧开:</BoilingVerdict></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="no">BoilingVerdict</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">props</span><span class="p">.</span><span class="nf">celsius</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">The</span> <span class="n">water</span> <span class="n">would</span> <span class="n">boil</span><span class="p">.</span><span class="nf">&lt;</span><span class="o">/</span><span class="nb">p</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">The</span> <span class="n">water</span> <span class="n">would</span> <span class="n">not</span> <span class="n">boil</span><span class="p">.</span><span class="nf">&lt;</span><span class="o">/</span><span class="nb">p</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>下面，我们创建一个组件叫Calculator，它渲染一个Input元素来使用户键入温度，该组件将输入值储存在this.state.temperature。</p>
+
+<p>另外，它也根据当前输入值渲染了BoilingVerdict。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Calculator</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">temperature: </span><span class="s1">''</span><span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="n">handleChange</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">temperature: </span><span class="n">e</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">value</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">temperature</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">temperature</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">fieldset</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">legend</span><span class="o">&gt;</span><span class="no">Enter</span> <span class="n">temperature</span> <span class="k">in</span> <span class="no">Celsius</span><span class="ss">:&lt;</span><span class="o">/</span><span class="n">legend</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">input</span>
+          <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">temperature</span><span class="p">}</span>
+          <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">}</span> <span class="o">/&gt;</span>
+
+        <span class="o">&lt;</span><span class="no">BoilingVerdict</span>
+          <span class="n">celsius</span><span class="o">=</span><span class="p">{</span><span class="n">parseFloat</span><span class="p">(</span><span class="n">temperature</span><span class="p">)}</span> <span class="o">/&gt;</span>
+
+      <span class="o">&lt;</span><span class="sr">/fieldset&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<h4 id="添加第二个input">添加第二个Input</h4>
+
+<p>我们的需求是：在摄氏输入的基础上，添加Fahrenheit华氏输入，并且使他们保持同步。</p>
+
+<p>我们以从Calculator中提取TemperatureInput组件作为开始。我们需要添加新的度量单位，它们可以是‘c’或‘f’。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">const</span> <span class="n">scaleNames</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">c: </span><span class="s1">'Celsius'</span><span class="p">,</span>
+  <span class="ss">f: </span><span class="s1">'Fahrenheit'</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">TemperatureInput</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">temperature: </span><span class="s1">''</span><span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="n">handleChange</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">temperature: </span><span class="n">e</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">value</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">temperature</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">temperature</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">scale</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">fieldset</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">legend</span><span class="o">&gt;</span><span class="no">Enter</span> <span class="n">temperature</span> <span class="k">in</span> <span class="p">{</span><span class="n">scaleNames</span><span class="p">[</span><span class="n">scale</span><span class="p">]}</span><span class="ss">:&lt;</span><span class="o">/</span><span class="n">legend</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">input</span> <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">temperature</span><span class="p">}</span>
+               <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">}</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/fieldset&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>现在我们可以把Calculator组件变成渲染两个独立的温度输入组件：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Calculator</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="no">TemperatureInput</span> <span class="n">scale</span><span class="o">=</span><span class="s2">"c"</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="no">TemperatureInput</span> <span class="n">scale</span><span class="o">=</span><span class="s2">"f"</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>我们现在有两个input输入框，但是当你在他们任何一个中输入温度，另外一个不会随之更新。这点和我们的需求相违背：我们想使他们保持同步。</p>
+
+<p>同样我们不能在Calculator中显示BoilingVerdict。Calculator并不知道当前温度因为BoilingVerdict不见了。</p>
+
+<h4 id="书写转换的函数">书写转换的函数</h4>
+
+<p>首先，我们写两个函数是的Celsius和Fahrenheit之间得以转换：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="n">toCelsius</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">fahrenheit</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">toFahrenheit</span><span class="p">(</span><span class="n">celsius</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">32</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>这两个函数能转换数值。我们要写另外一个函数，接受一个String类型的temperature参数和一个转换函数作为参数，并返回String。我们将使用它根据其中一个input输入来计算另外的input的值。</p>
+
+<p>当不可用的温度值传入，函数将输出空字符串，并且，它保持了小数点后三位的输出：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="n">tryConvert</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">convert</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="n">input</span> <span class="o">=</span> <span class="n">parseFloat</span><span class="p">(</span><span class="n">temperature</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="no">Number</span><span class="p">.</span><span class="nf">isNaN</span><span class="p">(</span><span class="n">input</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">''</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">const</span> <span class="n">output</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+  <span class="n">const</span> <span class="n">rounded</span> <span class="o">=</span> <span class="no">Math</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">output</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">rounded</span><span class="p">.</span><span class="nf">toString</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>举例子来说：tryConvert(‘abc’,toCelsius)返回空字符串，tryConvert(‘10.22’, toFahrenheit)返回 ‘50.396’。</p>
+
+<h4 id="状态提升">状态提升</h4>
+
+<p>现在，两个TemperatureInput都在他们自己的状态中维护他们的值：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">TemperatureInput</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">temperature: </span><span class="s1">''</span><span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="n">handleChange</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">temperature: </span><span class="n">e</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">value</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">temperature</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">temperature</span><span class="p">;</span>
+    <span class="sr">//</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span>  </code></pre></figure>
+
+<p>但我们想使他们彼此同步。当我们更新摄氏输入框，华氏输入框也要呈现出相应的转换后的华氏温度，反之亦然。</p>
+
+<p>在React中，共享状态是通过把某状态放到需要共享状态的组件们的最近共同祖先组件那里来实现的。这叫‘状态提升’。我们将把TemperatureInput的状态从组件中放到Calculator中。</p>
+
+<p>如果Calcutator组件拥有了共享状态，那它对于两个温度输入组件来说就是“真理之源”。它能指示两个输入的值相互保持一致性。由于所有的TemperatureInput组件的props都来自相同的父组件Calculator组件，所以两个温度输入组件会同步。</p>
+
+<p>让我们一步一步看看到底是怎么工作的：</p>
+
+<p>首先，在TemperatureInput组件中把this.state.temperature用this.props.temperature代替。到目前为止，尽管我们之后要从Calculator中传递this.props.temperature，但让我们先假设它是存在的。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="sr">//</span> <span class="no">Before</span><span class="p">:</span> <span class="n">const</span> <span class="n">temperature</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">temperature</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">temperature</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">temperature</span><span class="p">;</span>
+    <span class="sr">//</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span></code></pre></figure>
+
+<p>要知道，props是只读属性。当temperature在TemperatureInput组件里面时，TemperatureInput组件可以通过调用this.setState()改变temperature。但是现在temperature来自于父组件传递的prop属性，这样，TemperatureInput组件就是去了对temperature的控制。</p>
+
+<p>在React中,通常解决这个问题是吧组建”控制”起来。就像原生DOM的input似的，它可以接受value和onChange属性，所以自定义的TemperatureInput组件也能从其父组件Calculator中接受temperature和onTemperatureChanged属性。</p>
+
+<p>现在，TemperatureInput组件想要更新它的temperature值时，它会调用this.props.onTemperatureChange:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">handleChange</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="sr">//</span> <span class="no">Before</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">temperature: </span><span class="n">e</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">value</span><span class="p">});</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">onTemperatureChange</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">value</span><span class="p">);</span>
+    <span class="sr">//</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span></code></pre></figure>
+
+<blockquote>
+  <p>注意：
+在自定义组件里是叫temperature还是onTemperatureChanged这样的props名字没啥特别含义。我们可以起任何名字，像是通用的习惯value或onChange等。</p>
+</blockquote>
+
+<p>父组件Calculator将会一并提供temperature属性和onTemperatureChange 属性。他将会更改本地状态来处理这些变化，而后重新用新值渲染子组件。我们很快将看到Calculator的实现。</p>
+
+<p>在深入Calculator的变化之前，让我们回顾对TemperatureInput组件的改变先。我们移除了本地的state状态,从读取this.state.temperature变成读取this.props.temperature。在我们想做些变化时，从调用this.setState()变成调用父组件提供的this.props.onTemperatureChanged()：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">TemperatureInput</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">handleChange</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">onTemperatureChange</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">value</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">temperature</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">temperature</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">scale</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">fieldset</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">legend</span><span class="o">&gt;</span><span class="no">Enter</span> <span class="n">temperature</span> <span class="k">in</span> <span class="p">{</span><span class="n">scaleNames</span><span class="p">[</span><span class="n">scale</span><span class="p">]}</span><span class="ss">:&lt;</span><span class="o">/</span><span class="n">legend</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">input</span> <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">temperature</span><span class="p">}</span>
+               <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleChange</span><span class="p">}</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/fieldset&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>现在让我们转向Calculator组件。</p>
+
+<p>我们把input的temperature和scale存在Calculator中。这是从input上提升起来的属性，它们将作为“唯一的真理之源”而存在。这是我们为了渲染两个input而所需要的最基本表达。</p>
+
+<p>例如，若是在摄氏输入中输入37，Calculator组件的state将会是：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span>
+  <span class="ss">temperature: </span><span class="s1">'37'</span><span class="p">,</span>
+  <span class="ss">scale: </span><span class="s1">'c'</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>接着在华氏输入中输入212，Calculator组件的state将会是：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span>
+  <span class="ss">temperature: </span><span class="s1">'212'</span><span class="p">,</span>
+  <span class="ss">scale: </span><span class="s1">'f'</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>我们本可以将两个input的值都存起来，但结果是没有必要。存一个最近变化的的input的value值和其所代表scale就够了。我们可以根据当前的temperature和scale来推算出另一个值。</p>
+
+<p>两个input现在保持同步是因为他们的值都是通过相同的state计算出的。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Calculator</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleCelsiusChange</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleCelsiusChange</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleFahrenheitChange</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleFahrenheitChange</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">temperature: </span><span class="s1">''</span><span class="p">,</span> <span class="ss">scale: </span><span class="s1">'c'</span><span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="n">handleCelsiusChange</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">scale: </span><span class="s1">'c'</span><span class="p">,</span> <span class="n">temperature</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="n">handleFahrenheitChange</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">scale: </span><span class="s1">'f'</span><span class="p">,</span> <span class="n">temperature</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">scale</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">temperature</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">temperature</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">celsius</span> <span class="o">=</span> <span class="n">scale</span> <span class="o">===</span> <span class="s1">'f'</span> <span class="p">?</span> <span class="n">tryConvert</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">toCelsius</span><span class="p">)</span> <span class="p">:</span> <span class="n">temperature</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">fahrenheit</span> <span class="o">=</span> <span class="n">scale</span> <span class="o">===</span> <span class="s1">'c'</span> <span class="p">?</span> <span class="n">tryConvert</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">toFahrenheit</span><span class="p">)</span> <span class="p">:</span> <span class="n">temperature</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="no">TemperatureInput</span>
+          <span class="n">scale</span><span class="o">=</span><span class="s2">"c"</span>
+          <span class="n">temperature</span><span class="o">=</span><span class="p">{</span><span class="n">celsius</span><span class="p">}</span>
+          <span class="n">onTemperatureChange</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleCelsiusChange</span><span class="p">}</span> <span class="o">/&gt;</span>
+
+        <span class="o">&lt;</span><span class="no">TemperatureInput</span>
+          <span class="n">scale</span><span class="o">=</span><span class="s2">"f"</span>
+          <span class="n">temperature</span><span class="o">=</span><span class="p">{</span><span class="n">fahrenheit</span><span class="p">}</span>
+          <span class="n">onTemperatureChange</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleFahrenheitChange</span><span class="p">}</span> <span class="o">/&gt;</span>
+
+        <span class="o">&lt;</span><span class="no">BoilingVerdict</span>
+          <span class="n">celsius</span><span class="o">=</span><span class="p">{</span><span class="n">parseFloat</span><span class="p">(</span><span class="n">celsius</span><span class="p">)}</span> <span class="o">/&gt;</span>
+
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>现在，无论编辑哪个Input，Calculator中的this.state.temperature和this.state.scale都会得到更新。任何一个input得到value，用户的所有输入都会被存起，另外的input值总会基于这个值重新计算。</p>
+
+<p>让我们看看当你输入时发生了什么：</p>
+
+<ul>
+  <li>
+    <p>就像原生DOM的input标签一样，React调用指定的方法。在我们的例子中，这就是TemperatureInput组件中的handleChange。</p>
+  </li>
+  <li>
+    <p>TemperatureInput组件中的handleChanges用新的参数值调用this.props.onTemperatureChange()。它的props属性，包括onTemperatureChange,都是父组件Calculator提供的。</p>
+  </li>
+  <li>
+    <p>当它最近一次渲染时，Calculator能明确Celsius摄氏输入的TemperatureInput属性是Calcuator的handleCelsiusChange()方法，Fahrenheit 华氏输入的TemperatureInput属性是Calcuator的handleFahrenheitChange()。这样，根据我们的输入Calculator调用其中的一个方法。</p>
+  </li>
+  <li>
+    <p>这些方法中，Calculator组件通过使用新的input中的value值调用setState()，且当前的input的scale更新了，这样使React重新渲染。</p>
+  </li>
+  <li>
+    <p>React调用Calculator组件的render()方法来了解新的UI的模样。基于当前temperature和scale的两个input输入框中的值都是被重新计算的。温度装换的方法也是在这里使用的。</p>
+  </li>
+  <li>
+    <p>React再调用两个独立的TemperatureInput组件的render()方法，他们的props属性已经右父组件Calculator明晰。React知道UI该是什么样儿。</p>
+  </li>
+  <li>
+    <p>React DOM（虚拟DOM）更新原生DOM来匹配理想的值。一个是我们刚刚编辑过得input得到了它当前值，另一个是转换过温度的值得input也被更新。</p>
+  </li>
+</ul>
+
+<p>每次更新的步骤都是这样，所以两个input能保持同步。</p>
+
+<h4 id="课程收获">课程收获</h4>
+
+<p>任何在React中需要变化的数据都应该是来自于单一的“真理之源”。通常，state是第一个添加到组件中的渲染的。而后，要是另一个组件也需要这个状态，那就把改状态提升到组件们共同的祖先控件中。你应该使用这种[自顶向下数据模型]（https://reactjs.org/docs/lifting-state-up.html）而不是尝试让组件间通信。</p>
+
+<p>提升状态可能比两方绑定这种方式涉及写更多的“样板”代码。但是也有好处，那就是找出bug，隔离bug会轻松很多。由于任何“居住”在组件的状态是组件单独控制，那么界面上的bug就极大减少了。另外，你也能实现任何自定义逻辑注入或者转换在用户输入中。</p>
+
+<p>如果有些东西需要来自于props或者state,那么它可能不该是state。举个例子，为了代替存储celsiusValue和fahrenheitValue，我们只存储了最新编辑的temperature和它的scale。另一个组件的值在render()方法中是可以通过这两个计算出来的。这样也是我们得以清除或者取整另一个而不丢失精度。（？？）</p>
+
+<p>当你发现一些UI上的错误，你可以使用 React Developer Tools 来检测props并在DOM树上挪一挪来找出那些正在更新state的组件。这样，你就能从源码中跟踪bug：</p>
+
+<p><img src="https://d33wubrfki0l68.cloudfront.net/05ade6c3d5ae581cb542d01ac6980aaf703763c5/373b7/react-devtools-state-ef94afc3447d75cdc245c77efb0d63be.gif" alt="官网图片：使用 React Developer Tools" /></p>
+
+<p><a href="https://reactjs.org/docs/lifting-state-up.html">官网文章 Quick Start :lifting state up</a></p>
+
+    </article>
+
+    <div class="post-share">
+
+<!-- desktop and tablet-->
+<div class="hide-on-small-only">
+  <i class="mdi mdi-share-variant material-icons small grey-text waves-effect waves-light"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/react_learnning/React-trans-10-%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React-官网学习-QuickStart10-状态提升&url=/posts/react_learnning/React-trans-10-%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/react_learnning/React-trans-10-%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+<!-- small screen device -->
+<div class="hide-on-med-and-up">
+  <i class="mdi mdi-share-variant waves-effect waves-light small tooltipped grey-text" data-position="bottom" data-delay="50" data-tooltip="Share"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/react_learnning/React-trans-10-%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React-官网学习-QuickStart10-状态提升&url=/posts/react_learnning/React-trans-10-%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/react_learnning/React-trans-10-%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+</div>
+
+
+  </div>
+  </div>
+
+  
+
+  
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: 'yxnne',
+    repo: 'https://github.com/yxnne/yxnne.github.io.git',
+    oauth: {
+        client_id: '5e768409612b3e27d186',
+        client_secret: 'a3f238eed1df9d94daa41eb627729fbaedf0596a',
+    },
+});
+gitment.render('gitmentContainer');
+</script>
+
+
+  
+</div>
+
+      </div>
+    </div>
+
+    <footer class="page-footer indigo lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l4 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">
+              "I know that what I'm doing looks stupid, but I'm a big boy and really want to do this."
+          </p>
+        </div>
+
+        <div class="col l4 s12 right">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            
+            <li><a href="https://github.com/506524339@qq.com" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-github-circle"></i></a></li>
+            
+            
+            <li><a href="https://plus.google.com/+google" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-google-plus"></i></a></li>
+            
+            
+            <li><a href="https://twitter.com/twitter" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-twitter"></i></a></li>
+            
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Copyright © yxnne, under<a class="red-text text-accent-1" href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0</a> Powered by <a class="red-text text-accent-1" href="http://jekyllrb.com/">Jekyll</a>.
+        <a class="btn waves-effect waves-light indigo lighten-2 lighten-1 right white-text" href="/about" >Contact me</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+    <!-- scrolltop button -->
+    <button class="material-scrolltop waves-effect waves-light hide-on-small-only" type="button"><i class="mdi mdi-arrow-up-bold small white-text"></i></button>
+
+    <!-- jquery -->
+    <script type="text/javascript" src="/lib/jquery-min.js"></script>
+    <!-- materialize -->
+    <script src="/lib/materialize/js/materialize.min.js"></script>
+    <!-- Material ScrollTop plugin -->
+    <script src="/lib/material-scrolltop/material-scrolltop.js"></script>
+    <!-- main -->
+    <script src="/js/init.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- google analytics -->
+    <script src="/js/google-analytics.js"></script>
+  </body>
+
+</html>

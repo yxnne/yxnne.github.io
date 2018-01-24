@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="theme-color" content="#5c6bc0">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>基于Webpack来更改antd主题的相关配置笔记</title>
+  <meta name="description" content="antd是我最开始接触react开发时候的入门组件库。也是蚂蚁金服的设计规范，总体来说包含了日常使用的大多数场景所以显得格外好用。">
+  <link rel="canonical" href="/posts/developing_react/React-Dev-%E5%9F%BA%E4%BA%8EWebpack%E5%AF%B9antd%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%94%B9%E5%8F%98%E9%85%8D%E7%BD%AE.html">
+  <link rel="alternate" type="application/rss+xml" title="noty Yxnne" href="/feed.xml" />
+
+  <link rel="stylesheet" href="/lib/materialize/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link media="all" rel="stylesheet" type="text/css" href="/lib/mdi/css/materialdesignicons.min.css" >
+  <link rel="stylesheet" href="/lib/material-scrolltop/material-scrolltop.css">
+
+  <noscript>
+  <div class="notice-warning noscript">You don't have javascript enabled. Good luck! :(</div>
+</noscript>
+
+<!--[if IE]>
+  <div class="notice-warning">Oh, you are using Internet Explorer! Good luck... :(</div>
+<![endif]-->
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+      <nav class="nav-extended indigo lighten-1">
+        <!-- 这一页是菜单侧滑栏 -->
+<div class="nav-wrapper">
+      <span class="site-title">noty Yxnne</span>
+
+      <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="mdi mdi-menu white-text"></i></a>
+      
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/" class="white-text">
+            <i class="mdi mdi-home left indigo-text text-lighten-3"></i>Home
+        </a></li>
+        <li><a href="/about" class="white-text">
+            <i class="mdi mdi-account-circle left indigo-text text-lighten-3"></i>About
+        </a></li>
+        <li><a href="/category" class="white-text">
+            <i class="mdi mdi-folder-multiple left indigo-text text-lighten-3"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="white-text">
+            <i class="mdi mdi-rss left indigo-text text-lighten-3"></i>RSS
+        </a></li>
+      </ul>
+
+
+      <ul class="side-nav" id="mobile-navbar">
+        <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images/bg_office.jpg" >
+            </div>
+              <a href="#!user"><img class="circle" src="images/portraits/portrait_qq.jpeg"></a>
+              <a href="#!name"><span class="white-text name">yxnne</span></a>
+              <a href="#!email"><span class="white-text email">506524339@qq.com</span></a>
+            </div>
+
+        </li>
+        <li><a href="/" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-home left green-text"></i>Home
+        </a></li>
+        <li><a href="/about" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-account-circle left blue-text"></i>About
+        </a></li>
+        <li><a href="/category" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-folder-multiple left yellow-text text-darken-1"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-rss left red-text"></i>RSS
+        </a></li>
+      </ul>
+</div>
+
+
+
+
+        <div class="nav-content">
+          <ul class="tabs tabs-transparent">
+            <li class="tab"><a class="active" href="#tab-main">Articles</a></li>
+          
+            <li class="tab "><a href="#tab-test">Favors</a></li>
+          
+            <li class="tab "><a href="#tab-test1">Favors</a></li>
+          
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+  
+    <div id="tab-test">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+    <div id="tab-test1">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+
+    <div class="site-container" id="tab-main"> 
+      <div class="wrapper">
+        <div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="post-section">
+
+    <p class="grey-text">
+      <i class="mdi mdi-calendar"></i>&nbsp;
+      Dec 21, 2017
+      &nbsp;&nbsp;<i class="mdi mdi-account-circle"></i>&nbsp;
+      yxnne
+      &nbsp;&nbsp;<i class="mdi mdi-label"></i>&nbsp;
+      <span class="capitalize">Developing_React</span>
+      &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Dec 25, 2017
+    </p>
+
+    <div class="post-header">
+      <h1 class="post-title">基于Webpack来更改antd主题的相关配置笔记</h1>
+
+      
+        <i class="post-tag mdi mdi-tag-multiple waves-effect waves-light"></i>
+        
+        <div class="chip">Developing_React</div>
+        
+        <div class="chip">antd</div>
+        
+      
+    </div>
+
+    <article class="post-content">
+      <p><big>antd</big>是我最开始接触react开发时候的入门组件库。也是蚂蚁金服的设计规范，总体来说包含了日常使用的大多数场景所以显得格外好用。</p>
+
+<p>现在，需要改变antd的theme，比如，我不喜欢支付宝蓝。</p>
+
+<p>antd官方网址给的介绍有点简练，对于我一个非专业前端新人来讲，门槛又高了。</p>
+
+<p><a href="https://ant.design/docs/react/customize-theme-cn">antd官方网址给的关于theme的介绍</a></p>
+
+<p>不过大致就是说，看上去只要在package.json中加一个theme属性这么简单的方法，只有在使用antd的脚手架的时候才奏效：antd-init 和 dva-cli 。如果用的正式这样的脚手架，那么的确非常简单。</p>
+
+<p>那么问题在于，假如我没有用这个脚手架呢？</p>
+
+<p>antd的官网上也有提供思路：如果你使用的是其他脚手架，可以参考 <a href="https://github.com/ant-tool/atool-build/blob/a4b3e3eec4ffc09b0e2352d7f9d279c4c28fdb99/src/getWebpackCommonConfig.js#L131-L138">atool-build 中 less-loader 的 webpack 相关配置</a> ，<strong>利用 less-loader 的 modifyVars 配置来覆盖原来的样式变量</strong>。</p>
+
+<p>于我来说真可谓言简意赅，惜字如金，遂带着问题我咨询了一位阿里系的前辈，他给我推荐了这篇文章：<a href="https://medium.com/@GeoffMiller/how-to-customize-ant-design-with-react-webpack-the-missing-guide-c6430f2db10f">一篇讲的不错的墙外文章</a></p>
+
+<p>以下我的笔记也几乎来自于此文章。</p>
+
+<h4 id="第一步依从安装">第一步：依从安装</h4>
+
+<ul>
+  <li>antd这就不说了</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">npm</span> <span class="n">install</span> <span class="n">antd</span> <span class="o">--</span><span class="n">save</span></code></pre></figure>
+
+<ul>
+  <li>babel-plugin-import</li>
+</ul>
+
+<p><a href="https://www.cnblogs.com/yswz/p/7165031.html">作用</a>:按需加载组件</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">npm</span> <span class="n">install</span> <span class="n">babel</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">import</span> <span class="o">--</span><span class="n">save</span><span class="o">-</span><span class="n">dev</span></code></pre></figure>
+
+<ul>
+  <li>less-vars-to-js</li>
+</ul>
+
+<p>less-vars-to-js将less文件视作String，以对象形式返回其中的变量。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">npm</span> <span class="n">install</span> <span class="n">less</span><span class="o">-</span><span class="n">vars</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">js</span> <span class="o">--</span><span class="n">save</span><span class="o">-</span><span class="n">dev</span></code></pre></figure>
+
+<ul>
+  <li>安装less / less loader / css-loader / style-loader 等支持，缺啥就安啥</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">npm</span> <span class="n">install</span> <span class="n">less</span> <span class="n">less</span><span class="o">-</span><span class="n">loader</span> <span class="n">css</span><span class="o">-</span><span class="n">loader</span> <span class="n">style</span><span class="o">-</span><span class="n">loader</span> <span class="o">--</span><span class="n">save</span><span class="o">-</span><span class="n">dev</span></code></pre></figure>
+
+<h4 id="配置webpackconfigjs--babel-loader中装插件">配置webpack.config.js &gt; babel-loader中装插件</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">      <span class="p">{</span>
+        <span class="ss">test: </span><span class="sr">/.js?$/</span><span class="p">,</span>
+        <span class="ss">exclude: </span><span class="sr">/(node_modules)/</span><span class="p">,</span>
+        <span class="ss">loader: </span><span class="s1">'babel-loader'</span><span class="p">,</span>
+        <span class="ss">query: </span><span class="p">{</span>
+          <span class="ss">presets: </span><span class="p">[</span><span class="s1">'react'</span><span class="p">,</span> <span class="s1">'babel-preset-react'</span><span class="p">],</span>
+          <span class="sr">//</span> <span class="n">this</span> <span class="n">add</span> <span class="n">here</span> 
+          <span class="ss">plugins: </span><span class="p">[</span>
+            <span class="p">[</span><span class="s1">'import'</span><span class="p">,</span> <span class="p">{</span>
+              <span class="ss">libraryName: </span><span class="s2">"antd"</span><span class="p">,</span>
+              <span class="ss">style: </span><span class="kp">true</span>
+            <span class="p">}]</span>
+          <span class="p">]</span>
+          <span class="sr">//</span> <span class="n">this</span> <span class="n">add</span> <span class="n">here</span> <span class="k">end</span>
+
+        <span class="p">}</span>
+      <span class="p">},</span></code></pre></figure>
+
+<h4 id="新建一个less文件配置样式">新建一个.less文件配置样式</h4>
+
+<p>在根目录下新建一个.js文件来配置主题，比如theme_config.less,在里面改变颜色，很low的红色：</p>
+
+<p>可用的theme设置在这里：<a href="https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less">antd theme官方</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="vi">@primary</span><span class="o">-</span><span class="ss">color: </span><span class="c1">#ff0000; </span></code></pre></figure>
+
+<h4 id="配置webpackconfigjs--less-loader配置">配置webpack.config.js &gt; less-loader配置</h4>
+
+<ul>
+  <li>把刚才配的theme引入过来</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">const</span> <span class="n">path</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+
+<span class="n">const</span> <span class="n">fs</span>  <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+
+<span class="n">const</span> <span class="n">lessToJs</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">'less-vars-to-js'</span><span class="p">);</span>
+
+<span class="n">const</span> <span class="n">themeVariables</span> <span class="o">=</span> <span class="n">lessToJs</span><span class="p">(</span><span class="n">fs</span><span class="p">.</span><span class="nf">readFileSync</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">__dirname</span><span class="p">,</span> <span class="s1">'./theme_config.less'</span><span class="p">),</span> <span class="s1">'utf8'</span><span class="p">));</span></code></pre></figure>
+
+<ul>
+  <li>配置各个样式loader</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">      
+      <span class="p">{</span>
+        <span class="ss">test: </span><span class="sr">/\.css$/</span><span class="p">,</span>
+        <span class="ss">loader: </span><span class="s1">'style-loader!css-loader'</span>
+      <span class="p">},</span>
+
+      <span class="p">{</span>
+        <span class="sr">//</span><span class="n">css</span><span class="err">模块化设置</span>
+        <span class="ss">test: </span><span class="sr">/\.less$/</span><span class="p">,</span>
+        <span class="sr">//</span><span class="n">ant</span><span class="o">-</span><span class="n">design</span><span class="err">样式需要这样</span>
+        <span class="ss">use: </span><span class="p">[{</span>
+            <span class="ss">loader: </span><span class="s2">"style-loader"</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="ss">loader: </span><span class="s2">"css-loader"</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="ss">loader: </span><span class="s2">"less-loader"</span><span class="p">,</span>
+            <span class="ss">options: </span><span class="p">{</span>
+
+              <span class="ss">modifyVars: </span><span class="n">themeVariables</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">},</span></code></pre></figure>
+
+<p>这几步下来基本就ok啦。</p>
+
+<p><strong>总结下</strong>：</p>
+
+<p>基本就是：</p>
+
+<p>1.给babel-loader装插件{libraryName: “antd”,style: true};</p>
+
+<p>2.新建一个less文件配置样式并引入到webpack.config.jsz中。</p>
+
+<p>3.配置各种less-loader style-loader css-loader等。然后用之前引入的样式，通过less-loader覆盖原有样式。</p>
+
+<h4 id="ps--可用的一个webpackconfigjs参考下以免日后忘记">PS : 可用的一个webpack.config.js参考下，以免日后忘记</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">const</span> <span class="n">webpack</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">'webpack'</span><span class="p">);</span>
+<span class="n">const</span> <span class="n">path</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+
+<span class="n">const</span> <span class="n">fs</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+
+<span class="n">const</span> <span class="n">lessToJs</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">'less-vars-to-js'</span><span class="p">);</span>
+<span class="n">const</span> <span class="n">themeVariables</span> <span class="o">=</span> <span class="n">lessToJs</span><span class="p">(</span><span class="n">fs</span><span class="p">.</span><span class="nf">readFileSync</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">__dirname</span><span class="p">,</span> <span class="s1">'./theme.less'</span><span class="p">),</span> <span class="s1">'utf8'</span><span class="p">));</span>
+<span class="n">module</span><span class="p">.</span><span class="nf">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">context: </span><span class="n">__dirname</span> <span class="o">+</span> <span class="s1">'/src'</span><span class="p">,</span>
+  <span class="ss">entry: </span><span class="s2">"./js/root.js"</span><span class="p">,</span>
+  <span class="ss">module: </span><span class="p">{</span>
+
+    <span class="ss">loaders: </span><span class="p">[{</span>
+        <span class="ss">test: </span><span class="sr">/.js?$/</span><span class="p">,</span>
+        <span class="ss">exclude: </span><span class="sr">/(node_modules)/</span><span class="p">,</span>
+        <span class="ss">loader: </span><span class="s1">'babel-loader'</span><span class="p">,</span>
+        <span class="ss">query: </span><span class="p">{</span>
+          <span class="ss">presets: </span><span class="p">[</span><span class="s1">'react'</span><span class="p">,</span> <span class="s1">'babel-preset-react'</span><span class="p">],</span>
+          <span class="ss">plugins: </span><span class="p">[</span>
+            <span class="p">[</span><span class="s1">'import'</span><span class="p">,</span> <span class="p">{</span>
+              <span class="ss">libraryName: </span><span class="s2">"antd"</span><span class="p">,</span>
+              <span class="ss">style: </span><span class="kp">true</span>
+            <span class="p">}]</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="ss">test: </span><span class="sr">/\.css$/</span><span class="p">,</span>
+        <span class="ss">loader: </span><span class="s1">'style-loader!css-loader'</span>
+      <span class="p">},</span>
+
+      <span class="p">{</span>
+        <span class="sr">//</span><span class="n">css</span><span class="err">模块化设置</span>
+        <span class="ss">test: </span><span class="sr">/\.less$/</span><span class="p">,</span>
+        <span class="sr">//</span><span class="n">ant</span><span class="o">-</span><span class="n">design</span><span class="err">样式需要这样</span>
+        <span class="ss">use: </span><span class="p">[{</span>
+            <span class="ss">loader: </span><span class="s2">"style-loader"</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="ss">loader: </span><span class="s2">"css-loader"</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="ss">loader: </span><span class="s2">"less-loader"</span><span class="p">,</span>
+            <span class="ss">options: </span><span class="p">{</span>
+              <span class="ss">modifyVars: </span><span class="n">themeVariables</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="ss">output: </span><span class="p">{</span>
+    <span class="ss">path: </span><span class="n">__dirname</span> <span class="o">+</span> <span class="s2">"/src/"</span><span class="p">,</span>
+    <span class="ss">filename: </span><span class="s2">"bundle.js"</span>
+  <span class="p">},</span>
+  <span class="ss">devServer: </span><span class="p">{</span>
+    <span class="sr">//</span><span class="err">我们在这里对</span><span class="n">webpack</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">server</span><span class="err">进行配置</span>
+    <span class="ss">port: </span><span class="mi">18080</span><span class="p">,</span>
+    <span class="ss">historyApiFallback: </span><span class="kp">true</span>
+  <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+<p><strong>路漫漫其修远兮，吾将上下而求索</strong></p>
+
+
+    </article>
+
+    <div class="post-share">
+
+<!-- desktop and tablet-->
+<div class="hide-on-small-only">
+  <i class="mdi mdi-share-variant material-icons small grey-text waves-effect waves-light"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/developing_react/React-Dev-%E5%9F%BA%E4%BA%8EWebpack%E5%AF%B9antd%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%94%B9%E5%8F%98%E9%85%8D%E7%BD%AE.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=基于Webpack来更改antd主题的相关配置笔记&url=/posts/developing_react/React-Dev-%E5%9F%BA%E4%BA%8EWebpack%E5%AF%B9antd%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%94%B9%E5%8F%98%E9%85%8D%E7%BD%AE.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/developing_react/React-Dev-%E5%9F%BA%E4%BA%8EWebpack%E5%AF%B9antd%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%94%B9%E5%8F%98%E9%85%8D%E7%BD%AE.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+<!-- small screen device -->
+<div class="hide-on-med-and-up">
+  <i class="mdi mdi-share-variant waves-effect waves-light small tooltipped grey-text" data-position="bottom" data-delay="50" data-tooltip="Share"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/developing_react/React-Dev-%E5%9F%BA%E4%BA%8EWebpack%E5%AF%B9antd%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%94%B9%E5%8F%98%E9%85%8D%E7%BD%AE.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=基于Webpack来更改antd主题的相关配置笔记&url=/posts/developing_react/React-Dev-%E5%9F%BA%E4%BA%8EWebpack%E5%AF%B9antd%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%94%B9%E5%8F%98%E9%85%8D%E7%BD%AE.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/developing_react/React-Dev-%E5%9F%BA%E4%BA%8EWebpack%E5%AF%B9antd%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%94%B9%E5%8F%98%E9%85%8D%E7%BD%AE.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+</div>
+
+
+  </div>
+  </div>
+
+  
+
+  
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: 'yxnne',
+    repo: 'https://github.com/yxnne/yxnne.github.io.git',
+    oauth: {
+        client_id: '5e768409612b3e27d186',
+        client_secret: 'a3f238eed1df9d94daa41eb627729fbaedf0596a',
+    },
+});
+gitment.render('gitmentContainer');
+</script>
+
+
+  
+</div>
+
+      </div>
+    </div>
+
+    <footer class="page-footer indigo lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l4 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">
+              "I know that what I'm doing looks stupid, but I'm a big boy and really want to do this."
+          </p>
+        </div>
+
+        <div class="col l4 s12 right">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            
+            <li><a href="https://github.com/506524339@qq.com" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-github-circle"></i></a></li>
+            
+            
+            <li><a href="https://plus.google.com/+google" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-google-plus"></i></a></li>
+            
+            
+            <li><a href="https://twitter.com/twitter" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-twitter"></i></a></li>
+            
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Copyright © yxnne, under<a class="red-text text-accent-1" href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0</a> Powered by <a class="red-text text-accent-1" href="http://jekyllrb.com/">Jekyll</a>.
+        <a class="btn waves-effect waves-light indigo lighten-2 lighten-1 right white-text" href="/about" >Contact me</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+    <!-- scrolltop button -->
+    <button class="material-scrolltop waves-effect waves-light hide-on-small-only" type="button"><i class="mdi mdi-arrow-up-bold small white-text"></i></button>
+
+    <!-- jquery -->
+    <script type="text/javascript" src="/lib/jquery-min.js"></script>
+    <!-- materialize -->
+    <script src="/lib/materialize/js/materialize.min.js"></script>
+    <!-- Material ScrollTop plugin -->
+    <script src="/lib/material-scrolltop/material-scrolltop.js"></script>
+    <!-- main -->
+    <script src="/js/init.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- google analytics -->
+    <script src="/js/google-analytics.js"></script>
+  </body>
+
+</html>

@@ -8,9 +8,9 @@
   <meta name="theme-color" content="#5c6bc0">
 
   <link rel="shortcut icon" href="/favicon.ico">
-  <title>node.js—-拎不清的npm和gem（未完成）</title>
-  <meta name="description" content="NPM 是随同NodeJS一起安装的包管理工具。">
-  <link rel="canonical" href="/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html">
+  <title>Atom的安装/部分插件安装</title>
+  <meta name="description" content="Atom ，号称是21世纪可控制文本编辑器，Github搞出来的东西 官网。Atom是一个使用HTML，JavaScript，CSS和Node.js集成构建的桌面应用程序。它运行在Electron上，这是一个使用Web技术构建跨平台应用程序的框架。">
+  <link rel="canonical" href="/posts/tools/Tools-Atom%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85.html">
   <link rel="alternate" type="application/rss+xml" title="noty Yxnne" href="/feed.xml" />
 
   <link rel="stylesheet" href="/lib/materialize/css/materialize.min.css">
@@ -188,27 +188,92 @@
 
     <p class="grey-text">
       <i class="mdi mdi-calendar"></i>&nbsp;
-      Nov 27, 2017
+      Dec 8, 2017
       &nbsp;&nbsp;<i class="mdi mdi-account-circle"></i>&nbsp;
       yxnne
       &nbsp;&nbsp;<i class="mdi mdi-label"></i>&nbsp;
-      <span class="capitalize">node.js_learnning</span>
+      <span class="capitalize">Tools</span>
       &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Dec 25, 2017
     </p>
 
     <div class="post-header">
-      <h1 class="post-title">node.js—-拎不清的npm和gem（未完成）</h1>
+      <h1 class="post-title">Atom的安装/部分插件安装</h1>
 
       
         <i class="post-tag mdi mdi-tag-multiple waves-effect waves-light"></i>
         
-        <div class="chip">node.js</div>
+        <div class="chip">Tools</div>
         
       
     </div>
 
     <article class="post-content">
-      <p><big>NPM</big> 是随同NodeJS一起安装的包管理工具。</p>
+      <p><big>Atom</big> ，号称是21世纪可控制文本编辑器，Github搞出来的东西 <a href="https://atom.io">官网</a>。Atom是一个使用HTML，JavaScript，CSS和Node.js集成构建的桌面应用程序。它运行在<a href="https://electronjs.org/">Electron</a>上，这是一个使用Web技术构建跨平台应用程序的框架。</p>
+
+<p>其特点诸如：</p>
+
+<ul>
+  <li>跨平台：Win/OSX/Linux</li>
+  <li>内置包管理器，直接搜索安装即可（依赖网络状况）</li>
+  <li>自动补全</li>
+  <li>文件浏览</li>
+  <li>多窗口编辑</li>
+  <li>查找和替换</li>
+</ul>
+
+<p>Atom安装很简单，官网下载就好。</p>
+
+<p>近期准备使用Atom写React.js项目。所以搜索了些资料，安装了些比较好用的插件：</p>
+
+<h4 id="插件">插件</h4>
+
+<h5 id="emmet"><strong>emmet</strong></h5>
+
+<p>emmet是插件一个效率化工具，从sublime上就一直追随至今。<a href="https://github.com/emmetio/emmet">github</a></p>
+
+<h5 id="atom-ternjs"><strong>atom-ternjs</strong></h5>
+
+<p>JavaScript代码自动补全，代码分析支持是<a href="https://github.com/ternjs/tern">Tern</a>,支持ES5, ES6, ES7, Node.js, jQuery, Angular。<a href="https://github.com/tststs/atom-ternjs">github</a></p>
+
+<h5 id="atom-beautify"><strong>atom-beautify</strong></h5>
+
+<p>顾名思义，美化代码，格式化工具。<a href="https://github.com/Glavin001/atom-beautify">github</a></p>
+
+<h5 id="open-in-browser"><strong>open-in-browser</strong></h5>
+
+<p>添加直接在浏览器打开的功能。</p>
+
+<h5 id="file-icons"><strong>file-icons</strong></h5>
+
+<p>文件树的icon</p>
+
+<h5 id="highlight-line"><strong>highlight-line</strong></h5>
+
+<p>行高亮</p>
+
+<h5 id="highlight-selected"><strong>highlight-selected</strong></h5>
+
+<p>选中高亮</p>
+
+<h5 id="activate-power-mode"><strong>activate-power-mode</strong></h5>
+
+<p>炸裂的编辑特效 <a href="https://atom.io/packages/activate-power-mode">github</a></p>
+
+<h4 id="插件安装的问题">插件安装的问题</h4>
+
+<p>本来插件安装时比较简单的,直接搜索安装就好了：
+<img src="https://raw.githubusercontent.com/yxnne/yxnne.github.io/master/images/artical_using/20171208_atom_install.jpeg" alt="在Atom中，打开setting" /></p>
+
+<p>但是实际安装过程中效果不是很好，主要可能是网络问题吧，比如说atom-beautify这个插件，总是安装不成功，设置翻墙也没成。</p>
+
+<p>后来搜索发现了一种方法是，直接从git上clone下来代码到atom安装在目录下的package目录下，clone成功后使用npm安装：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">cd</span> <span class="n">atom</span>
+<span class="err">$</span> <span class="n">cd</span> <span class="n">pacages</span>
+<span class="err">$</span> <span class="n">git</span> <span class="nb">clone</span> <span class="s2">"从geihub相关插件主页的url.git"</span>
+<span class="err">$</span> <span class="n">npm</span> <span class="n">install</span></code></pre></figure>
+
+<p>在windows下面，最后一步使用cnpm(淘宝镜像)成功了，npm太慢。<strong>但是Mac下这个方法居然没有成功，安装完成之后Atom总是打开后没有响应！！！？？？不知为何啊..</strong></p>
 
     </article>
 
@@ -218,18 +283,18 @@
 <div class="hide-on-small-only">
   <i class="mdi mdi-share-variant material-icons small grey-text waves-effect waves-light"></i>
 
-  <a href="https://plus.google.com/share?url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
-  <a href="https://twitter.com/intent/tweet?text=node.js—-拎不清的npm和gem（未完成）&url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
-  <a href="https://facebook.com/sharer.php?u=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
+  <a href="https://plus.google.com/share?url=/posts/tools/Tools-Atom%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=Atom的安装/部分插件安装&url=/posts/tools/Tools-Atom%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/tools/Tools-Atom%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
 </div>
 
 <!-- small screen device -->
 <div class="hide-on-med-and-up">
   <i class="mdi mdi-share-variant waves-effect waves-light small tooltipped grey-text" data-position="bottom" data-delay="50" data-tooltip="Share"></i>
 
-  <a href="https://plus.google.com/share?url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
-  <a href="https://twitter.com/intent/tweet?text=node.js—-拎不清的npm和gem（未完成）&url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
-  <a href="https://facebook.com/sharer.php?u=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
+  <a href="https://plus.google.com/share?url=/posts/tools/Tools-Atom%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=Atom的安装/部分插件安装&url=/posts/tools/Tools-Atom%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/tools/Tools-Atom%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
 </div>
 
 </div>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="theme-color" content="#5c6bc0">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>React Router 4 简单使用</title>
+  <meta name="description" content="React-Router 是官方推荐的React前端路由器，需要注意的是版本2和4差异还是比较大的。">
+  <link rel="canonical" href="/posts/developing_react/React-Dev-ReactRouter%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.html">
+  <link rel="alternate" type="application/rss+xml" title="noty Yxnne" href="/feed.xml" />
+
+  <link rel="stylesheet" href="/lib/materialize/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link media="all" rel="stylesheet" type="text/css" href="/lib/mdi/css/materialdesignicons.min.css" >
+  <link rel="stylesheet" href="/lib/material-scrolltop/material-scrolltop.css">
+
+  <noscript>
+  <div class="notice-warning noscript">You don't have javascript enabled. Good luck! :(</div>
+</noscript>
+
+<!--[if IE]>
+  <div class="notice-warning">Oh, you are using Internet Explorer! Good luck... :(</div>
+<![endif]-->
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+      <nav class="nav-extended indigo lighten-1">
+        <!-- 这一页是菜单侧滑栏 -->
+<div class="nav-wrapper">
+      <span class="site-title">noty Yxnne</span>
+
+      <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="mdi mdi-menu white-text"></i></a>
+      
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/" class="white-text">
+            <i class="mdi mdi-home left indigo-text text-lighten-3"></i>Home
+        </a></li>
+        <li><a href="/about" class="white-text">
+            <i class="mdi mdi-account-circle left indigo-text text-lighten-3"></i>About
+        </a></li>
+        <li><a href="/category" class="white-text">
+            <i class="mdi mdi-folder-multiple left indigo-text text-lighten-3"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="white-text">
+            <i class="mdi mdi-rss left indigo-text text-lighten-3"></i>RSS
+        </a></li>
+      </ul>
+
+
+      <ul class="side-nav" id="mobile-navbar">
+        <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images/bg_office.jpg" >
+            </div>
+              <a href="#!user"><img class="circle" src="images/portraits/portrait_qq.jpeg"></a>
+              <a href="#!name"><span class="white-text name">yxnne</span></a>
+              <a href="#!email"><span class="white-text email">506524339@qq.com</span></a>
+            </div>
+
+        </li>
+        <li><a href="/" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-home left green-text"></i>Home
+        </a></li>
+        <li><a href="/about" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-account-circle left blue-text"></i>About
+        </a></li>
+        <li><a href="/category" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-folder-multiple left yellow-text text-darken-1"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-rss left red-text"></i>RSS
+        </a></li>
+      </ul>
+</div>
+
+
+
+
+        <div class="nav-content">
+          <ul class="tabs tabs-transparent">
+            <li class="tab"><a class="active" href="#tab-main">Articles</a></li>
+          
+            <li class="tab "><a href="#tab-test">Favors</a></li>
+          
+            <li class="tab "><a href="#tab-test1">Favors</a></li>
+          
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+  
+    <div id="tab-test">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+    <div id="tab-test1">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+
+    <div class="site-container" id="tab-main"> 
+      <div class="wrapper">
+        <div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="post-section">
+
+    <p class="grey-text">
+      <i class="mdi mdi-calendar"></i>&nbsp;
+      Dec 18, 2017
+      &nbsp;&nbsp;<i class="mdi mdi-account-circle"></i>&nbsp;
+      yxnne
+      &nbsp;&nbsp;<i class="mdi mdi-label"></i>&nbsp;
+      <span class="capitalize">Developing_React</span>
+      &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Jan 18, 2018
+    </p>
+
+    <div class="post-header">
+      <h1 class="post-title">React Router 4 简单使用</h1>
+
+      
+        <i class="post-tag mdi mdi-tag-multiple waves-effect waves-light"></i>
+        
+        <div class="chip">Developing_React</div>
+        
+      
+    </div>
+
+    <article class="post-content">
+      <p><big>React-Router</big> 是官方推荐的React前端路由器，需要注意的是版本2和4差异还是比较大的。</p>
+
+<h4 id="安装配置react-router">安装配置React-Router</h4>
+
+<p>安装的方式还是npm,或者cnpm，终端进入项目根目录下,敲:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">npm</span> <span class="n">i</span> <span class="o">--</span><span class="n">save</span> <span class="n">react</span><span class="o">-</span><span class="n">router</span><span class="o">-</span><span class="n">dom</span> </code></pre></figure>
+
+<p>在react router4  分为dom版本和native版本，所以开发web应用的时候是，npm安装的应该是react-router-dom</p>
+
+<h4 id="最基本使用">最基本使用</h4>
+
+<h4 id="route路由">Route路由</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">import</span> <span class="no">React</span> <span class="n">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="n">import</span> <span class="no">ReactDOM</span> <span class="n">from</span> <span class="s1">'react-dom'</span><span class="p">;</span>
+<span class="n">import</span> <span class="no">AppRootComponent</span> <span class="n">from</span> <span class="s1">'./index'</span><span class="p">;</span>
+<span class="n">import</span> <span class="no">ComponentList</span> <span class="n">from</span> <span class="s1">'./component/test_router'</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="p">{</span>
+  <span class="no">BrowserRouter</span> <span class="n">as</span> <span class="no">Router</span><span class="p">,</span>
+  <span class="no">Route</span><span class="p">,</span>
+  <span class="no">Switch</span>
+<span class="p">}</span> <span class="n">from</span> <span class="s1">'react-router-dom'</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Root</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span><span class="p">{</span>
+
+  <span class="n">render</span><span class="p">(){</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+
+        <span class="o">&lt;</span><span class="no">Router</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="no">Switch</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="no">Route</span> <span class="n">exact</span> <span class="n">path</span><span class="o">=</span><span class="s2">"/"</span> <span class="n">component</span><span class="o">=</span><span class="p">{</span><span class="no">AppRootComponent</span><span class="p">}</span><span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="no">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">"/list"</span> <span class="n">component</span><span class="o">=</span><span class="p">{</span><span class="no">ComponentList</span><span class="p">}</span><span class="o">/&gt;</span>
+          <span class="o">&lt;</span><span class="sr">/Switch&gt;
+        &lt;/</span><span class="no">Router</span><span class="o">&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="no">ReactDOM</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="no">Root</span><span class="o">/&gt;</span><span class="p">,</span>
+  <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="s1">'example'</span><span class="p">)</span>
+<span class="p">);</span></code></pre></figure>
+
+<p>上述代码的意思就是：</p>
+
+<ul>
+  <li>
+    <p>当地址栏输入:”your_server_ip：port/ “时，去加载组件AppRootComponent；</p>
+  </li>
+  <li>
+    <p>当地址栏输入:”your_server_ip：port/list “时，去加载组件ComponentList；</p>
+  </li>
+</ul>
+
+<p><strong>遇到问题</strong></p>
+
+<p>尽管这样配置的，但是在最开始输入跳转list的时候，比如：localhost:8080/list,页面显示<big>Cannot GET /list</big>。</p>
+
+<p>解决的办法是：在webpack.config.js中devServer对象中配置historyApiFallback:true属性。</p>
+
+<p>这个属性的意义在于：</p>
+
+<blockquote>
+  <p>它通过这个路径来访问后台，所以会出现404，而把historyApiFallback设置为true那么所有的路径都执行index.html。</p>
+</blockquote>
+
+<h4 id="route路由嵌套">Route路由嵌套</h4>
+
+<p>以前在React Route 2中,Router可以嵌套起来，例如下面写法，假设访问localhost/detail后就会显示AppRootComponent组件中嵌套了ComponentInMain组件：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="no">Router</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;</span><span class="no">Route</span> <span class="n">exact</span> <span class="n">path</span><span class="o">=</span><span class="s2">"/"</span> <span class="n">component</span><span class="o">=</span><span class="p">{</span><span class="no">AppRootComponent</span><span class="p">}</span><span class="o">&gt;</span>
+	
+		<span class="o">&lt;</span><span class="no">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">"/detail"</span> <span class="n">component</span><span class="o">=</span><span class="p">{</span><span class="no">ComponentInMain</span><span class="p">}</span><span class="o">/&gt;</span>
+
+    <span class="o">&lt;</span><span class="sr">/Route&gt;
+     
+&lt;/</span><span class="no">Router</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>当然在组件AppRootComponent中的合适位置中要这样：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">children</span><span class="p">}</span></code></pre></figure>
+
+<p>不过这样的方法在React Router 4中是行不通的，在v4^版本，不让在”<Route>"中嵌套，嵌套的话会有warnning而且页面效果出不来：</Route></p>
+
+<blockquote>
+  <p>Warnnig: you should not use <Route component=""> and <Route children=""> in the same route ;<Route children=""> will be ignored.</Route></Route></Route></p>
+</blockquote>
+
+<p>所以：react router 4 中实现类似嵌套的效果：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="no">Router</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="no">Switch</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="no">Route</span> <span class="n">exact</span> <span class="n">path</span><span class="o">=</span><span class="s2">"/"</span> <span class="n">component</span><span class="o">=</span><span class="p">{</span><span class="no">AppRootComponent</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/Route&gt;
+
+        &lt;AppRootComponent&gt;
+            &lt;Route path="/</span><span class="n">detail</span><span class="s2">" component={ComponentInMain}/&gt;
+        &lt;/AppRootComponent&gt;
+
+     &lt;/Switch&gt;
+&lt;/Router&gt;</span></code></pre></figure>
+
+<p>组件AppRootComponent中的合适位置上还是用{this.props.children}，但是明显的的，组件内嵌套路由不会用Route包裹Route了，而是直接将Route放在组件内。</p>
+
+<p>其实这样写倒是更好理解的，因为我记得this.props.children本来不就是组件使用时标签内放的东西么。</p>
+
+<p>另外，举个小例子再说说，Switch标签中的东西的切换是这样的规则：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="no">Router</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="no">Switch</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="no">Route</span> <span class="n">exact</span> <span class="n">path</span><span class="o">=</span><span class="s2">"/"</span> <span class="n">component</span><span class="o">=</span><span class="p">{</span><span class="no">A</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="sr">/Route&gt;
+
+        &lt;B&gt;
+            &lt;Route path="/</span><span class="n">b1</span><span class="s2">" component={B1}/&gt;
+            &lt;Route path="</span><span class="o">/</span><span class="n">b2</span><span class="s2">" component={B2}/&gt;
+        &lt;/B&gt;
+
+        &lt;Route path="</span><span class="o">/</span><span class="n">c</span><span class="s2">" component={C}/&gt;
+
+     &lt;/Switch&gt;
+&lt;/Router&gt;</span></code></pre></figure>
+
+<p>上述例子中：</p>
+<ul>
+  <li>
+    <p>”/”匹配后页面渲染A组件</p>
+  </li>
+  <li>
+    <p>“/b1”匹配后，渲染的应该是<b><B1>&lt;/B&gt;这个嵌套形式的，同理"/b2"也一样</B1></b></p>
+  </li>
+  <li>
+    <p>“/c”匹配后页面渲染C组件</p>
+  </li>
+  <li>
+    <p>另外，为什么”/”要加参数 exact 是因为要是不加的话，凡是带有”/”的都会匹配到”/”下，也就是说，”/b1”和”/”结果是一样的。</p>
+  </li>
+</ul>
+
+<p><a href="https://reacttraining.com/react-router/web/example/basic">被多处引用的官方小例</a></p>
+
+<h4 id="基本跳转link">基本跳转Link</h4>
+
+<link />
+<p>标签的使用就像a标签的使用方式一样，Link的功能就是，跳转路由。Link中的属性to就是目的路由地址。差不多就是<strong>a–&gt;Link</strong>,<strong>href–&gt;to</strong>。比如在Header组件的render方法中，return :</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">    <span class="k">return</span> <span class="p">(</span>
+
+      <span class="o">&lt;</span><span class="n">header</span> <span class="n">className</span><span class="o">=</span><span class="p">{</span><span class="n">headerCss</span><span class="p">.</span><span class="nf">miniHeader</span><span class="p">}</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">switchHeader</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">)}</span><span class="o">&gt;</span>
+      
+        <span class="p">{</span><span class="no">Tittle</span><span class="p">}</span>
+
+        <span class="p">{</span><span class="sr">/*注释:Link 链接*/</span><span class="p">}</span>
+
+        <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="no">Link</span> <span class="n">to</span><span class="o">=</span><span class="p">{</span><span class="s1">'/detail'</span><span class="p">}</span><span class="o">&gt;</span><span class="no">Root</span><span class="o">&lt;</span><span class="sr">/Link&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="no">Link</span> <span class="n">to</span><span class="o">=</span><span class="p">{</span><span class="s1">'/list'</span><span class="p">}</span><span class="o">&gt;</span><span class="no">List</span><span class="o">&lt;</span><span class="sr">/Link&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/ul&gt;
+      &lt;/</span><span class="n">header</span><span class="o">&gt;</span>
+    <span class="p">)</span></code></pre></figure>
+
+<p>上述代码中，点击ul中的第一个li就路由到”/detail”对应页面,点击第二个就路由到”/list”对应页面。</p>
+
+<p>当然，前提条件是”/detail”、”/list”都已经配置了。</p>
+
+<h4 id="页面间参数传递">页面间参数传递</h4>
+
+<ul>
+  <li>定义参数</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="no">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">"/list/:id"</span> <span class="n">component</span><span class="o">=</span><span class="p">{</span><span class="no">ComponentList</span><span class="p">}</span><span class="o">/&gt;</span></code></pre></figure>
+
+<p>Router中这样配置path=”/list/:id”，冒号后面就是参数的名字</p>
+
+<p>传递的参数会在URL中显示比如/list/123456</p>
+
+<p>在页面组件中接收参数用 this.props.match.params.参数名字 ，这样就拿到了这个参数</p>
+
+<ul>
+  <li>传递参数</li>
+</ul>
+
+<p>比如之前例子中的Link to属性中将/list变成 /list/12345 再次点击 该Link标签后，跳转时将把12345作为id参数来传递。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="no">Link</span> <span class="n">to</span><span class="o">=</span><span class="p">{</span><span class="s1">'/list/12345'</span><span class="p">}</span><span class="o">&gt;</span><span class="no">List</span><span class="o">&lt;</span><span class="sr">/Link&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span></code></pre></figure>
+
+<ul>
+  <li>使用参数</li>
+</ul>
+
+<p>接收参数的组件使用”{this.props.match.params.你的参数名}”来获得参数。</p>
+
+<p><strong>路漫漫其修远兮，吾将上下而求索</strong></p>
+
+
+    </article>
+
+    <div class="post-share">
+
+<!-- desktop and tablet-->
+<div class="hide-on-small-only">
+  <i class="mdi mdi-share-variant material-icons small grey-text waves-effect waves-light"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/developing_react/React-Dev-ReactRouter%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React Router 4 简单使用&url=/posts/developing_react/React-Dev-ReactRouter%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/developing_react/React-Dev-ReactRouter%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+<!-- small screen device -->
+<div class="hide-on-med-and-up">
+  <i class="mdi mdi-share-variant waves-effect waves-light small tooltipped grey-text" data-position="bottom" data-delay="50" data-tooltip="Share"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/developing_react/React-Dev-ReactRouter%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React Router 4 简单使用&url=/posts/developing_react/React-Dev-ReactRouter%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/developing_react/React-Dev-ReactRouter%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+</div>
+
+
+  </div>
+  </div>
+
+  
+
+  
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: 'yxnne',
+    repo: 'https://github.com/yxnne/yxnne.github.io.git',
+    oauth: {
+        client_id: '5e768409612b3e27d186',
+        client_secret: 'a3f238eed1df9d94daa41eb627729fbaedf0596a',
+    },
+});
+gitment.render('gitmentContainer');
+</script>
+
+
+  
+</div>
+
+      </div>
+    </div>
+
+    <footer class="page-footer indigo lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l4 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">
+              "I know that what I'm doing looks stupid, but I'm a big boy and really want to do this."
+          </p>
+        </div>
+
+        <div class="col l4 s12 right">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            
+            <li><a href="https://github.com/506524339@qq.com" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-github-circle"></i></a></li>
+            
+            
+            <li><a href="https://plus.google.com/+google" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-google-plus"></i></a></li>
+            
+            
+            <li><a href="https://twitter.com/twitter" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-twitter"></i></a></li>
+            
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Copyright © yxnne, under<a class="red-text text-accent-1" href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0</a> Powered by <a class="red-text text-accent-1" href="http://jekyllrb.com/">Jekyll</a>.
+        <a class="btn waves-effect waves-light indigo lighten-2 lighten-1 right white-text" href="/about" >Contact me</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+    <!-- scrolltop button -->
+    <button class="material-scrolltop waves-effect waves-light hide-on-small-only" type="button"><i class="mdi mdi-arrow-up-bold small white-text"></i></button>
+
+    <!-- jquery -->
+    <script type="text/javascript" src="/lib/jquery-min.js"></script>
+    <!-- materialize -->
+    <script src="/lib/materialize/js/materialize.min.js"></script>
+    <!-- Material ScrollTop plugin -->
+    <script src="/lib/material-scrolltop/material-scrolltop.js"></script>
+    <!-- main -->
+    <script src="/js/init.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- google analytics -->
+    <script src="/js/google-analytics.js"></script>
+  </body>
+
+</html>

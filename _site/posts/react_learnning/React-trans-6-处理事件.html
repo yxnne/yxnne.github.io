@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="theme-color" content="#5c6bc0">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>React-官网学习-QuickStart6-处理事件</title>
+  <meta name="description" content="处理事件 ，用React,和用DOM非常相似，就是些语法差异：">
+  <link rel="canonical" href="/posts/react_learnning/React-trans-6-%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6.html">
+  <link rel="alternate" type="application/rss+xml" title="noty Yxnne" href="/feed.xml" />
+
+  <link rel="stylesheet" href="/lib/materialize/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link media="all" rel="stylesheet" type="text/css" href="/lib/mdi/css/materialdesignicons.min.css" >
+  <link rel="stylesheet" href="/lib/material-scrolltop/material-scrolltop.css">
+
+  <noscript>
+  <div class="notice-warning noscript">You don't have javascript enabled. Good luck! :(</div>
+</noscript>
+
+<!--[if IE]>
+  <div class="notice-warning">Oh, you are using Internet Explorer! Good luck... :(</div>
+<![endif]-->
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+      <nav class="nav-extended indigo lighten-1">
+        <!-- 这一页是菜单侧滑栏 -->
+<div class="nav-wrapper">
+      <span class="site-title">noty Yxnne</span>
+
+      <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="mdi mdi-menu white-text"></i></a>
+      
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/" class="white-text">
+            <i class="mdi mdi-home left indigo-text text-lighten-3"></i>Home
+        </a></li>
+        <li><a href="/about" class="white-text">
+            <i class="mdi mdi-account-circle left indigo-text text-lighten-3"></i>About
+        </a></li>
+        <li><a href="/category" class="white-text">
+            <i class="mdi mdi-folder-multiple left indigo-text text-lighten-3"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="white-text">
+            <i class="mdi mdi-rss left indigo-text text-lighten-3"></i>RSS
+        </a></li>
+      </ul>
+
+
+      <ul class="side-nav" id="mobile-navbar">
+        <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images/bg_office.jpg" >
+            </div>
+              <a href="#!user"><img class="circle" src="images/portraits/portrait_qq.jpeg"></a>
+              <a href="#!name"><span class="white-text name">yxnne</span></a>
+              <a href="#!email"><span class="white-text email">506524339@qq.com</span></a>
+            </div>
+
+        </li>
+        <li><a href="/" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-home left green-text"></i>Home
+        </a></li>
+        <li><a href="/about" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-account-circle left blue-text"></i>About
+        </a></li>
+        <li><a href="/category" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-folder-multiple left yellow-text text-darken-1"></i>Category
+        </a></li>
+        <li><a href="/feed.xml" class="waves-effect waves-teal black-text">
+            <i class="mdi mdi-rss left red-text"></i>RSS
+        </a></li>
+      </ul>
+</div>
+
+
+
+
+        <div class="nav-content">
+          <ul class="tabs tabs-transparent">
+            <li class="tab"><a class="active" href="#tab-main">Articles</a></li>
+          
+            <li class="tab "><a href="#tab-test">Favors</a></li>
+          
+            <li class="tab "><a href="#tab-test1">Favors</a></li>
+          
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+  
+    <div id="tab-test">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+    <div id="tab-test1">
+      <div class="site-container"><div class="wrapper">
+
+<div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="tab-section">
+
+    <div class="post-header">
+      <h1 class="post-title">This is a test</h1>
+    </div>
+
+    <article class="post-content">
+       <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+      <p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+      <p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+    <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    </article>
+
+  </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+    </div>
+  
+
+    <div class="site-container" id="tab-main"> 
+      <div class="wrapper">
+        <div class="post-ribbon"></div>
+
+<div class="container post-container">
+  <div class="post-page card-panel z-depth-2">
+  <div class="post-section">
+
+    <p class="grey-text">
+      <i class="mdi mdi-calendar"></i>&nbsp;
+      Dec 7, 2017
+      &nbsp;&nbsp;<i class="mdi mdi-account-circle"></i>&nbsp;
+      yxnne
+      &nbsp;&nbsp;<i class="mdi mdi-label"></i>&nbsp;
+      <span class="capitalize">react_learnning</span>
+      &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Dec 25, 2017
+    </p>
+
+    <div class="post-header">
+      <h1 class="post-title">React-官网学习-QuickStart6-处理事件</h1>
+
+      
+        <i class="post-tag mdi mdi-tag-multiple waves-effect waves-light"></i>
+        
+        <div class="chip">translations_React.js</div>
+        
+      
+    </div>
+
+    <article class="post-content">
+      <p><big>处理事件</big> ，用React,和用DOM非常相似，就是些语法差异：</p>
+
+<ul>
+  <li>
+    <p>React用驼峰法命名而不是纯小写;</p>
+  </li>
+  <li>
+    <p>事件处理函数的设置使用JSX而不是字符串;</p>
+  </li>
+</ul>
+
+<p>比方说,这是HTML：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">button</span> <span class="n">onclick</span><span class="o">=</span><span class="s2">"activateLasers()"</span><span class="o">&gt;</span>
+  <span class="no">Activate</span> <span class="no">Lasers</span>
+<span class="o">&lt;</span><span class="sr">/button&gt;</span></code></pre></figure>
+
+<p>React，和它略有不同：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">activateLasers</span><span class="p">}</span><span class="o">&gt;</span>
+  <span class="no">Activate</span> <span class="no">Lasers</span>
+<span class="o">&lt;</span><span class="sr">/button&gt;</span></code></pre></figure>
+
+<p>另一处差异是，在React中，你不能通过返回false来阻止默认行为。你得显示地调用preventDefault()方法。举例来说，在普通HTML中，要想阻止打开新页面的超链接行为的话，你可以这样：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">"#"</span> <span class="n">onclick</span><span class="o">=</span><span class="s2">"console.log('The link was clicked.'); return false"</span><span class="o">&gt;</span>
+  <span class="no">Click</span> <span class="n">me</span>
+<span class="o">&lt;</span><span class="sr">/a&gt;</span></code></pre></figure>
+
+<p>在React中，就是这样：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="no">ActionLink</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">function</span> <span class="n">handleClick</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+    <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s1">'The link was clicked.'</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">"#"</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">handleClick</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="no">Click</span> <span class="n">me</span>
+    <span class="o">&lt;</span><span class="sr">/a&gt;
+  );
+}</span></code></pre></figure>
+
+<p>这里，e代表了一个合成事件。React定义了不少合成事件，但你也不用担心浏览器兼容问题因为都是根据w3c文档定义的。<a href="https://reactjs.org/docs/events.html">这里参考更多的关于合成事件的说明</a>。</p>
+
+<p>当你使用es6定义class作为组件时，事件处理器的一种常规的模式是class里面定义方法。例如，Toggle这个组件渲染了一个按钮，允许你在“on”和“off”之间切换:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Toggle</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="p">{</span><span class="ss">isToggleOn: </span><span class="kp">true</span><span class="p">};</span>
+
+    <span class="sr">//</span> <span class="no">This</span> <span class="nb">binding</span> <span class="n">is</span> <span class="n">necessary</span> <span class="n">to</span> <span class="n">make</span> <span class="sb">`this`</span> <span class="n">work</span> <span class="k">in</span> <span class="n">the</span> <span class="n">callback</span>
+    <span class="sr">//</span> <span class="err">‘</span><span class="n">this</span><span class="err">’绑定是必要的</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">handleClick</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleClick</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">handleClick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">(</span><span class="n">prevState</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="ss">isToggleOn: </span><span class="o">!</span><span class="n">prevState</span><span class="p">.</span><span class="nf">isToggleOn</span>
+    <span class="p">}));</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleClick</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">isToggleOn</span> <span class="p">?</span> <span class="s1">'ON'</span> <span class="p">:</span> <span class="s1">'OFF'</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="sr">/button&gt;
+    );
+  }
+}
+
+ReactDOM.render(
+  &lt;Toggle /</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">)</span>
+<span class="p">);</span></code></pre></figure>
+
+<p>你要小心那些JSX里面的<strong>‘this’</strong>。JavaScript中，类方法默认不绑定。要是你忘记了绑定this.handleClick却把它传递给了onClick，那么调用的时候，this就是undefined了。</p>
+
+<p>这可不是React的特有行为，这是<a href="https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/">JavaScript函数运行机制</a>决定的。通常，要是引用函数时没有()跟着,就像onClick={this.handleClick}，你就得用bind()来绑定函数。</p>
+
+<p>要是你讨厌用bind，这也有两种方法绕过它：如果你正在使用实验性“ public class fields ”（公共类属性）语法，你就能使用类属性绑定函数调用：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">LoggingButton</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="sr">//</span> <span class="no">This</span> <span class="n">syntax</span> <span class="n">ensures</span> <span class="sb">`this`</span> <span class="n">is</span> <span class="n">bound</span> <span class="n">within</span> <span class="n">handleClick</span><span class="p">.</span>
+  <span class="nf">/</span><span class="o">/</span> <span class="no">Warning</span><span class="p">:</span> <span class="n">this</span> <span class="n">is</span> <span class="o">*</span><span class="n">experimental</span><span class="o">*</span> <span class="n">syntax</span><span class="p">.</span>
+  <span class="nf">/</span><span class="o">/</span> <span class="err">这种语法保证</span><span class="n">this</span><span class="err">是绑定了</span><span class="n">handleClick</span><span class="err">的</span>
+  <span class="sr">//</span> <span class="err">警告</span><span class="p">:</span><span class="err">这是实验性语法</span><span class="p">(</span><span class="err">估计不太靠谱</span><span class="p">)</span>
+  <span class="n">handleClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s1">'this is:'</span><span class="p">,</span> <span class="n">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleClick</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="no">Click</span> <span class="n">me</span>
+      <span class="o">&lt;</span><span class="sr">/button&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>这种语法是被<a href="https://github.com/facebookincubator/create-react-app"> Create React App 从头创立ReactAPP</a>所支持的。</p>
+
+<p>你要是不用这种语法,你也可以使用箭头函数到onClick调用时：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">LoggingButton</span> <span class="n">extends</span> <span class="no">React</span><span class="o">.</span><span class="no">Component</span> <span class="p">{</span>
+  <span class="n">handleClick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s1">'this is:'</span><span class="p">,</span> <span class="n">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="sr">//</span> <span class="no">This</span> <span class="n">syntax</span> <span class="n">ensures</span> <span class="sb">`this`</span> <span class="n">is</span> <span class="n">bound</span> <span class="n">within</span> <span class="n">handleClick</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="p">.</span><span class="nf">handleClick</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span><span class="o">&gt;</span>
+        <span class="no">Click</span> <span class="n">me</span>
+      <span class="o">&lt;</span><span class="sr">/button&gt;
+    );
+  }
+}</span></code></pre></figure>
+
+<p>这种写法的问题在于:每当LoggingButton被渲染时都会有一个新调用函数产生。大多数这样没毛病。但是，假如调用被当做属性props传递给下级组件，这些组件可能会再额外的重新渲染一番。我们通常推荐构造器中绑定法或者使用类属性法避免这种问题。</p>
+
+<h5 id="事件处理中的参数传递">事件处理中的参数传递</h5>
+
+<p>循环中，常有事件处理时需要传递其他参数的情况。例如，id是行id，下面两种都是可行的：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="p">.</span><span class="nf">deleteRow</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">e</span><span class="p">)}</span><span class="o">&gt;</span><span class="no">Delete</span> <span class="no">Row</span><span class="o">&lt;</span><span class="sr">/button&gt;
+
+&lt;button onClick={this.deleteRow.bind(this, id)}&gt;Delete Row&lt;/</span><span class="n">button</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>以上分别使用箭头函数和函数原型绑定，一样的都行。</p>
+
+<p>这两种情况下，参数‘e’都代表了React的事件，都会在传递id参数之后被传递。在箭头函数中，我们显示的传递了它，但是在绑定中它被自动传递了。</p>
+
+<p><a href="https://reactjs.org/docs/handling-events.html">官网文章 Quick Start :Handling Events</a></p>
+
+    </article>
+
+    <div class="post-share">
+
+<!-- desktop and tablet-->
+<div class="hide-on-small-only">
+  <i class="mdi mdi-share-variant material-icons small grey-text waves-effect waves-light"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/react_learnning/React-trans-6-%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React-官网学习-QuickStart6-处理事件&url=/posts/react_learnning/React-trans-6-%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/react_learnning/React-trans-6-%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+<!-- small screen device -->
+<div class="hide-on-med-and-up">
+  <i class="mdi mdi-share-variant waves-effect waves-light small tooltipped grey-text" data-position="bottom" data-delay="50" data-tooltip="Share"></i>
+
+  <a href="https://plus.google.com/share?url=/posts/react_learnning/React-trans-6-%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React-官网学习-QuickStart6-处理事件&url=/posts/react_learnning/React-trans-6-%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/react_learnning/React-trans-6-%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
+</div>
+
+</div>
+
+
+  </div>
+  </div>
+
+  
+
+  
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: 'yxnne',
+    repo: 'https://github.com/yxnne/yxnne.github.io.git',
+    oauth: {
+        client_id: '5e768409612b3e27d186',
+        client_secret: 'a3f238eed1df9d94daa41eb627729fbaedf0596a',
+    },
+});
+gitment.render('gitmentContainer');
+</script>
+
+
+  
+</div>
+
+      </div>
+    </div>
+
+    <footer class="page-footer indigo lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l4 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">
+              "I know that what I'm doing looks stupid, but I'm a big boy and really want to do this."
+          </p>
+        </div>
+
+        <div class="col l4 s12 right">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            
+            <li><a href="https://github.com/506524339@qq.com" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-github-circle"></i></a></li>
+            
+            
+            <li><a href="https://plus.google.com/+google" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-google-plus"></i></a></li>
+            
+            
+            <li><a href="https://twitter.com/twitter" class="white-text text-lighten-3 btn waves-effect waves-light indigo lighten-2 lighten-3"><i class="mdi mdi-twitter"></i></a></li>
+            
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Copyright © yxnne, under<a class="red-text text-accent-1" href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0</a> Powered by <a class="red-text text-accent-1" href="http://jekyllrb.com/">Jekyll</a>.
+        <a class="btn waves-effect waves-light indigo lighten-2 lighten-1 right white-text" href="/about" >Contact me</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+    <!-- scrolltop button -->
+    <button class="material-scrolltop waves-effect waves-light hide-on-small-only" type="button"><i class="mdi mdi-arrow-up-bold small white-text"></i></button>
+
+    <!-- jquery -->
+    <script type="text/javascript" src="/lib/jquery-min.js"></script>
+    <!-- materialize -->
+    <script src="/lib/materialize/js/materialize.min.js"></script>
+    <!-- Material ScrollTop plugin -->
+    <script src="/lib/material-scrolltop/material-scrolltop.js"></script>
+    <!-- main -->
+    <script src="/js/init.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- google analytics -->
+    <script src="/js/google-analytics.js"></script>
+  </body>
+
+</html>

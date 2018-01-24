@@ -8,9 +8,9 @@
   <meta name="theme-color" content="#5c6bc0">
 
   <link rel="shortcut icon" href="/favicon.ico">
-  <title>node.js—-拎不清的npm和gem（未完成）</title>
-  <meta name="description" content="NPM 是随同NodeJS一起安装的包管理工具。">
-  <link rel="canonical" href="/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html">
+  <title>React-官网学习-QuickStart3-渲染元素</title>
+  <meta name="description" content="Element(元素) ,就是描述你在屏幕上见到的东西。">
+  <link rel="canonical" href="/posts/react_learnning/React-trans-3-%E6%B8%B2%E6%9F%93%E5%85%83%E7%B4%A0.html">
   <link rel="alternate" type="application/rss+xml" title="noty Yxnne" href="/feed.xml" />
 
   <link rel="stylesheet" href="/lib/materialize/css/materialize.min.css">
@@ -188,27 +188,100 @@
 
     <p class="grey-text">
       <i class="mdi mdi-calendar"></i>&nbsp;
-      Nov 27, 2017
+      Dec 1, 2017
       &nbsp;&nbsp;<i class="mdi mdi-account-circle"></i>&nbsp;
       yxnne
       &nbsp;&nbsp;<i class="mdi mdi-label"></i>&nbsp;
-      <span class="capitalize">node.js_learnning</span>
+      <span class="capitalize">react_learnning</span>
       &emsp;<i class="mdi mdi-refresh"></i>&nbsp;UPDATE: Dec 25, 2017
     </p>
 
     <div class="post-header">
-      <h1 class="post-title">node.js—-拎不清的npm和gem（未完成）</h1>
+      <h1 class="post-title">React-官网学习-QuickStart3-渲染元素</h1>
 
       
         <i class="post-tag mdi mdi-tag-multiple waves-effect waves-light"></i>
         
-        <div class="chip">node.js</div>
+        <div class="chip">translations_React.js</div>
         
       
     </div>
 
     <article class="post-content">
-      <p><big>NPM</big> 是随同NodeJS一起安装的包管理工具。</p>
+      <p><big>Element(元素)</big> ,就是描述你在屏幕上见到的东西。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">const</span> <span class="n">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world</span><span class="o">&lt;</span><span class="sr">/h1&gt;;</span></code></pre></figure>
+
+<p>不像浏览器的DOM元素，React元素就是简单对象，并且创建成本很低。ReactDOM负责更新浏览器DOM来适应ReactElement元素。</p>
+
+<blockquote>
+  <p>注意：也许有人要对element（元素）和components（组件）的概念感到疑惑。我们将要在下一节介绍组件。元素是组件的组成部分，所以别急着往后翻阅，最好先看看这节吧。</p>
+</blockquote>
+
+<h4 id="在dom中渲染element">在DOM中渲染Element</h4>
+
+<p>看看你HTML文件某处的’&lt;div&gt;‘标签。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"root"</span><span class="o">&gt;&lt;</span><span class="sr">/div&gt;</span></code></pre></figure>
+
+<p>我们把它称作’root’ DOM （根）节点是因为，在这里面的任何东西都得归ReactDOM管理。</p>
+
+<p>使用React构建的APP通常只有一个根DOM节点。不过如果要是将React集成到已有项目中去，那就可能有很多孤立的根节点了，想要多少有多少。</p>
+
+<p>要在一个根DOM节点中去渲染一个React Element元素，要把整个元素放在ReactDOM的render()方法中。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">const</span> <span class="n">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world</span><span class="o">&lt;</span><span class="sr">/h1&gt;;
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);</span></code></pre></figure>
+
+<p>以上在页面上呈现HelloWorld。</p>
+
+<h4 id="更新已渲染元素">更新已渲染元素</h4>
+
+<p>React的元素是不可变的。一旦你创建了一个元素，你就不能改变其子元素或者是属性。元素就像电影里单独的某一帧：它代表了UI在特定时间点的的模样。</p>
+
+<p>就目前我们所掌握的React知识而言，想要更新UI只要一个办法那就是重新创建一个新的元素并且将它渲染在DOM里面。</p>
+
+<p>考虑下下面的例子</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="n">tick</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="n">element</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="n">world!</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+      &lt;h2&gt;It is {new Date().toLocaleTimeString()}.&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div&gt;
+  );
+  ReactDOM.render(
+    element,
+    document.getElementById('root')
+  );
+}
+
+setInterval(tick, 1000);</span></code></pre></figure>
+
+<p>以上例子中，通过setInterval()每秒钟都在调用ReactDOM.render()。
+（也就是说，每秒都创建了一个新React元素，每次渲染的都是这个新元素）</p>
+
+<blockquote>
+  <p>注意：实践中，大多数APP都只调用ReactDOM。render()一次。下一节中我们将学习到这样的代码怎样给它封装成有状态的组件。
+我们建议不要跳过每个主题，因为他们是相互支撑的。</p>
+</blockquote>
+
+<h4 id="react只更新必须要更新的">React只更新必须要更新的</h4>
+
+<p>ReactDOM比较当前组件，包括他的子组件的上一个状态，并且只让DOM做必要的更新来达到预期的状态。</p>
+
+<p>你可以运行本节的最后一个例子并用浏览器工具证明这一点。</p>
+
+<p>（确实，尽管每秒都在调用tick()，而tick中又重新创建元素并且将之渲染，但是在浏览器中的查看代码，结发现是DOM中只有”时间”( &lt;h2&gt;It is {new Date().toLocaleTimeString()}.&lt;/h2&gt;)在变）</p>
+
+<p>即使我们每次tick()的时候创建了整个UI树模型，但是也只有产生新内容的文字节点被更新。</p>
+
+<p>我们的经验表明，比起整天考虑怎样改变UI这种问题，专注考虑UI应该是什么样子更能减少一些类型的Bug。</p>
+
+<p><a href="https://reactjs.org/docs/rendering-elements.html">官网文章 Quick Start :Rendering Elements</a></p>
 
     </article>
 
@@ -218,18 +291,18 @@
 <div class="hide-on-small-only">
   <i class="mdi mdi-share-variant material-icons small grey-text waves-effect waves-light"></i>
 
-  <a href="https://plus.google.com/share?url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
-  <a href="https://twitter.com/intent/tweet?text=node.js—-拎不清的npm和gem（未完成）&url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
-  <a href="https://facebook.com/sharer.php?u=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
+  <a href="https://plus.google.com/share?url=/posts/react_learnning/React-trans-3-%E6%B8%B2%E6%9F%93%E5%85%83%E7%B4%A0.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Google+"><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React-官网学习-QuickStart3-渲染元素&url=/posts/react_learnning/React-trans-3-%E6%B8%B2%E6%9F%93%E5%85%83%E7%B4%A0.html&via=twitter&related=twitter" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Twitter"><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/react_learnning/React-trans-3-%E6%B8%B2%E6%9F%93%E5%85%83%E7%B4%A0.html" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="20" data-tooltip="Share on Facebook"><i class="mdi mdi-facebook white-text"></i></a>
 </div>
 
 <!-- small screen device -->
 <div class="hide-on-med-and-up">
   <i class="mdi mdi-share-variant waves-effect waves-light small tooltipped grey-text" data-position="bottom" data-delay="50" data-tooltip="Share"></i>
 
-  <a href="https://plus.google.com/share?url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
-  <a href="https://twitter.com/intent/tweet?text=node.js—-拎不清的npm和gem（未完成）&url=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
-  <a href="https://facebook.com/sharer.php?u=/posts/node.js_learnning/node-js-2-npm%E5%92%8Cgem.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
+  <a href="https://plus.google.com/share?url=/posts/react_learnning/React-trans-3-%E6%B8%B2%E6%9F%93%E5%85%83%E7%B4%A0.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-google-plus white-text"></i></a>
+  <a href="https://twitter.com/intent/tweet?text=React-官网学习-QuickStart3-渲染元素&url=/posts/react_learnning/React-trans-3-%E6%B8%B2%E6%9F%93%E5%85%83%E7%B4%A0.html&via=twitter&related=twitter" class="waves-effect waves-light btn-floating "><i class="mdi mdi-twitter white-text"></i></a>
+  <a href="https://facebook.com/sharer.php?u=/posts/react_learnning/React-trans-3-%E6%B8%B2%E6%9F%93%E5%85%83%E7%B4%A0.html" class="waves-effect waves-light btn-floating "><i class="mdi mdi-facebook white-text"></i></a>
 </div>
 
 </div>
