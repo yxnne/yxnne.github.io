@@ -50,7 +50,18 @@ layout: default
   <link rel="stylesheet" href="{{ '/css/comment.css' | prepend: site.baseurl }}">
   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
   <script>
-
+  const myTheme = {
+    render(state, instance) {
+      const container = document.createElement('div')
+      container.lang = "en-US"
+      container.className = 'gitment-container gitment-root-container'
+      container.appendChild(instance.renderHeader(state, instance))
+      container.appendChild(instance.renderEditor(state, instance))
+      container.appendChild(instance.renderComments(state, instance))
+      container.appendChild(instance.renderFooter(state, instance))
+      return container
+    },
+  }
 
   var gitment = new Gitment({
       owner: 'yxnne',
@@ -59,7 +70,7 @@ layout: default
           client_id: '5e768409612b3e27d186',
           client_secret: 'a3f238eed1df9d94daa41eb627729fbaedf0596a',
       },
-
+      theme: myTheme,
   });
   gitment.render('gitmentContainer');
   </script>
