@@ -84,17 +84,28 @@ echo $jsoncallback . "(" . $json_data . ")";
 
 把这种思路可以封装下，可以更简单实现JSONP，比如前后端约定回调函数名的过程可以被封装起来。
 
+2.CORS(Cross-Origin Resource Sharing）
+[参考这里,阮一峰老师](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+跨源AJAX请求的根本解决方法。相比JSONP只能发GET请求，CORS允许任何类型的请求。当然仅靠服务端的代码或浏览器端就实现跨域请求是不可能。
+
+浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。对于简单请求，浏览器直接发出CORS请求。具体来说，就是在头信息之中，增加一个Origin字段。这个字段就是所谓的“源”，简单的说，服务器会校验这个源是否在允许请求范围内，若是允许，那请求方就能得到数据。
+
+>如果Origin指定的源，不在许可范围内，服务器会返回一个正常的HTTP回应。浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段（详见下文），就知道出错了，从而抛出一个错误，被XMLHttpRequest的onerror回调函数捕获。注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。
+
+3.JSONP 与 CORS 对比
+
+JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。
+
 #### 参考文献
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+[阮一峰老师，CORS](http://www.ruanyifeng.com/blog/2016/04/cors.html)
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+[阮一峰,跨域问题](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
 
+[跨域那些事](https://zhuanlan.zhihu.com/p/28562290)
+
+[MDN CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+
+[前端常见跨域解决方案](https://segmentfault.com/a/1190000011145364)
 
 __操千曲尔后晓声，观千剑尔后识器__
