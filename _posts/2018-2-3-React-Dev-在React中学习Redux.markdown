@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  在React中学习 Redux
+title:  在React中学习Redux
 date:   2018-2-3
 categories: Developing_React
 tags: [Developing_React]
