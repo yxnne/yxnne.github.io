@@ -6,7 +6,6 @@ categories: Developing_React
 tags: [Developing_React]
 ---
 
-{% highlight ruby %}
 
 import { createStore } from 'redux';
 
@@ -35,9 +34,7 @@ store.dispatch({type:'ADD'});
 console.log('dispatch getStore is :',store.getState())
 
 
-{% endhighlight %}
-
-{% highlight ruby %}
+-----------------------
 
 // 订阅事件
 function listner(){
@@ -50,7 +47,7 @@ store.dispatch({type:'ADD'});
 store.dispatch({type:'ADD'});
 store.dispatch({type:'ADD'});
 
-{% endhighlight %}
+ 
 
 
 
