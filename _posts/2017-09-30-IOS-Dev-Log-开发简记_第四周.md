@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 简单iOS的APP开发记录_第二周
-date:   2017-09-28
+title: 简单iOS的APP开发记录_第四周
+date:   2017-10-1
 categories: "Developing_iOS"
 tags: [iOS, APP]
 author: yxnne
