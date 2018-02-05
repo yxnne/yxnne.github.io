@@ -282,8 +282,41 @@ App = connect(mapStateProps, actionCreators)(App);
 这里使用connect封装APP，前一个括号中第一个参数理解为APP中需要的状态，第二个参数理解为actioncreator的集合。
 
 ##### 使用装饰器，将connect写的简单点
+需要一个插件就是：babel-plugin-transform-decorators-legacy(npm安装之：$ cnpm i --save babel-plugin-transform-decorators-legacy )。<br>
+
+然后需要改下package.json中babel的配置，这样就支持装饰器写法了：
 
 
+{% highlight ruby %}
+
+"babel": {
+    //.....
+    "plugins":["transform-decorators-legacy"]
+  },
+
+
+{% endhighlight %}
+
+最后,下面中注释的代码可以写成这种注解的形式：
+
+{% highlight ruby %}
+// function mapStateProps(state){
+//   return {num:state};
+// }
+
+// const actionCreators = { add, sub, asyncToZero };
+
+// App = connect(mapStateProps, actionCreators)(App);
+
+@connect(
+  state => ({num:state}), 
+  {add, sub, asyncToZero}
+)
+class App extends React.Component{
+  // ... 
+}
+
+{% endhighlight %}
 
 #### Chrome插件 reduxDevTools
 
