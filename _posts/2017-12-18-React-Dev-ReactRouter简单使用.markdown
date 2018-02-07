@@ -217,5 +217,9 @@ Router中这样配置path="/list/:id"，冒号后面就是参数的名字
 
 接收参数的组件使用"{this.props.match.params.你的参数名}"来获得参数。
 
+# 重定向组件Redirect
+
+
+
 __路漫漫其修远兮，吾将上下而求索__
 
