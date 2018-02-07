@@ -318,6 +318,65 @@ class App extends React.Component{
 
 {% endhighlight %}
 
+另外，这里第一个箭头函数是从state里面取值，取需要的值，假如说state的只有一个值这种情况不常见，就像上面代码中，state中只有数值，这时需要一个别名来引用之，所以箭头函数的返回值是{num:state}，意思就是__向this.props中插入一个名为num,值为state的数据__。<br>
+那么，假设state中不只是一个值，state中存放的键值对或者其他对象，比如声明reducer的时候：
+
+{% highlight ruby %}
+
+export function auth(state={isAuth:false, user:'yy'}, action){
+  // ...
+}
+
+{% endhighlight %}
+
+那么state中就至少有了这个对象{isAuth:false, user:'yy'},拿到这个对象得像这样：
+
+{% highlight ruby %}
+
+@connect(
+  state=>(state.auth), { login }
+)
+
+{% endhighlight %}
+
+state.auth中这个auth就是reducer的名字，这样相当于把auth这个reducer中的属性isAuth和user注入到当前组件了，对，是有点依赖注入的感觉。<br>
+
+这时 state中的层级关系就是：<br>
+---state<br>
+  |___auth<br>
+  |  |___isAuth<br>
+  |  |___user<br>
+  |<br>
+  |___other reducer <br>
+  |...<br>
+
+#### 多个reducer进行合并
+
+有多个renducer，那么使用之前是要进行reducer合并的。redux库中提供了合并的方法：具体操作是：
+新建一个文件，eg:reducers.js:
+
+{% highlight ruby %}
+
+import { combineReducers } from 'redux';  // 靠他来合并
+import { counter } from './index.redux';  // reducer1 引入
+import { auth } from './Auth.redux';      // reducer2 引入
+
+export default combineReducers({counter, auth});
+
+{% endhighlight %}
+
+那么，记得在构造store的时候，就要用新合并的reducers了:
+
+{% highlight ruby %}
+
+import reducers from './reducer/reducers';
+// ...
+const store = createStore(reducers, compose(applyMiddleware(thunk), reduxDevTool));
+
+{% endhighlight %}
+
+这样，在使用的时候依然按需取值@connect中第一个参数是箭头函数，传入state，返回本组件需要用的state中的属性，第二个参数本组件需要使用的 action creator 的集合，这是对state能进行的操作。
+
 #### Chrome插件 reduxDevTools
 
 reduxDevTools，这是一个Chrome的插件，用来调试Redux(Chrome商店墙外搜索redux，第一个插件就是，标志是上下两张符号笑脸)。使用的方法需要在代码中添加插件的函数，这样就把插件和store关联起来。程序运行起来后在chrome中就可以使用。
@@ -343,7 +402,9 @@ const reduxDevTool = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTO
 
 {% endhighlight %}
 
+#### 再简单说下
 
+Redux果然是能将组件和状态解耦合，对State状态需要改变的代码也从组件中解耦了，不管是数据还是行为，需要使用的时候随时在组件之前注入就好。
 
 __路漫漫其修远兮，吾将上下而求索__
 
