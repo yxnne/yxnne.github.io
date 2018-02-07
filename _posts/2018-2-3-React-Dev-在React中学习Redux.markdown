@@ -342,13 +342,16 @@ export function auth(state={isAuth:false, user:'yy'}, action){
 state.auth中这个auth就是reducer的名字，这样相当于把auth这个reducer中的属性isAuth和user注入到当前组件了，对，是有点依赖注入的感觉。<br>
 
 这时 state中的层级关系就是：<br>
-&nbsp;state
-&nbsp;&nbsp;auth
-&nbsp;&nbsp;&nbsp;isAuth
-&nbsp;&nbsp;&nbsp;user
 
-&nbsp;&nbsp;other reducer
-&nbsp;&nbsp;...
+{% highlight ruby %}
+---state
+  |___auth
+  |  |___isAuth
+  |  |___user
+  |
+  |___other reducer
+  |...
+{% endhighlight %}
 
 #### 多个reducer进行合并
 
