@@ -444,10 +444,11 @@ export function getUser(){
 另外在定义action creator ：user的时候传递了一个参数，这个参数的目的就是state待设置的值，注意这时候action creator的返回值，返回了一个是type，一个loaded属性，type是类型，loaded中就是那个待设置的值。<br>
 那么相关的reducer中，就是这样：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 switch (action.type){
   // ...
+  // 123 中文
   case USER :
     return {...state, user:action.loaded.user}; 
   default:
