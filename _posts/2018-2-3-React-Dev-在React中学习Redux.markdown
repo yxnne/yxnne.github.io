@@ -4,6 +4,7 @@ title:  在React中学习Redux
 date:   2018-2-3
 categories: Developing_React
 tags: [Developing_React]
+comment : true
 ---
 
 <big>Redux</big>,其实是管理状态的工具，不只是在React中能用，在其他里面也是可以的，只是React中用的比较多。
@@ -404,6 +405,59 @@ const store = createStore(counter, compose(applyMiddleware(thunk), reduxDevTool)
 const reduxDevTool = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 {% endhighlight %}
+
+#### Redux和AJAX请求库配合
+种种AJAX库都是一样fetch or axios，比如axios，本来直接在组件需要的地方写axios.get(url).then(callback)...
+
+{% highlight ruby %}
+
+//在某组件中的某处
+//没有redux，可能大概就是这样
+axios.get(url).then((res) =>{
+  this.setState(res.data);
+});
+
+{% endhighlight %}
+
+但是有redux的时候，再在组件中setState这样就不太好了。所以可以将相关的AJAX的请求放在action creator中，当然是个异步的，组件中调用这个方法就好：
+
+{% highlight ruby %}
+
+function user(data){
+  return {type:USER_DATA, loaded:data};
+}
+
+export function getUser(){
+  return (dispatch)=>{
+    axios.get('/userdata')
+    .then((rsp)=>{
+      if(rsp.status === 200){
+        dispatch(user(rsp.data));
+      }
+    });
+  }
+}
+
+{% endhighlight %}
+
+上面代码中action creator 实际是user函数，它控制state的值得变化，但是对外暴露的是getUser函数，在getUser中，异步请求到数据之后，在dispatch 上面user函数。<br>
+另外在定义action creator ：user的时候传递了一个参数，这个参数的目的就是state待设置的值，注意这时候action creator的返回值，返回了一个是type，一个loaded属性，type是类型，loaded中就是那个待设置的值。<br>
+那么相关的reducer中，就是这样：
+
+{% highlight ruby %}
+
+switch (action.type){
+  // ...
+  case USER :
+    return {...state, user:action.loaded.user}; 
+  default:
+    return state;
+}
+{% endhighlight %}
+
+在组件中需要修改state的地方调用被输出的函数getUser(当然，该函数要用connect先注入到组件中)就好: this.props.getUser。<br>
+
+假设请求回来的数据是{user:'123'},那么 上述代码的意思就是在当前state的基础上再添加一条属性user，其值action.loaded.user,就是'123'。
 
 #### 再简单说下
 
