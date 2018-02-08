@@ -11,7 +11,7 @@ tags: [translations_React.js]
 
 看看这两个组件：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const numbers = [1, 2, 3, 4, 5];
 const doubled = numbers.map((number) => number * 2);
@@ -29,7 +29,7 @@ console.log(doubled);
 
 下面 ，我们通过map()函数遍历一个number数组。让每个元素都返回自己的'<li>'。最终，我们把（一个<li>的集合）结果赋给变量 listItems。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const numbers = [1, 2, 3, 4, 5];
 const listItems = numbers.map((number) =>
@@ -40,7 +40,7 @@ const listItems = numbers.map((number) =>
 
 我们用<ul>标签把整个listItem包括起来，并在DOM中渲染:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 ReactDOM.render(
   <ul>{listItems}</ul>,
@@ -57,7 +57,7 @@ ReactDOM.render(
 
 我们重构先前的例子，使它接受一个数字数组参数的并且输出一个无序列表。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function NumberList(props) {
   const numbers = props.numbers;
@@ -81,7 +81,7 @@ ReactDOM.render(
 
 让我们在numbers.map()中分配key给每个列表项来修复这个丢失了key的问题。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function NumberList(props) {
   const numbers = props.numbers;
@@ -107,7 +107,7 @@ ReactDOM.render(
 
 Key帮助React识别哪个元素发生了变更，是增加了？或者被移除了。数组中的元素应该被赋予一个具有稳定性的Key：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const numbers = [1, 2, 3, 4, 5];
 const listItems = numbers.map((number) =>
@@ -120,7 +120,7 @@ const listItems = numbers.map((number) =>
 
 挑出Key最好的方法是使用一个独立标识于其他兄弟元素的字符串。最常见的就是使用数据里面的ID作为Key：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const todoItems = todos.map((todo) =>
   <li key={todo.id}>
@@ -132,7 +132,7 @@ const todoItems = todos.map((todo) =>
 
 万不得已时（当你没有一个稳定的ID来渲染元素时），你可能使用元素索引作为key。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const todoItems = todos.map((todo, index) =>
   // Only do this if items have no stable IDs
@@ -155,7 +155,7 @@ Key只在数组相关的上下文中生效。
 
 **例子：错误用法**
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function ListItem(props) {
   const value = props.value;
@@ -190,7 +190,7 @@ ReactDOM.render(
 
 **例子：正确用法**
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function ListItem(props) {
   // Correct! There is no need to specify the key here:
@@ -226,7 +226,7 @@ ReactDOM.render(
 
 Key的使用在一个数组中不能重复，可是，并不需要在全局中唯一。当我们构造了两个不一样的数组是，我们可以使用相同的key：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Blog(props) {
   const sidebar = (
@@ -266,7 +266,7 @@ ReactDOM.render(
 
 Key的作用就像是给React暗示，但是它不能向下层组件传递。你要是需要相同的值，那你就另外一个prop名字，显式的把这个值传递。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const content = posts.map((post) =>
   <Post
@@ -283,7 +283,7 @@ const content = posts.map((post) =>
 
 在上面的例子中，我们生命了一个ListItems变量并在里面写了JSX：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function NumberList(props) {
   const numbers = props.numbers;
@@ -303,7 +303,7 @@ function NumberList(props) {
 
 JSX允许在任何花括号{}中嵌入表达式，所以我们也能把JSX内联在在map()的返回中：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function NumberList(props) {
   const numbers = props.numbers;

@@ -25,7 +25,7 @@ Express 框架核心特性：
 安装没什么好说的，就是npm安装到项目中(cnpm i --save express) , 接着就可以使用了(项目目录下新建server.js文件):
 
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // 引入库
 const express = require('express');
@@ -61,7 +61,7 @@ app.get('/json', (require, response) =>{
 
 mongoose是基于nodejs平台来操作数据库的工具，引入的方法依然是是基于npm($ cnpm i --save mongoose),那么在server.js中继续：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // 引入
 const mongoose = require('mongoose');
@@ -77,7 +77,7 @@ mongoose.connection.on('connected', function(){
 
 mongodb不是关系型数据库，所以他并没有表等概念，对应的概念是文档模型：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // 类似于建立 MySQL 的表,文档模型
 const User = mongoose.model('user', new mongoose.Schema({
@@ -91,7 +91,7 @@ const User = mongoose.model('user', new mongoose.Schema({
 
 * 增--新建数据：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // 新建数据
 User.create({
@@ -109,7 +109,7 @@ User.create({
 
 * 删--删除按条件：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // 删除age是18的对象
 User.remove({age:18},(e, d)=>{
@@ -120,7 +120,7 @@ User.remove({age:18},(e, d)=>{
 
 * 改--按条件修改：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // 更新名字是jerk的
 User.update({name:"jerk"}, {'$set':{age:77}}, (err, doc)=>{
@@ -131,7 +131,7 @@ User.update({name:"jerk"}, {'$set':{age:77}}, (err, doc)=>{
 
 * 查--按条件查询：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 	//不提供条件过滤就是全部
   User.find({},(err, doc)=>{
@@ -146,7 +146,7 @@ User.update({name:"jerk"}, {'$set':{age:77}}, (err, doc)=>{
 
 OSX中用Terminal安装mongodb使用brew工具：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 $ brew install monogoab
 
@@ -154,7 +154,7 @@ $ brew install monogoab
 
 经过了漫长的等待后，总算安装完了。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 To have launchd start mongodb now and restart at login:
   brew services start mongodb
@@ -172,7 +172,7 @@ $ mongod --config /usr/local/etc/mongod.conf 瞬间就完成了，没有卡主
 运行：
 $ mongo 一串提示后看见提示符'>' ,提示如下，其中重要的有版本信息和url
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 MongoDB shell version v3.6.2
 connecting to: mongodb://127.0.0.1:27017

@@ -13,7 +13,7 @@ tags: [Developing_React]
 
 **相关终端命令**
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 $ create-react-app 项目名
 
@@ -27,7 +27,7 @@ $ cnpm start
 
 #### 简单看看
 
-{% highlight ruby %}
+{% highlight javascript %}
  
  my-app
 │

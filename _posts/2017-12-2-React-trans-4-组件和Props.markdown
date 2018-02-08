@@ -13,7 +13,7 @@ tags: [translations_React.js]
 
 最简单的方式定义一个组件是写一个JavaScript函数：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -25,7 +25,7 @@ function Welcome(props) {
 
 你也可以用ES6的class去定义一个组件：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Welcome extends React.Component {
   render() {
@@ -43,7 +43,7 @@ class Welcome extends React.Component {
 
 先前我们见到过React元素，元素代表DOM的标签。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = <div />;
 
@@ -51,7 +51,7 @@ const element = <div />;
 
 然而，元素也能代表用户定义的组件：(Welcome标签显然是用户定义的组件)
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = <Welcome name="Sara" />
 
@@ -61,7 +61,7 @@ const element = <Welcome name="Sara" />
 
 例如，下面代码渲染了一个"Hello,Sara"在页面上
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -93,7 +93,7 @@ ReactDOM.render(
 
 例如，我们构建另一个组件让它渲染Welcome多次：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -123,7 +123,7 @@ ReactDOM.render(
 
 例如，考虑这个Comment组件：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Comment(props) {
   return (
@@ -155,7 +155,7 @@ function Comment(props) {
 
 首先，我们提取Avatar：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Avatar(props) {
   return (
@@ -175,7 +175,7 @@ Avatar不需要知道自己是在Comment中被渲染。这就是为什么我们�
 
 现在，我们简化了Comment一点点：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Comment(props) {
   return (
@@ -200,7 +200,7 @@ function Comment(props) {
 
 接下来我们将提取一个UserInfo组件出来，它在user name的旁边渲染Avatar。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function UserInfo(props) {
   return (
@@ -217,7 +217,7 @@ function UserInfo(props) {
 
 更进一步简化Comment：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Comment(props) {
   return (
@@ -243,7 +243,7 @@ function Comment(props) {
 
 看看这个sum函数：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function sum(a, b) {
   return a + b;
@@ -255,7 +255,7 @@ function sum(a, b) {
 
 相反的，下面的函数"不纯粹"因为它改变了输入的值：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function withdraw(account, amount) {
   account.total -= amount;

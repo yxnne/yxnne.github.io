@@ -12,7 +12,7 @@ tags: [Developing_React]
 
 **相关终端命令**
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 $ cd 项目根目录
 
@@ -48,7 +48,7 @@ $ npm install --save webpack-dev-server
 
 **一个可用的webpack.config.js**
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const webpack = require('webpack');
 const path = require('path');
@@ -80,7 +80,7 @@ module.exports = {
 
 **webpack命令**
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 //普通打包
 $ webpack
@@ -108,7 +108,7 @@ $ webpack-dev-server --content-base src --hot --host 0.0.0.0
 
 新建src/index.html
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <div id="example">123</div>
 <script type="text/javascript" src="bundle.js">
@@ -118,7 +118,7 @@ $ webpack-dev-server --content-base src --hot --host 0.0.0.0
 
 新建src/js/index.js,HelloWord Demo
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 import React from 'react';
 import ReactDOM from 'react-dom';

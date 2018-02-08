@@ -15,7 +15,7 @@ tags: [translations_React.js]
 
 我们推荐这样的组件用一种特别的prop属性叫：children，直接把子组件元素作为prop传入:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function FancyBorder(props) {
   return (
@@ -29,7 +29,7 @@ function FancyBorder(props) {
 
 这样就使得其他组件自主地给他们传递子组件到JSX的嵌套中（就是这：{props.children}）。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function WelcomeDialog() {
   return (
@@ -50,7 +50,7 @@ function WelcomeDialog() {
 
 还有不常见的：有时候，你在一个组件上可能需要多个“holes（洞）”。这类情况下你就得提出自己的约定而不是用children了：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function SplitPane(props) {
   return (
@@ -87,7 +87,7 @@ function App() {
 
 在React中，这样也是可以通过组合来达成，所为组合就是更特殊的组件渲染更一般的组件并用props来配置它：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Dialog(props) {
   return (
@@ -115,7 +115,7 @@ function WelcomeDialog() {
 
 同样，用类的方式定义的组件使用组合效果也很好。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Dialog(props) {
   return (

@@ -28,7 +28,7 @@ tags: [python]
 
 3.介绍了几个方法：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 # title()方法转换成首字母大写
 name = " xiao xin "
@@ -50,7 +50,7 @@ print(name.rstrip())
 
 另外:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 age = 28
 print("I am " + age + "years old")
@@ -78,7 +78,7 @@ print("I am " + age + "years old")
 
 
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 # 最后一个元素索引是-1
 
@@ -111,7 +111,7 @@ print(listTest)  # 根据值删除元素
 
 sort()和sorted()方法，sort()方法改变原列表，sorted()方法不改变原列表。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 # 组织列表
 # 排序原列表

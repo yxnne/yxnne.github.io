@@ -9,7 +9,7 @@ comment: true
 
 
 
-{% highlight ruby %}
+{% highlight javascript %}
 def print_hi(name)
   puts "Hi, #{name}"
 end

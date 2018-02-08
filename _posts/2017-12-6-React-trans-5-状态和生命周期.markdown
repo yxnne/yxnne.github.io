@@ -11,7 +11,7 @@ tags: [translations_React.js]
 
 那就是调用ReactDOM.render()方法来改变渲染输出。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function tick() {
   const element = (
@@ -34,7 +34,7 @@ setInterval(tick, 1000);
 
 让我们开始于封装它的外观。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Clock(props) {
   return (
@@ -60,7 +60,7 @@ setInterval(tick, 1000);
 
 理想情况是，我们想一次性写成然后让它自己更新：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 ReactDOM.render(
   <Clock />,
@@ -89,7 +89,7 @@ State（状态）有点像props（属性），但是state状态是私有的，�
 
 5.删除掉余下的空方法声明;
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Clock extends React.Component {
   render() {
@@ -114,7 +114,7 @@ class Clock extends React.Component {
 
 1.在render()方法中，把this.props.date换成this.state.date：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Clock extends React.Component {
   render() {
@@ -131,7 +131,7 @@ class Clock extends React.Component {
 
 2.添加class构造器并初始化this.state:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Clock extends React.Component {
   constructor(props) {
@@ -152,7 +152,7 @@ class Clock extends React.Component {
 
 留心我们怎么把props属性传递给这个基础构造器的：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
  constructor(props) {
     super(props);
@@ -165,7 +165,7 @@ class组件总是带着props去调用基础构造器
 
 3.从<Clock />元素中移除date属性:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 ReactDOM.render(
   <Clock />,
@@ -178,7 +178,7 @@ ReactDOM.render(
 
 现在结果看上去是这样：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Clock extends React.Component {
   constructor(props) {
@@ -215,7 +215,7 @@ ReactDOM.render(
 
 我们在组件类的一些特殊的方法中写一些代码，那么当组件卸载或者挂载的时候代码就会执行：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Clock extends React.Component {
   constructor(props) {
@@ -247,7 +247,7 @@ class Clock extends React.Component {
 
 方法：componentDidMount()在组件被渲染到DOM之后调用，这是个安装定时器的好时机：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
   componentDidMount() {
     this.timerID = setInterval(
@@ -264,7 +264,7 @@ class Clock extends React.Component {
 
 当componentWillUnmount()调用的时候我们销毁定时器：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
   componentWillUnmount() {
     clearInterval(this.timerID);
@@ -276,7 +276,7 @@ class Clock extends React.Component {
 
 它将使用this.setState（）来调度更新组件的当前状态。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Clock extends React.Component {
   constructor(props) {
@@ -340,7 +340,7 @@ ReactDOM.render(
 
 举例，这样不会重新渲染一个组件：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // Wrong
 this.state.comment = 'Hello';
@@ -349,7 +349,7 @@ this.state.comment = 'Hello';
 
 取而代之，用setState():
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // Correct
 this.setState({comment: 'Hello'});
@@ -366,7 +366,7 @@ React有可能会收集一批setState()调用以后统一更新。
 
 举例来说，用下面的代码来更新计数器counter可能要失败：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // Wrong
 this.setState({
@@ -377,7 +377,7 @@ this.setState({
 
 修复它，需要用setState()的另一种形式：setState()接受一个函数作为参数而不是对象。那个作为参数的函数的第一个参数是先前状态（previous state），第二个参数是当前属性：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // Correct
 this.setState((prevState, props) => ({
@@ -388,7 +388,7 @@ this.setState((prevState, props) => ({
 
 上面我们用到了箭头函数，不过用常规的函数它也能正常工作：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // Correct
 this.setState(function(prevState, props) {
@@ -405,7 +405,7 @@ this.setState(function(prevState, props) {
 
 举例说，你的状态可能包含了一些彼此独立的变量：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 constructor(props) {
     super(props);
@@ -419,7 +419,7 @@ constructor(props) {
 
 你可以分别在不同的setState()中更新他们：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 componentDidMount() {
     fetchPosts().then(response => {
@@ -448,7 +448,7 @@ componentDidMount() {
 一个组件可以选择把自己的state状态以props属性的方式下发给子组件：
 
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
 
@@ -456,7 +456,7 @@ componentDidMount() {
 
 这同样适用于用户自定义组件中：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <FormattedDate date={this.state.date} />
 
@@ -464,7 +464,7 @@ componentDidMount() {
 
 组件FormattedDate收到data在它的props中，而且不知道是否data来自于Clock的state或者props或者其他：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function FormattedDate(props) {
   return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
@@ -478,7 +478,7 @@ function FormattedDate(props) {
 
 为了展示所有的组件都是完全孤立的，我们创建了一个APP组件，渲染了三个<Clock>
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function App() {
   return (

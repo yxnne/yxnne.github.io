@@ -17,7 +17,7 @@ tags: [Developing_React]
 
 #### 安装还是npm
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 $ npm install react-responsive --save
 
@@ -25,7 +25,7 @@ $ npm install react-responsive --save
 
 #### 使用起来不啰嗦
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Root extends React.Component{
 

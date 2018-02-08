@@ -7,7 +7,7 @@ tags: [translations_React.js]
 ---
 <big>Element(元素)</big> ,就是描述你在屏幕上见到的东西。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = <h1>Hello, world</h1>;
 
@@ -22,7 +22,7 @@ const element = <h1>Hello, world</h1>;
 
 看看你HTML文件某处的'<div>'标签。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <div id="root"></div>
 
@@ -34,7 +34,7 @@ const element = <h1>Hello, world</h1>;
 
 要在一个根DOM节点中去渲染一个React Element元素，要把整个元素放在ReactDOM的render()方法中。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = <h1>Hello, world</h1>;
 ReactDOM.render(
@@ -54,7 +54,7 @@ React的元素是不可变的。一旦你创建了一个元素，你就不能改
 
 考虑下下面的例子
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function tick() {
   const element = (

@@ -11,7 +11,7 @@ tags: [translations_React.js]
 
 我们开始于组件<BoilingVerdict>(沸腾裁决)。这个组件接受一个Celsius（摄氏）温度作为prop参数，打印它是否足够使得水烧开:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function BoilingVerdict(props) {
   if (props.celsius >= 100) {
@@ -26,7 +26,7 @@ function BoilingVerdict(props) {
 
 另外，它也根据当前输入值渲染了BoilingVerdict。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Calculator extends React.Component {
   constructor(props) {
@@ -64,7 +64,7 @@ class Calculator extends React.Component {
 
 我们以从Calculator中提取TemperatureInput组件作为开始。我们需要添加新的度量单位，它们可以是‘c’或‘f’。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const scaleNames = {
   c: 'Celsius',
@@ -99,7 +99,7 @@ class TemperatureInput extends React.Component {
 
 现在我们可以把Calculator组件变成渲染两个独立的温度输入组件：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Calculator extends React.Component {
   render() {
@@ -122,7 +122,7 @@ class Calculator extends React.Component {
 
 首先，我们写两个函数是的Celsius和Fahrenheit之间得以转换：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function toCelsius(fahrenheit) {
   return (fahrenheit - 32) * 5 / 9;
@@ -138,7 +138,7 @@ function toFahrenheit(celsius) {
 
 当不可用的温度值传入，函数将输出空字符串，并且，它保持了小数点后三位的输出：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function tryConvert(temperature, convert) {
   const input = parseFloat(temperature);
@@ -158,7 +158,7 @@ function tryConvert(temperature, convert) {
 
 现在，两个TemperatureInput都在他们自己的状态中维护他们的值：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class TemperatureInput extends React.Component {
   constructor(props) {
@@ -187,7 +187,7 @@ class TemperatureInput extends React.Component {
 
 首先，在TemperatureInput组件中把this.state.temperature用this.props.temperature代替。到目前为止，尽管我们之后要从Calculator中传递this.props.temperature，但让我们先假设它是存在的。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
   render() {
     // Before: const temperature = this.state.temperature;
@@ -202,7 +202,7 @@ class TemperatureInput extends React.Component {
 
 现在，TemperatureInput组件想要更新它的temperature值时，它会调用this.props.onTemperatureChange:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 handleChange(e) {
     // Before: this.setState({temperature: e.target.value});
@@ -219,7 +219,7 @@ handleChange(e) {
 在深入Calculator的变化之前，让我们回顾对TemperatureInput组件的改变先。我们移除了本地的state状态,从读取this.state.temperature变成读取this.props.temperature。在我们想做些变化时，从调用this.setState()变成调用父组件提供的this.props.onTemperatureChanged()：
 
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class TemperatureInput extends React.Component {
   constructor(props) {
@@ -252,7 +252,7 @@ class TemperatureInput extends React.Component {
 
 例如，若是在摄氏输入中输入37，Calculator组件的state将会是：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 {
   temperature: '37',
@@ -263,7 +263,7 @@ class TemperatureInput extends React.Component {
 
 接着在华氏输入中输入212，Calculator组件的state将会是：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 {
   temperature: '212',
@@ -276,7 +276,7 @@ class TemperatureInput extends React.Component {
 
 两个input现在保持同步是因为他们的值都是通过相同的state计算出的。
 
-{% highlight ruby %}
+{% highlight javascript %}
 class Calculator extends React.Component {
   constructor(props) {
     super(props);

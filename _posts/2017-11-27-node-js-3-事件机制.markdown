@@ -12,7 +12,7 @@ tags: [node.js]
 #### 基本用法
 
 * 引入模块
-{% highlight ruby %}
+{% highlight javascript %}
 
 //add events module  
 var events = require('events');
@@ -20,7 +20,7 @@ var events = require('events');
 {% endhighlight %}
 
 * 绑定事件（监听某个事件）
-{% highlight ruby %}
+{% highlight javascript %}
 
 //listen somewhat event and ,
 //add the callback function when this event is triggered 
@@ -29,7 +29,7 @@ eventEmitter.on('eventName', eventHandler);
 {% endhighlight %}
 
 * 触发事件
-{% highlight ruby %}
+{% highlight javascript %}
 
 eventEmitter.emit('eventName');
 
@@ -37,7 +37,7 @@ eventEmitter.emit('eventName');
 
 #### 继续，简单探索
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 //add events
 var events = require('events');
@@ -58,7 +58,7 @@ setTimeout(function(){
 * 一种事件可以注册多个监听
 在上面代码的基础上
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 //another register to listen 
 eventEmitter.on('yxnne_event',function(){
@@ -71,7 +71,7 @@ eventEmitter.on('yxnne_event',function(){
 * 带参数的触发
 在上面代码的基础上
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 setTimeout(function(){
 	eventEmitter.emit('yxnne_event',10,20);
@@ -82,7 +82,7 @@ setTimeout(function(){
 我本来以为，注册事件“yxnne_event”的时候给他的回调函数里面没有参数列表，所以这个触发可能不会执行，但是我错了。这里还是会执行的回调的。参数列表这个东西，有，则用，无，则不用（对js可能还是不够熟悉）。
 那么，再验证下？
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 //listen event :yxnne_event_param and add callback
 eventEmitter.on('yxnne_event_param',function(num1,num2){
@@ -121,7 +121,7 @@ setTimeout(function(){
 
 * 一个eventEmitter监听的对象用另一个eventEmitter触发？
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 setTimeout(function(){
 	//also trigger yxnne_event_param event
@@ -135,7 +135,7 @@ setTimeout(function(){
 
 * 一个静态方法listenerCount()
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 var counts = events.EventEmitter.listenerCount(eventEmitter,'yxnne_event_param');
 console.log('the yxnne_event_param event listeners counts is',counts);

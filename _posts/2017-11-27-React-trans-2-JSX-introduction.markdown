@@ -9,7 +9,7 @@ tags: [translations_React.js]
 
 看看下面这个变量声明：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = <h1>Hello, world!</h1>;
 
@@ -27,7 +27,7 @@ JSX'创建'了React的"元素 elements"。以后我们将继续探索并渲染�
 
 举例像：2 + 2, user.firstName, and formatName(user) 这些都是表达式。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function formatName(user) {
   return user.firstName + ' ' + user.lastName;
@@ -59,7 +59,7 @@ ReactDOM.render(
 
 这就意味着你在JSX中可以使用if，使用for循环，把JSX分配给变量，接受参数以及作为函数的返回值。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function getGreeting(user) {
   if (user) {
@@ -74,7 +74,7 @@ function getGreeting(user) {
 
 你可能在用"引号"quotes来指定字符化的属性参数：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = <div tabIndex="0"></div>;
 
@@ -82,7 +82,7 @@ const element = <div tabIndex="0"></div>;
 
 你也可以用花括号包裹着JavaScript表达式作为属性参数。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = <img src={user.avatarUrl}></img>;
 
@@ -98,7 +98,7 @@ const element = <img src={user.avatarUrl}></img>;
 
 若一个标签是空，可以直接/>关闭它，就像XML。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = <img src={user.avatarUrl} />;
 
@@ -106,7 +106,7 @@ const element = <img src={user.avatarUrl} />;
 
 JSX标签中也可以包含"孩子"标签。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = (
   <div>
@@ -121,7 +121,7 @@ const element = (
 
 JSX写入用户输入是安全的。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const title = response.potentiallyMaliciousInput;
 // This is safe:
@@ -137,7 +137,7 @@ const element = <h1>{title}</h1>;
 
 Babel编译JSX编译成React.createElement()调用。下面两个例子一个意思。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = (
   <h1 className="greeting">
@@ -147,7 +147,7 @@ const element = (
 
 {% endhighlight %}
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const element = React.createElement(
   'h1',
@@ -159,7 +159,7 @@ const element = React.createElement(
 
 React.createElement() 会有一些检查来帮助你的代码出bug少点，不过在本质上，它这样创建元素：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // Note: this structure is simplified
 const element = {

@@ -14,7 +14,7 @@ JS解析器只是JS代码运行的一种环境，浏览器是JS运行的一种�
 
 既然是node.js是服务器端运行的js代码，那么初窥node.js最好就是写一个服务端小程序了（新建一个test.js文件并键入下面代码）：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 //import module using require() 
 //instance 'http object'

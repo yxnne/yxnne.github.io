@@ -8,7 +8,7 @@ tags: [translations_React.js]
 <big>React中，表单元素</big>和其他元素的工作有些差异 ，因为表单元素天生包括一些内置状态。举例来说，这个原生HTML表单接受一个name:
 
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <form>
   <label>
@@ -30,7 +30,7 @@ HTML中，像<input>,<textarea>和<select>这样的元素，通常维持他们�
 
 举例，如果我们想将先前的例子变成点击提交后输出name，我们可以把表单写成像控制组件那样：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class NameForm extends React.Component {
   constructor(props) {
@@ -69,7 +69,7 @@ class NameForm extends React.Component {
 
 使用控制组件，每一个可变状态将会关联一个处理函数。这使得它可以直接修改或者验证用户输入。举例来说，假如我们想强行的把name变成大写字母，我们可以再handleChange中这样写：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 handleChange(event) {
   this.setState({value: event.target.value.toUpperCase()});
@@ -81,7 +81,7 @@ handleChange(event) {
 
 在HTML中，textarea标签通过其子元素定义它的文本。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <textarea>
   Hello there, this is some text in a text area
@@ -91,7 +91,7 @@ handleChange(event) {
 
 在React中，textarea标签使用value属性代替。用这样的方式，使用<textarea>的表单就可以写得和单独使用input的表单极其相似：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class EssayForm extends React.Component {
   constructor(props) {
@@ -134,7 +134,7 @@ class EssayForm extends React.Component {
 
 HTML中，<select> 标签生成下拉表单，举例，下面的HTML生成喜好的列表：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <select>
   <option value="grapefruit">Grapefruit</option>
@@ -147,7 +147,7 @@ HTML中，<select> 标签生成下拉表单，举例，下面的HTML生成喜好
 
 注意Coconut选项是默认初始选择的，因为设置了selected属性。React中，不用selected属性，用select根标签中的value属性。这样对于控制组件来说更方便因为你只需在一处更新，就像这样:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class FlavorForm extends React.Component {
   constructor(props) {
@@ -199,7 +199,7 @@ class FlavorForm extends React.Component {
 
 例如：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Reservation extends React.Component {
   constructor(props) {
@@ -257,7 +257,7 @@ ReactDOM.render(
 
 记下你如何使用ES6[计算属性名语法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names)来更新与input name一致的state:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 this.setState({
   [name]: value
@@ -267,7 +267,7 @@ this.setState({
 
 这和ES5中这样的代码等价:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 var partialState = {};
 partialState[name] = value;
@@ -283,7 +283,7 @@ this.setState(partialState);
 
 下面的代码展示了这样的事：（input一开始是锁定着的但是短暂间隔之后又变得可编辑了‘<input value={null} />’--这样会变得可编辑）
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 ReactDOM.render(<input value="hi" />, mountNode);
 

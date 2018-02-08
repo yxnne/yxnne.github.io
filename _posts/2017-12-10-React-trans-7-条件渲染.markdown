@@ -11,7 +11,7 @@ tags: [translations_React.js]
 
 看看这两个组件：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function UserGreeting(props) {
   return <h1>Welcome back!</h1>;
@@ -25,7 +25,7 @@ function GuestGreeting(props) {
 
 我们创建了这个‘greeting’组件，是呈现UserGreeting还是呈现GuestGreeting取决于用户的登录状态：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Greeting(props) {
   const isLoggedIn = props.isLoggedIn;
@@ -51,7 +51,7 @@ ReactDOM.render(
 
 看看这两个新的组件，Logout登出和Login登入按钮：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function LoginButton(props) {
   return (
@@ -75,7 +75,7 @@ function LogoutButton(props) {
 
 该组件会渲染<LoginButton/>和<LogoutButton/>当中的一个，渲染谁取决于当前它的状态。它也渲染了之前的例子<Greeting/>组件：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class LoginControl extends React.Component {
   constructor(props) {
@@ -125,7 +125,7 @@ ReactDOM.render(
 
 任何JSX只要写在花括号里都是可嵌入的。这里面包括了JavaScript的'&&'(且运算符) 。这对于行内条件元素可能比较方便：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function Mailbox(props) {
   const unreadMessages = props.unreadMessages;
@@ -160,7 +160,7 @@ ReactDOM.render(
 
 下面的例子中我们就用这种写法条件化渲染了一小段文字：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 render() {
   const isLoggedIn = this.state.isLoggedIn;
@@ -175,7 +175,7 @@ render() {
 
 它也能用于更大的表达式，尽管它也不太清楚发生什么：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 render() {
   const isLoggedIn = this.state.isLoggedIn;
@@ -200,7 +200,7 @@ render() {
 
 下面的例子中，<warnningBanner/>被渲染与否决定于一个叫warn属性props。如果这个prop属性值为false，那么这个组件将不会被渲染。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function WarningBanner(props) {
   if (!props.warn) {

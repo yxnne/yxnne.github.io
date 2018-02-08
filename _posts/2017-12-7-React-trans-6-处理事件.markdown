@@ -13,7 +13,7 @@ tags: [translations_React.js]
 
 比方说,这是HTML：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <button onclick="activateLasers()">
   Activate Lasers
@@ -23,7 +23,7 @@ tags: [translations_React.js]
 
 React，和它略有不同：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <button onClick={activateLasers}>
   Activate Lasers
@@ -33,7 +33,7 @@ React，和它略有不同：
 
 另一处差异是，在React中，你不能通过返回false来阻止默认行为。你得显示地调用preventDefault()方法。举例来说，在普通HTML中，要想阻止打开新页面的超链接行为的话，你可以这样：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <a href="#" onclick="console.log('The link was clicked.'); return false">
   Click me
@@ -43,7 +43,7 @@ React，和它略有不同：
 
 在React中，就是这样：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function ActionLink() {
   function handleClick(e) {
@@ -64,7 +64,7 @@ function ActionLink() {
 
 当你使用es6定义class作为组件时，事件处理器的一种常规的模式是class里面定义方法。例如，Toggle这个组件渲染了一个按钮，允许你在“on”和“off”之间切换:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class Toggle extends React.Component {
   constructor(props) {
@@ -105,7 +105,7 @@ ReactDOM.render(
 要是你讨厌用bind，这也有两种方法绕过它：如果你正在使用实验性“ public class fields ”（公共类属性）语法，你就能使用类属性绑定函数调用：
 
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class LoggingButton extends React.Component {
   // This syntax ensures `this` is bound within handleClick.
@@ -131,7 +131,7 @@ class LoggingButton extends React.Component {
 
 你要是不用这种语法,你也可以使用箭头函数到onClick调用时：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 class LoggingButton extends React.Component {
   handleClick() {
@@ -156,7 +156,7 @@ class LoggingButton extends React.Component {
 
 循环中，常有事件处理时需要传递其他参数的情况。例如，id是行id，下面两种都是可行的：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
 

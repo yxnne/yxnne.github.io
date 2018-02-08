@@ -27,7 +27,7 @@ antd的官网上也有提供思路：如果你使用的是其他脚手架，可�
 
 * antd这就不说了
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 $ npm install antd --save
 
@@ -37,7 +37,7 @@ $ npm install antd --save
 
 [作用](https://www.cnblogs.com/yswz/p/7165031.html):按需加载组件
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 $ npm install babel-plugin-import --save-dev
 
@@ -47,7 +47,7 @@ $ npm install babel-plugin-import --save-dev
 
 less-vars-to-js将less文件视作String，以对象形式返回其中的变量。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 $ npm install less-vars-to-js --save-dev
 
@@ -55,7 +55,7 @@ $ npm install less-vars-to-js --save-dev
 
 * 安装less / less loader / css-loader / style-loader 等支持，缺啥就安啥
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 $ npm install less less-loader css-loader style-loader --save-dev
 
@@ -63,7 +63,7 @@ $ npm install less less-loader css-loader style-loader --save-dev
 
 #### 配置webpack.config.js > babel-loader中装插件
 
-{% highlight ruby %}
+{% highlight javascript %}
 
       {
         test: /.js?$/,
@@ -91,7 +91,7 @@ $ npm install less less-loader css-loader style-loader --save-dev
 
 可用的theme设置在这里：[antd theme官方](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less)
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 @primary-color: #ff0000; 
 
@@ -101,7 +101,7 @@ $ npm install less less-loader css-loader style-loader --save-dev
 
 * 把刚才配的theme引入过来
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const path = require('path');
 
@@ -115,7 +115,7 @@ const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './theme_co
 
 * 配置各个样式loader
 
-{% highlight ruby %}
+{% highlight javascript %}
       
       {
         test: /\.css$/,
@@ -158,7 +158,7 @@ const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './theme_co
 
 #### PS : 可用的一个webpack.config.js参考下，以免日后忘记
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const webpack = require('webpack');
 const path = require('path');

@@ -11,7 +11,7 @@ tags: [Developing_React]
 
 安装的方式还是npm,或者cnpm，终端进入项目根目录下,敲:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 $ npm i --save react-router-dom 
 
@@ -23,7 +23,7 @@ $ npm i --save react-router-dom
 
 #### Route路由
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -80,7 +80,7 @@ ReactDOM.render(
 
 以前在React Route 2中,Router可以嵌套起来，例如下面写法，假设访问localhost/detail后就会显示AppRootComponent组件中嵌套了ComponentInMain组件：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <Router>
 
@@ -96,7 +96,7 @@ ReactDOM.render(
 
 当然在组件AppRootComponent中的合适位置中要这样：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 {this.props.children}
 
@@ -109,7 +109,7 @@ ReactDOM.render(
 
 所以：react router 4 中实现类似嵌套的效果：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <Router>
     <Switch>
@@ -131,7 +131,7 @@ ReactDOM.render(
 
 另外，举个小例子再说说，Switch标签中的东西的切换是这样的规则：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <Router>
     <Switch>
@@ -164,7 +164,7 @@ ReactDOM.render(
 
 <Link>标签的使用就像a标签的使用方式一样，Link的功能就是，跳转路由。Link中的属性to就是目的路由地址。差不多就是**a-->Link**,**href-->to**。比如在Header组件的render方法中，return :
 
-{% highlight ruby %}
+{% highlight javascript %}
 
     return (
 
@@ -191,7 +191,7 @@ ReactDOM.render(
 
 * 定义参数
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <Route path="/list/:id" component={ComponentList}/>
 
@@ -207,7 +207,7 @@ Router中这样配置path="/list/:id"，冒号后面就是参数的名字
 
 比如之前例子中的Link to属性中将/list变成 /list/12345 再次点击 该Link标签后，跳转时将把12345作为id参数来传递。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <li><Link to={'/list/12345'}>List</Link></li>
 

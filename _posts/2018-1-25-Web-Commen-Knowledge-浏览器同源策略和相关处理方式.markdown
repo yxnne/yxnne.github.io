@@ -35,7 +35,7 @@ http://www.example.com:81/dir/other.html：不同源（端口不同）
 
 客户端:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <!DOCTYPE html>
 <html>
@@ -66,7 +66,7 @@ function callbackFunction(result, methodName)
 
 服务端:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <?php
 header('Content-type: application/json');

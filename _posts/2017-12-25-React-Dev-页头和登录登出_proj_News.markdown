@@ -30,7 +30,7 @@ Menu的使用也不难：最外层根部标签使用<Menu>，最基本的是每�
 
 给Menu设置的selectedKeys属性是{this.state.current},也就是说当current属性值变化时，Menu的被选择香就变化了，再设置onClick比如{this.handleMenu.bind(this)},handleMenu中会拿到“事件.key”，这就是点击那个子项目的key，在handle方法中设置state.current这样就完成一个联动操作。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 //外层Mune
 <Menu mode="horizontal" selectedKeys={[this.state.current]}
@@ -56,7 +56,7 @@ handleClick(e){
 
 另外在<Modal>的内部可以按需嵌套其他逻辑。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 <Modal title="用户中心" wrapClassName="vertical-center-modal" 
 visible={this.state.modalVisiable}
@@ -82,7 +82,7 @@ setModalVisible(value){
 
 Form还是比较复杂点。上代码先。[具体](https://ant.design/components/form-cn/)
 
-{% highlight ruby %}
+{% highlight javascript %}
 //最外层
 <Form onSubmit={this.handleSubmit.bind(this)}>
     //子元素
@@ -123,7 +123,7 @@ export default PCHeader = Form.create({})(PCHeader);
 3.FormItem中放了一个这个：getFieldDecorator中第一个参数是表单属性索引，提交表单时，值的名字就是这个， rules：规则，比如必填项required: true，要是不填就提示message: 'Please input your username!'。
 " <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" /> "是表单项的主体，Input，prefix属性传递了个对象，是一个Icon标签，就是这个Input的小Icon，placeholder就是hint提示；
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 {getFieldDecorator('userName', {
   rules: [{ required: true, message: 'Please input your username!' }],
@@ -141,7 +141,7 @@ export default PCHeader = Form.create({})(PCHeader);
 
 响应式就是基于react-responsive中的MediaQuery针对不同屏幕尺寸和适配方案做不同的布局和逻辑。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 return (
     <div>
@@ -163,7 +163,7 @@ return (
 
 使用fetch框架完成网络请求。安装就是npm安装。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 let fetchOptions = {
   method:'GET'
@@ -181,7 +181,7 @@ fetch("url", fetchOptions)
 
 登录后除了通过控制组件的state之后，通过localStorage本地存储下服务器返回的用户的信息比如什么userID或者userName之类的。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 localStorage.userid= json.UserId;
 localStorage.userNickName = json.NickUserName;
@@ -190,7 +190,7 @@ localStorage.userNickName = json.NickUserName;
 
 还有一个问题，就是假设现在登录成功了，但是刷新了之后登录状态将会刷新掉，这显然不是想要的。那么需要在组件的生命周期方法中结合localStorage做一些校验。举个简单的例子就是:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 //声明周期方法：刷新之后将会执行
 componentWillMount(){

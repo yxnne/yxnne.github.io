@@ -13,7 +13,7 @@ tags: [translations_React.js]
 
 最简单的React例子就像这样：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 ReactDOM.render(
   <h1>Hello, world!</h1>,

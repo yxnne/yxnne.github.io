@@ -17,7 +17,7 @@ comment : true
 * store：就是统一管理状态的地方，从store中可以获取状态；也可以派发事件；
 看下面一个最基本的例子：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 import { createStore } from 'redux';
 
@@ -53,7 +53,7 @@ ex3派发事件，派发了一个时间后，reduce会自动的进行事件值�
 
 * subscribe:给store维护的状态改变时，添加一个订阅回调函数，比如每当store状态变化时会做什么事。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // 订阅事件
 function listner(){
@@ -76,7 +76,7 @@ store.dispatch({type:'ADD'});
 
 index.redux.js中代码
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 import { createStore } from 'redux';
 const ADD = 'ADD';
@@ -109,7 +109,7 @@ export function sub(){
 
 index.js中代码
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 import React from 'react';
 import ReactDom from 'react-dom';
@@ -154,7 +154,7 @@ store.subscribe(render);
 
 2.可以将App组建组建和index.redux.js的耦合解除：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // App Component
 class App extends React.Component{
@@ -185,7 +185,7 @@ document.getElementById('root'));
 
 异步处理需要一个中间件，常见的库有一个叫redux-thunk，使用npm在项目中安装。在项目创建store的时候引用：
 
-{% highlight ruby %}
+{% highlight javascript %}
 // 引入
 import thunk from 'redux-thunk';
 
@@ -195,7 +195,7 @@ const store = createStore(counter, applyMiddleware(thunk));
 {% endhighlight %}
 createStore()放入第二个参数，该参数是applyMiddleware(thunk)，这样就引入了这个中间件。
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // 归零的一个action creator
 export function zero(){
@@ -215,7 +215,7 @@ export function asyncToZero(){
 {% endhighlight %}
 asyncToZero是一个action creator 它希望不要立即修改state，所以这里模拟2秒之后修改，可以看到，使用redux-thunk想要异步动作时，只要return一个函数就好，这个函数接受dispatch作为参数，dispatch是一个函数，用来在异步时发送Action事件。<br>
 当然，在counter这个reducer中也要添加相关的操作。
-{% highlight ruby %}
+{% highlight javascript %}
 
 export function counter(state=0, action){
   switch(action.type){
@@ -245,7 +245,7 @@ export function counter(state=0, action){
 
 和Provider相关的修改：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 // import { Provider } from 'react-redux';
 // ...
@@ -265,7 +265,7 @@ ReactDom.render(
 
 和connect相关的修改：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 import { connect } from 'react-redux';
 
@@ -288,7 +288,7 @@ App = connect(mapStateProps, actionCreators)(App);
 然后需要改下package.json中babel的配置，这样就支持装饰器写法了：
 
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 "babel": {
     //.....
@@ -300,7 +300,7 @@ App = connect(mapStateProps, actionCreators)(App);
 
 最后,下面中注释的代码可以写成这种注解的形式：
 
-{% highlight ruby %}
+{% highlight javascript %}
 // function mapStateProps(state){
 //   return {num:state};
 // }
@@ -322,7 +322,7 @@ class App extends React.Component{
 另外，这里第一个箭头函数是从state里面取值，取需要的值，假如说state的只有一个值这种情况不常见，就像上面代码中，state中只有数值，这时需要一个别名来引用之，所以箭头函数的返回值是{num:state}，意思就是__向this.props中插入一个名为num,值为state的数据__。<br>
 那么，假设state中不只是一个值，state中存放的键值对或者其他对象，比如声明reducer的时候：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 export function auth(state={isAuth:false, user:'yy'}, action){
   // ...
@@ -332,7 +332,7 @@ export function auth(state={isAuth:false, user:'yy'}, action){
 
 那么state中就至少有了这个对象{isAuth:false, user:'yy'},拿到这个对象得像这样：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 @connect(
   state=>(state.auth), { login }
@@ -344,7 +344,7 @@ state.auth中这个auth就是reducer的名字，这样相当于把auth这个redu
 
 这时 state中的层级关系就是：<br>
 
-{% highlight ruby %}
+{% highlight javascript %}
 ---state
   |___auth
   |  |___isAuth
@@ -359,7 +359,7 @@ state.auth中这个auth就是reducer的名字，这样相当于把auth这个redu
 有多个renducer，那么使用之前是要进行reducer合并的。redux库中提供了合并的方法：具体操作是：
 新建一个文件，eg:reducers.js:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 import { combineReducers } from 'redux';  // 靠他来合并
 import { counter } from './index.redux';  // reducer1 引入
@@ -371,7 +371,7 @@ export default combineReducers({counter, auth});
 
 那么，记得在构造store的时候，就要用新合并的reducers了:
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 import reducers from './reducer/reducers';
 // ...
@@ -386,7 +386,7 @@ const store = createStore(reducers, compose(applyMiddleware(thunk), reduxDevTool
 reduxDevTools，这是一个Chrome的插件，用来调试Redux(Chrome商店墙外搜索redux，第一个插件就是，标志是上下两张符号笑脸)。使用的方法需要在代码中添加插件的函数，这样就把插件和store关联起来。程序运行起来后在chrome中就可以使用。
 
 
-{% highlight ruby %}
+{% highlight javascript %}
 // 1.引入compose
 import { createStore, applyMiddleware, compose} from 'redux';
 
@@ -400,7 +400,7 @@ const store = createStore(counter, compose(applyMiddleware(thunk), reduxDevTool)
 
 上面代码的第二步可以这样写 ：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 const reduxDevTool = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
@@ -409,7 +409,7 @@ const reduxDevTool = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTO
 #### Redux和AJAX请求库配合
 种种AJAX库都是一样fetch or axios，比如axios，本来直接在组件需要的地方写axios.get(url).then(callback)...
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 //在某组件中的某处
 //没有redux，可能大概就是这样
@@ -421,7 +421,7 @@ axios.get(url).then((res) =>{
 
 但是有redux的时候，再在组件中setState这样就不太好了。所以可以将相关的AJAX的请求放在action creator中，当然是个异步的，组件中调用这个方法就好：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 function user(data){
   return {type:USER_DATA, loaded:data};

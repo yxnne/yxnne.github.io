@@ -63,7 +63,7 @@ JavaScript代码自动补全，代码分析支持是[Tern](https://github.com/te
 
 后来搜索发现了一种方法是，直接从git上clone下来代码到atom安装在目录下的package目录下，clone成功后使用npm安装：
 
-{% highlight ruby %}
+{% highlight javascript %}
 
 $ cd atom
 $ cd pacages
