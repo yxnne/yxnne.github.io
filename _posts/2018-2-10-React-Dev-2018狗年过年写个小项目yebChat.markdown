@@ -27,6 +27,7 @@ $ cnpm i --save redux-thunk
 $ cnpm i --save babel-plugin-transform-decorators-legacy
 $ cnpm i --save axios
 $ cnpm i --save antd-mobile
+$ cnpm i --save babel-plugin-import
 
 // 后端安装
 $ cnpm i --save express

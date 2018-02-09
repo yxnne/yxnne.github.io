@@ -73,3 +73,7 @@ $ npm install
 {% endhighlight %}
 
 在windows下面，最后一步使用cnpm(淘宝镜像)成功了，npm太慢。**但是Mac下这个方法居然没有成功，安装完成之后Atom总是打开后没有响应！！！？？？不知为何啊..**
+
+https://segmentfault.com/a/1190000009600026
+
+http://blog.csdn.net/crper/article/details/52196675
