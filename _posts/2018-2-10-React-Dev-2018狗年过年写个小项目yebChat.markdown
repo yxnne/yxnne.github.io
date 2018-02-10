@@ -54,6 +54,32 @@ $ cnpm i --save cookie-parser
 
 {% endhighlight %}
 
+### 腊月廿五
+大吉大利，今晚回家，一会去机场！
+简单测试了下antd-mobile,和antd差不多，都挺不错的。
+<a href="#">antd-mobile→</a>
+
+
+
+
+
+
+
+
+
+### amtd-mobile总结
+<a name="my_antd_mobile"></a>
+[antd-mobile官网在此](https://mobile.ant.design/docs/react/introduce-cn)
+#### 布局组件
+
+* WhiteSpace 上下留白
+* WingBlank 两翼留白
+
+#### 表单组件
+* List 列表容器
+* Radio 单选
+* InputItem 输入框
+* Button 按钮
 
 
 
