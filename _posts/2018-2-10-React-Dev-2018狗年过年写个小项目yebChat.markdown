@@ -57,14 +57,20 @@ $ cnpm i --save cookie-parser
 ### 腊月廿五
 大吉大利，今晚回家，一会去机场！
 简单测试了下antd-mobile,和antd差不多，都挺不错的。
-<a href="#">antd-mobile→</a>
+<a href="#my_antd_mobile">antd-mobile→</a>
+<a href="#my_project_structure">项目的架构是这样→</a>
 
 
 
 
+临时备用线----------------------------------------------
 
+{% highlight javascript %}
 
+{% endhighlight %}
 
+### 项目架构
+<a name="my_project_structure"></a>
 
 
 ### amtd-mobile总结
@@ -84,9 +90,5 @@ $ cnpm i --save cookie-parser
 
 
 
-临时备用线----------------------------------------------
 
-{% highlight javascript %}
-
-{% endhighlight %}
 
