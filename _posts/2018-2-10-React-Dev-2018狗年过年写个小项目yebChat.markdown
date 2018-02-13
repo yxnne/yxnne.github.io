@@ -57,10 +57,11 @@ $ cnpm i --save cookie-parser
 ### 腊月廿五
 大吉大利，今晚回家，一会去机场！
 简单测试了下antd-mobile,和antd差不多，都挺不错的。
-<a href="#my_antd_mobile">antd-mobile→</a>
-<a href="#my_project_structure">项目的架构是这样→</a>
+* <a href="#my_antd_mobile">antd-mobile→</a>
+* <a href="#my_project_structure">项目的架构是这样→</a>
 
-
+另外开始处理登录/注册页面，今天只写了UI部分，估计下次写到后天了~~~</br>
+回家还是最开心的~
 
 
 临时备用线----------------------------------------------
