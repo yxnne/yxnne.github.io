@@ -148,3 +148,5 @@ console.log('the yxnne_event_param event listeners counts is',counts);
 最后：
 
 [我要继续感谢菜鸟教程](http://www.runoob.com/nodejs/nodejs-event-loop.html)
+
+__宝剑锋从磨砺出,梅花香自苦寒来__

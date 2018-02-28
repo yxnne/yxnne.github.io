@@ -44,3 +44,6 @@ console.log("the server has started");
 最后：
 
 [感谢菜鸟教程](http://www.runoob.com/nodejs/nodejs-http-server.html)
+
+
+__宝剑锋从磨砺出,梅花香自苦寒来__
