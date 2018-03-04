@@ -11,7 +11,13 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进
 
 [官网](https://cn.vuejs.org/)是最权威的参考，我的笔记其实也是摘要，大部分来自官网
 
+索引：
+1.<a href="#r1">Vue对比React</a>
+2.<a href="#r2">Vue笔记:实例</a>
+
+
 #### Vue对比React
+<a name="r1"></a>
 React 和 Vue 有许多相似之处，它们都有：
 
 * __使用 Virtual DOM__
@@ -67,4 +73,75 @@ React 学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 E
 由于起步阶段不需学 JSX，ES2015 以及构建系统，所以开发者只需不到一天的时间阅读指南就可以建立简单的应用程序。
 
 
+#### Vue实例
+<a name="r2"></a>
+
+* 每个 Vue 应用都是通过用 Vue 函数创建一个新的 Vue 实例开始的：
+一个 Vue 应用由一个通过 new Vue 创建的根 Vue 实例，以及可选的嵌套的、可复用的组件树组成。
+
+{% highlight javascript %}
+
+var vm = new Vue({
+  // 选项
+})
+
+{% endhighlight %}
+
+* 数据/方法
+
+
+{% highlight javascript %}
+
+var data = {
+  newTodoText: '',
+  a: 0,
+  hideCompletedTodos: false,
+  todos: [],
+  error: null
+}
+
+
+// 该对象被加入到一个 Vue 实例中
+var vm = new Vue({
+  data: data
+})
+
+// 它们引用相同的对象！
+vm.a === data.a // => true
+
+{% endhighlight %}
+
+当这些数据改变时，视图会进行重渲染。值得注意的是只有当实例被创建时 data 中存在的属性才是响应式的。也就是说如果你添加一个新的属性，比如：
+
+这里唯一的例外是使用 Object.freeze()，这会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
+
+{% highlight javascript %}
+
+* 生命周期方法
+
+{% endhighlight %}
+// 比如 created 钩子可以用来在一个实例被创建之后执行代码：
+new Vue({
+  data: {
+    a: 1
+  },
+  created: function () {
+    // `this` 指向 vm 实例
+    console.log('a is: ' + this.a)
+  }
+})
+
+{% highlight javascript %}
+
+**不要**在选项**属性**或**回调**上使用**箭头函数**，比如 created: () => console.log(this.a) 或 vm.$watch('a', newValue => this.myMethod())。因为箭头函数是和父级上下文绑定在一起的，this 不会是如你所预期的 Vue 实例，经常导致 Uncaught TypeError: Cannot read property of undefined 或 Uncaught TypeError: this.myMethod is not a function 之类的错误。
+
+![生命周期钩子官方例图](https://cn.vuejs.org/images/lifecycle.png)
+
+{% endhighlight %}
+
+
+{% highlight javascript %}
+
+
+{% endhighlight %}
 __少壮不努力，老大徒伤悲__
