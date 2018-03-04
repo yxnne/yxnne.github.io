@@ -6,7 +6,8 @@ categories: Developing_React
 tags: [Developing_React]
 comment: true
 ---
-
+需要坚持：
+每周五次Github
 
 
 {% highlight javascript %}
