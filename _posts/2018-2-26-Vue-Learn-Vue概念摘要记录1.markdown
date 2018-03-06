@@ -195,6 +195,48 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 {% endhighlight %}
 
+* 指令 v-XXXX
+指令 (Directives) 是带有 v- 前缀的特殊属性。指令属性的值预期是单个 JavaScript 表达式 。
+
+指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。
+
+当前接触了几个指令：
+1. v-if
+2. v-on
+3. v-bind
+
+指令可以带参数，比如：
+
+{% highlight javascript %}
+
+<a v-bind:href="url">...</a>
+
+<a v-on:click="doSomething">...</a>
+
+{% endhighlight %}
+
+针对上述两种指令，有一种简写方法：
+
+
+
+{% highlight javascript %}
+<!-- 完整语法 -->
+<a v-bind:href="url">...</a>
+
+<!-- 缩写 -->
+<a :href="url">...</a>
+
+
+<!-- 完整语法 -->
+<a v-on:click="doSomething">...</a>
+
+<!-- 缩写 -->
+<a @click="doSomething">...</a>
+
+{% endhighlight %}
+
+
+
 
 {% highlight javascript %}
 
