@@ -14,6 +14,7 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进
 索引：
 1.<a href="#r1">Vue对比React</a>
 2.<a href="#r2">Vue笔记:实例</a>
+3.<a href="#r3">Vue笔记:模板语法</a>
 
 
 #### Vue对比React
@@ -136,6 +137,61 @@ new Vue({
 **不要**在选项**属性**或**回调**上使用**箭头函数**，比如 created: () => console.log(this.a) 或 vm.$watch('a', newValue => this.myMethod())。因为箭头函数是和父级上下文绑定在一起的，this 不会是如你所预期的 Vue 实例，经常导致 Uncaught TypeError: Cannot read property of undefined 或 Uncaught TypeError: this.myMethod is not a function 之类的错误。
 
 ![生命周期钩子官方例图](https://cn.vuejs.org/images/lifecycle.png)
+
+#### Vue 模板语法
+<a name="r3"></a>
+
+Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。所有 Vue.js 的模板都是合法的 HTML ，所以能被遵循规范的浏览器和 HTML 解析器解析。
+
+在底层的实现上，Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，Vue 能够智能地计算出最少需要重新渲染多少组件，并把 DOM 操作次数减到最少。
+
+* 数据绑定最常见的形式就是使用“Mustache”语法 (双大括号) 的文本插值
+
+
+{% endhighlight %}
+
+<span>Message: {{ msg }}</span>
+
+{% highlight javascript %}
+
+
+ v-once 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。
+
+{% endhighlight %}
+
+<span v-once>这个将不会改变: {{ msg }}</span>
+
+* 绑定原生html属性，那么不能用双花括号语法（胡子语法），而是要使用v-bind：
+
+{% highlight javascript %}
+
+<div v-bind:id="dynamicId"></div>
+
+
+// 在布尔特性的情况下，它们的存在即暗示为 true，v-bind 工作起来略有不同，在这个例子中：
+
+<button v-bind:disabled="isButtonDisabled">Button</button>
+// 如果 isButtonDisabled 的值是 null、undefined 或 false，则 disabled 特性甚至不会被包含在渲染出来的 <button> 元素中。
+{% endhighlight %}
+
+* 绑定中使用js表达式
+注意是表达式不是语句：
+
+{% highlight javascript %}
+
+{{ number + 1 }}
+
+{{ ok ? 'YES' : 'NO' }}
+
+{{ message.split('').reverse().join('') }}
+
+<div v-bind:id="'list-' + id"></div>
+
+// 这是语句，不是表达式  
+{{ var a = 1 }}
+
+// 流控制也不会生效，请使用三元表达式  
+{{ if (ok) { return message } }}
 
 {% endhighlight %}
 
