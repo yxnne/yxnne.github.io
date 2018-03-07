@@ -70,9 +70,96 @@ $ cnpm i --save cookie-parser
 #### 验证逻辑
 设计一个不参与ui显示的组件，放置在路由的顶层，也就是说，一定会加载到这个组件，用这个组件向后端发请求来看用户信息(登录信息，角色)从而决定跳转页面。没有登录就跳转到登录页面，本来就是在登录注册页面除外。
 
+#### 注册页面
+注册页面将控件添加了事件响应 ，用onChange属性
+
+{% highlight javascript %}
+
+	<InputItem type="password" onChange={v => this.handleChange('pwd',v)}>密码</InputItem>
+	
+	<WhiteSpace />
+
+	<InputItem type="password" onChange={v => this.handleChange('repeatPwd',v)}>确认密码</InputItem>
+	<WhiteSpace />
+
+	// 处理函数
+	handleChange(key, value){
+		this.setState({
+			// 注意这个中括号
+			[key]:value
+		});
+	}
+
+{% endhighlight %}
+
+这里setState这里注意[key]写法，就是按照key变量的值。如果不加中括号，那么state的键就是‘key’，加了中括号，key变量是什么值，这里键就是什么值。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### 腊月廿九
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 临时备用线----------------------------------------------
+
+{% highlight javascript %}
+
+	<InputItem type="password" onChange={v => this.handleChange('pwd',v)}>密码</InputItem>
+	<WhiteSpace />
+	<InputItem type="password" onChange={v => this.handleChange('repeatPwd',v)}>确认密码</InputItem>
+	<WhiteSpace />
+
+{% endhighlight %}
+
 
 {% highlight javascript %}
 
