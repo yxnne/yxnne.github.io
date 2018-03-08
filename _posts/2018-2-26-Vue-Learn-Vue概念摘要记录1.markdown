@@ -190,8 +190,9 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 // 这是语句，不是表达式  
 // {{ var a = 1 }}
 
-// 流控制也不会生效，请使用三元表达式  
-<!-- {{ if (ok) { return message } }} -->
+// {{}}中流控制也不会生效，请使用三元表达式  
+// 不要这么写：
+if (ok) { return message } 
 
 {% endhighlight %}
 
