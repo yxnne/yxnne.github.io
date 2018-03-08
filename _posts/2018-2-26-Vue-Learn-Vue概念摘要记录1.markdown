@@ -159,7 +159,7 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 {% endhighlight %}
 
-<span v-once>这个将不会改变: {{ msg }}</span>
+<span v-once>这个将不会改变: { { msg } }</span>
 
 * 绑定原生html属性，那么不能用双花括号语法（胡子语法），而是要使用v-bind：
 
@@ -179,18 +179,18 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 ```
 
-{{ number + 1 }}
+{ { number + 1 } }
 
-{{ ok ? 'YES' : 'NO' }}
+{ { ok ? 'YES' : 'NO' } }
 
-{{ message.split('').reverse().join('') }}
+{ { message.split('').reverse().join('') } }
 
 <div v-bind:id="'list-' + id"></div>
 
 // 这是语句，不是表达式  
-// {{ var a = 1 }}
+// { { var a = 1 } }
 
-// {{}}中流控制也不会生效，请使用三元表达式  
+// { { } }中流控制也不会生效，请使用三元表达式  
 // 不要这么写：
 if (ok) { return message } 
 
@@ -232,7 +232,7 @@ if (ok) { return message }
 <a v-on:click="doSomething">...</a>
 
 <!-- 缩写 -->
- <a @click="doSomething">...</a>
+<a @click="doSomething">...</a>
 
 ```
 
