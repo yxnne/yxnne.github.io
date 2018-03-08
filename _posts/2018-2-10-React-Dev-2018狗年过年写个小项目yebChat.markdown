@@ -172,6 +172,49 @@ export function register({user, pwd, repeatPwd, type}, action){
 
 注意：这里是this.props.msg,不是this.state.msg是因为：connect就是将store中的必要数据作为props传递给React组件来render
 
+#### 服务端注册功能
+
+服务端的注册功能主要写在/server/user.js中，数据库模型的定义，建立等在/server/model.js中
+
+注册这里是post请求上来数据，这里解析post的数据需要body-parser的中间件，当然以后涉及cookie也需要cookie-parser的中间件，都先给他cnpm install 了。
+
+{% highlight javascript %}
+
+Router.post('/register', function(req, rsp){
+	console.log(req.body);
+	
+	// req.body 就是使用bodypaser解析出来的数据，上传时就是以json形式
+	const { user, pwd, type } = req.body;
+	
+	// 拿到post上传信息后，先查询下，因为用户名需要唯一的
+	User.findOne({user:user}, function(err, doc){
+		// doc不为空那么就是说存在这个用户名
+		if (doc) {
+			return rsp.json({code:1, msg:'用户已经存在'});
+		}
+		// 查不到就是合法的
+		User.create({user:user, pwd:pwd, type:type}, function(err, doc){
+			if (err) {
+				return rsp.json({code:1, msg:'后台错误'});
+			}
+
+			return rsp.json({code:0});
+		});
+	});
+});
+
+{% endhighlight %}
+User.findOne()这里的逻辑是，从mongo中根据用户名，先查询下，如果查询结果不为空，那么本次注册不合法，因为不能用户名重复，返回错误信息。反之，则返回ok。
+
+
+
+
+
+
+
+
+
+
 
 
 
