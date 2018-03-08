@@ -21,19 +21,21 @@ $ create-react-app ./
 // cnpm run eject
 
 // 前端安装
-$ cnpm i --save react-router-dom
-$ cnpm i --save redux
-$ cnpm i --save react-redux
-$ cnpm i --save redux-thunk
-$ cnpm i --save babel-plugin-transform-decorators-legacy
-$ cnpm i --save axios
-$ cnpm i --save antd-mobile
-$ cnpm i --save babel-plugin-import
+$ cnpm i --save react-router-dom		// react 路由
+$ cnpm i --save redux								// redux	
+$ cnpm i --save react-redux					// redux的react支持版
+$ cnpm i --save redux-thunk       	// redux异步分发支持
+$ cnpm i --save babel-plugin-transform-decorators-legacy		// 装饰器写法支持
+$ cnpm i --save axios								// 网络请求
+$ cnpm i --save antd-mobile					// antd mobile 样式
+$ cnpm i --save babel-plugin-import	// 按需加载
 
 // 后端安装
-$ cnpm i --save express
-$ cnpm i --save mongoose
-$ cnpm i --save cookie-parser
+$ cnpm i --save express							// server框架
+$ cnpm i --save mongoose						// mongo的链接库
+$ cnpm i --save cookie-parser				// 解析cookie
+$ cnpm i --save body-parser					// 解析body
+$ cnpm i --save utility							// 工具集，例如md5
 
 {% endhighlight %}
 
@@ -206,9 +208,22 @@ Router.post('/register', function(req, rsp){
 {% endhighlight %}
 User.findOne()这里的逻辑是，从mongo中根据用户名，先查询下，如果查询结果不为空，那么本次注册不合法，因为不能用户名重复，返回错误信息。反之，则返回ok。
 
+#### 密码入库前加密
+常规策略就是：MD5，但是假设用户本来输入就很简单，加密后是可以暴力破解的（彩虹表），那么使用两层MD5再加盐的方法，可以有效防止彩虹表：
 
+{% highlight javascript %}
+const utility = require('utility');
 
+// 工具方法，密文增加复杂度，放置彩虹表暴力破解
+// 两层MD5加加盐
+function md5Pwd(pwd){
+	const salt = 'ybchat_is_good_#@~~6868!';
+	return utility.md5(utility.md5(pwd + salt));
+}
 
+{% endhighlight %}
+
+这里utility是第三方库，需要npm install。
 
 
 
