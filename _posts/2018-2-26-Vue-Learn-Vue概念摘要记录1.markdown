@@ -183,7 +183,7 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 // {{ ok ? 'YES' : 'NO' }}
 
-//{{ message.split('').reverse().join('') }}
+// {{ message.split('').reverse().join('') }}
 
 <div v-bind:id="'list-' + id"></div>
 
@@ -191,7 +191,7 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 // {{ var a = 1 }}
 
 // 流控制也不会生效，请使用三元表达式  
-// {{ if (ok) { return message } }}
+<!-- {{ if (ok) { return message } }} -->
 
 {% endhighlight %}
 
