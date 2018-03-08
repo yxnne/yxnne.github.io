@@ -177,13 +177,13 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 * 绑定中使用js表达式
 注意是表达式不是语句：
 
-{% highlight javascript %}
+```
 
-// {{ number + 1 }}
+{{ number + 1 }}
 
-// {{ ok ? 'YES' : 'NO' }}
+{{ ok ? 'YES' : 'NO' }}
 
-// {{ message.split('').reverse().join('') }}
+{{ message.split('').reverse().join('') }}
 
 <div v-bind:id="'list-' + id"></div>
 
@@ -194,7 +194,7 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 // 不要这么写：
 if (ok) { return message } 
 
-{% endhighlight %}
+```
 
 * 指令 v-XXXX
 指令 (Directives) 是带有 v- 前缀的特殊属性。指令属性的值预期是单个 JavaScript 表达式 。
@@ -208,33 +208,33 @@ if (ok) { return message }
 
 指令可以带参数，比如：
 
-{% highlight javascript %}
+```
 
-// <a v-bind:href="url">...</a>
+<a v-bind:href="url">...</a>
 
-// <a v-on:click="doSomething">...</a>
+<a v-on:click="doSomething">...</a>
 
-{% endhighlight %}
+```
 
 针对上述两种指令，有一种简写方法：
 
 
 
-{% highlight javascript %}
+```
 <!-- 完整语法 -->
-// <a v-bind:href="url">...</a>
+<a v-bind:href="url">...</a>
 
 <!-- 缩写 -->
-// <a :href="url">...</a>
+<a :href="url">...</a>
 
 
 <!-- 完整语法 -->
-// <a v-on:click="doSomething">...</a>
+<a v-on:click="doSomething">...</a>
 
 <!-- 缩写 -->
-// <a @click="doSomething">...</a>
+ <a @click="doSomething">...</a>
 
-{% endhighlight %}
+```
 
 
 
