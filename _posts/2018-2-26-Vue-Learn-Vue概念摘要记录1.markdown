@@ -116,11 +116,9 @@ vm.a === data.a // => true
 
 这里唯一的例外是使用 Object.freeze()，这会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
 
+* 生命周期方法
 {% highlight javascript %}
 
-* 生命周期方法
-
-{% endhighlight %}
 // 比如 created 钩子可以用来在一个实例被创建之后执行代码：
 new Vue({
   data: {
@@ -132,7 +130,7 @@ new Vue({
   }
 })
 
-{% highlight javascript %}
+{% endhighlight %}
 
 **不要**在选项**属性**或**回调**上使用**箭头函数**，比如 created: () => console.log(this.a) 或 vm.$watch('a', newValue => this.myMethod())。因为箭头函数是和父级上下文绑定在一起的，this 不会是如你所预期的 Vue 实例，经常导致 Uncaught TypeError: Cannot read property of undefined 或 Uncaught TypeError: this.myMethod is not a function 之类的错误。
 
