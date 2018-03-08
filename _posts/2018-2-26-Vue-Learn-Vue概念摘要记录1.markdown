@@ -179,19 +179,19 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 {% highlight javascript %}
 
-{{ number + 1 }}
+// {{ number + 1 }}
 
-{{ ok ? 'YES' : 'NO' }}
+// {{ ok ? 'YES' : 'NO' }}
 
-{{ message.split('').reverse().join('') }}
+//{{ message.split('').reverse().join('') }}
 
 <div v-bind:id="'list-' + id"></div>
 
 // 这是语句，不是表达式  
-{{ var a = 1 }}
+// {{ var a = 1 }}
 
 // 流控制也不会生效，请使用三元表达式  
-{{ if (ok) { return message } }}
+// {{ if (ok) { return message } }}
 
 {% endhighlight %}
 
@@ -209,9 +209,9 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 {% highlight javascript %}
 
-<a v-bind:href="url">...</a>
+// <a v-bind:href="url">...</a>
 
-<a v-on:click="doSomething">...</a>
+// <a v-on:click="doSomething">...</a>
 
 {% endhighlight %}
 
@@ -221,17 +221,17 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 {% highlight javascript %}
 <!-- 完整语法 -->
-<a v-bind:href="url">...</a>
+// <a v-bind:href="url">...</a>
 
 <!-- 缩写 -->
-<a :href="url">...</a>
+// <a :href="url">...</a>
 
 
 <!-- 完整语法 -->
-<a v-on:click="doSomething">...</a>
+// <a v-on:click="doSomething">...</a>
 
 <!-- 缩写 -->
-<a @click="doSomething">...</a>
+// <a @click="doSomething">...</a>
 
 {% endhighlight %}
 
