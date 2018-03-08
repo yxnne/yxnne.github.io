@@ -464,5 +464,7 @@ switch (action.type){
 
 Redux果然是能将组件和状态解耦合，对State状态需要改变的代码也从组件中解耦了，不管是数据还是行为，需要使用的时候随时在组件之前注入就好。
 
+[这里还有一篇小文章可以参考下，讲的是:‘关于props和state以及redux中的state’](https://www.cnblogs.com/geoffgu/p/6023582.html)
+
 __路漫漫其修远兮，吾将上下而求索__
 
