@@ -63,11 +63,11 @@ React 学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 E
 
 就像 Vue 向上扩展好比 React 一样，Vue 向下扩展后就类似于 jQuery。你只要把如下标签放到页面就可以运行：
 
-{% highlight javascript %}
+```
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
-{% endhighlight %}
+```
 
 然后你就可以编写 Vue 代码并应用到生产中，你只要用 min 版 Vue 文件替换掉就不用担心其他的性能问题。
 
@@ -80,18 +80,18 @@ React 学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 E
 * 每个 Vue 应用都是通过用 Vue 函数创建一个新的 Vue 实例开始的：
 一个 Vue 应用由一个通过 new Vue 创建的根 Vue 实例，以及可选的嵌套的、可复用的组件树组成。
 
-{% highlight javascript %}
+```
 
 var vm = new Vue({
   // 选项
 })
 
-{% endhighlight %}
+```
 
 * 数据/方法
 
 
-{% highlight javascript %}
+```
 
 var data = {
   newTodoText: '',
@@ -110,14 +110,15 @@ var vm = new Vue({
 // 它们引用相同的对象！
 vm.a === data.a // => true
 
-{% endhighlight %}
+```
 
 当这些数据改变时，视图会进行重渲染。值得注意的是只有当实例被创建时 data 中存在的属性才是响应式的。也就是说如果你添加一个新的属性，比如：
 
 这里唯一的例外是使用 Object.freeze()，这会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
 
 * 生命周期方法
-{% highlight javascript %}
+
+```
 
 // 比如 created 钩子可以用来在一个实例被创建之后执行代码：
 new Vue({
@@ -130,7 +131,7 @@ new Vue({
   }
 })
 
-{% endhighlight %}
+```
 
 **不要**在选项**属性**或**回调**上使用**箭头函数**，比如 created: () => console.log(this.a) 或 vm.$watch('a', newValue => this.myMethod())。因为箭头函数是和父级上下文绑定在一起的，this 不会是如你所预期的 Vue 实例，经常导致 Uncaught TypeError: Cannot read property of undefined 或 Uncaught TypeError: this.myMethod is not a function 之类的错误。
 
@@ -146,23 +147,23 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 * 数据绑定最常见的形式就是使用“Mustache”语法 (双大括号) 的文本插值
 
 
-{% endhighlight %}
+```
 
 <span>Message: {{ msg }}</span>
 
-{% highlight javascript %}
+```
 
 
  v-once 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。
 
-{% endhighlight %}
+```
 
 <span v-once>这个将不会改变: { { msg } }</span>
 
+```
 * 绑定原生html属性，那么不能用双花括号语法（胡子语法），而是要使用v-bind：
 
-{% highlight javascript %}
-
+```
 <div v-bind:id="dynamicId"></div>
 
 
@@ -170,7 +171,7 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 <button v-bind:disabled="isButtonDisabled">Button</button>
 // 如果 isButtonDisabled 的值是 null、undefined 或 false，则 disabled 特性甚至不会被包含在渲染出来的 <button> 元素中。
-{% endhighlight %}
+```
 
 * 绑定中使用js表达式
 注意是表达式不是语句：
@@ -235,10 +236,4 @@ if (ok) { return message }
 ```
 
 
-
-
-{% highlight javascript %}
-
-
-{% endhighlight %}
 __少壮不努力，老大徒伤悲__
