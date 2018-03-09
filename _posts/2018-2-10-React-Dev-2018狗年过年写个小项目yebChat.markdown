@@ -225,53 +225,105 @@ function md5Pwd(pwd){
 
 这里utility是第三方库，需要npm install。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### 腊月廿九
 
+马上，狗年到啦~~~~Let's GOGOGGO~~~~~~
+#### 登录逻辑
+UI和注册差不多，控件更少
+逻辑：
+前端:输入校验之后，发送请求。
+后台:收到请求，通过用户名密码从mongo中查询，匹配则返回ok。
 
+#### Cookie
+这里，应用还需要引入Cookie校验机制，后台读写cookie的使用cookie-parser，已经安装。
+用户登录/注册成功之后，在返回结果之前，应该写入cookie：
 
+{% highlight javascript %}
 
+// 登录成功设置cookie userid
+rsp.cookie('userid', doc._id);
 
+return rsp.json({code:0, data:doc});
 
+{% endhighlight %}
+这时可以从浏览器的调试窗口network中看到response中有cookie信息。
 
+#### 前端AuthRoute的修改
+前端之前顶层有一个控件叫AuthRouter，不参与绘制UI，但功能有点像AOP，就是每每跳转页面的时候都会加载AuthRoute，干什么呢，比如说这里至少有个逻辑是：
+获取当前页面的路由地址，如果是/login 或者 /register中的一个, 不进行处理，否则先去后台验证用户是否登录
+{% highlight javascript %}
 
+componentDidMount(){
+		// 获取当前页面的路由地址
+		// 如果是/login 或者 /register中的一个, 不进行处理
+		// 否则先去后台验证用户是否登录
+		const publicList = ['/login', '/register'];
+		const pathname = this.props.location.pathname;
+		if (publicList.indexOf(pathname) > -1 ) {
+			return null;
+		}
 
+		// 获取登录信息
+		axios.get('user/info')
+		.then(res =>{
+			if (res.status === 200){
 
+				if (res.data.code == 0 ) {
+					// 有登录信息
+					// 设置信息到redux中
+					this.props.loadData(res.data.data);
 
+				} else {
+					this.props.history.push('/login');
+				}
+			}
+		});
 
+	}
 
+{% endhighlight %}
+
+上述代码中，获取登录信息调用接口/user/info,这个接口就是根据cookie中的userid从mongo中查询用户数据的，若查无此人，或根本就没有cookie，那么就是代码中else分支了，去吧，登录先~~~~
+
+这里 'this.props.loadData(res.data.data)'就是写在redux中的处理逻辑了。当然需要在AuthRoute前connect引入。
+{% highlight javascript %}
+
+@withRouter
+@connect(
+	null,
+	{ loadData }
+)
+
+{% endhighlight %}
+
+loadData是对外暴露了一个action creator 它分发LOAD_DATA这个action,这里的目的很单纯，功能很简单，就是把后台返回的用户数据写入到redux维护的state中。
+
+这样解决了一个什么问题，就是不管我在那一页，只要浏览器中存在cookie，那么我在AuthRoute中就查到了用户信息，那么就不会被迫跳转到login页面了。
+
+服务端的user/info接口代码:
+
+{% highlight javascript %}
+
+// '/info'的路由
+Router.get('/info', (req, rsp) =>{
+	// 得到cookie
+	// 用户请求的时候是不是携带cookie
+	const { userid } = req.cookies;
+	if (!userid) {//没有携带cookie，返回失败
+		return rsp.json({code:1});
+	}
+	User.findOne({_id:userid}, _filter, function(err, doc){
+		if (err) {
+			return rsp.json({code:1, msg:'后台错误'});
+		}
+		if (doc) {
+			return rsp.json({code:0, data:doc});
+		}
+	});
+
+});
+
+{% endhighlight %}
 
 
 
