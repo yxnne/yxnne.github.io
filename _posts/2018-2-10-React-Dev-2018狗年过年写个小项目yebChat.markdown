@@ -326,6 +326,19 @@ Router.get('/info', (req, rsp) =>{
 {% endhighlight %}
 
 
+### 正月初一
+
+登录注册先告一段落，接着要做的是完善信息，用户在刚注册完了之后，除了用户名密码至少还应该有，简介，组织，以及头像。
+
+#### 关于头像的处理
+抽象出一个avatar选择器组件，使用antd-mobile的Grid来显示项目中预设的可供选择的头像。[官方API:Grid,宫格](https://mobile.ant.design/components/grid-cn/)
+
+
+
+
+
+
+
 
 
 
