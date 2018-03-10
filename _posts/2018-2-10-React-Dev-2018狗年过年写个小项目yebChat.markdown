@@ -333,6 +333,9 @@ Router.get('/info', (req, rsp) =>{
 #### 关于头像的处理
 抽象出一个avatar选择器组件，使用antd-mobile的Grid来显示项目中预设的可供选择的头像。[官方API:Grid,宫格](https://mobile.ant.design/components/grid-cn/)
 
+#### 重构user.redux.js
+这里因为补充信息页面就是补充个人信息，补充信息应该有一个action creator是update，但是Action吧，这里发现update，register，login之间有相同的可以抽出的地方，所以，将三者的Action可以变成一个。
+
 
 
 
@@ -389,6 +392,7 @@ Router.get('/info', (req, rsp) =>{
 * Radio 单选
 * InputItem 输入框
 * Button 按钮
+* Grid 宫格
 
 
 
