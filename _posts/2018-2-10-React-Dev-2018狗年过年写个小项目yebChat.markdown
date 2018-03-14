@@ -336,6 +336,212 @@ Router.get('/info', (req, rsp) =>{
 #### 重构user.redux.js
 这里因为补充信息页面就是补充个人信息，补充信息应该有一个action creator是update，但是Action吧，这里发现update，register，login之间有相同的可以抽出的地方，所以，将三者的Action可以变成一个。
 
+### 正月初三
+
+
+
+#### 登录后路由和目录结构
+
+当用户不存在没有完成信息的时候，实际上路由匹配的是Dashboard，那么就会进入Dashboard组件。
+{% highlight javascript %}
+
+// 在index.js中
+<Switch>
+  <Route path='/login' component={Login}></Route>
+  <Route path='/register' component={Register}></Route>
+	<Route path='/binfo' component={BInfo}></Route>
+	<Route path='/ginfo' component={GInfo}></Route>
+
+	{/* Switch 中没有命中则显示DashBoard */}
+  <Route component={Dashboard}></Route>
+</Switch>
+
+{% endhighlight %}
+
+#### Dashboard的结构
+
+Dashboard分为三个部分，Header，中间内容，和类似iOS的底部导航tab。
+
+{% highlight javascript %}
+<div>
+<NavBar className='fixed-header' mode='dark'>{navList.find(v => v.path === pathname).title}</NavBar>
+<div style={{marginTop:8}}>
+  <Switch>
+    {
+      navList.map(v=>(
+        <Route key={v.path} path={v.path} component={v.component} />
+      ))
+    }
+  </Switch>
+</div>
+{/* 底部Tab */}
+<NavLinkBar data={navList}></NavLinkBar>
+</div>
+{% endhighlight %}
+
+以上中，navList是一个对象数组，数组中对象的结构是这样：
+
+
+{% highlight javascript %}
+
+{
+  path:'/me', // 中间页的url
+  text:'Me',  // 底部的tab的标签名
+  icon:'user',// icon名字 
+  title:'Profile',// Header的名字
+  component:Me    // 加载的组件
+
+},
+
+{% endhighlight %}
+
+所以在中间Switch中,还放的有路由。NavLinkBar和 navList做关联，通过关联关系，来改变路由从而使得中间部分的内容得以切换。
+
+
+{% highlight javascript %}
+// 在NavLinkBar中
+<TabBar>
+{
+  navList.map(v=>(
+    <TabBar.Item title={v.text} key={v.path}
+      icon={{uri:require(`./img/${v.icon}.png`)}}
+      selectedIcon={{uri:require(`./img/${v.icon}-active.png`)}}
+      selected={pathname === v.path}
+      // 控制路由的一个关键一句
+      // 即，点击某一个tab，将路由变成v.path
+      // 从而整个页面主题部分改变
+      onPress={()=>{
+        this.props.history.push(v.path)
+      }}>
+    </TabBar.Item>
+  ))
+}
+</TabBar>
+{% endhighlight %}
+
+#### 用户列表
+
+##### 前端结构和redux状态
+
+用户列表部分通过请求后台数据后，得到用户对象的数组，map遍历这个数组将每一个对象封装成卡片Card样式，将这些卡片抽象成一个独立组件UserCards：
+
+{% highlight javascript %}
+class UserCards extends React.Component{
+
+  // 属性验证
+  static propTypes = {
+    userList:PropTypes.array.isRequired
+  };
+
+  render(){
+
+    return (
+      <div>
+        <WingBlank>
+          {this.props.userList.map(v=>(
+            v.avatar?
+            <Card key={v._id}>
+              <Card.Header title={v.user}
+                thumb={<img style={{width:58, height:58}} src={require(`../img/${v.avatar}.svg`)}/>}
+                extra={<span>{v.title}</span>}>
+              </Card.Header>
+              <Card.Body>
+                {v.type=='b'?<div>{v.company}</div>:null}
+                {v.desc.split('\n').map(i=>(
+                    <div>{i}</div>
+                ))}
+                {v.type=='b'?<div>{v.money}</div>:null}
+              </Card.Body>
+            </Card>
+            :null
+          ))}
+        </WingBlank>
+      </div>
+    );
+  }
+}
+{% endhighlight %}
+那么使用就是<UserCards userList={this.props.userList} />
+
+关于这里的Redux设计下(一个新的redux文件):
+Action暂时只涉及USER_LIST，所以action creator中也产生相关type是USER_LIST的ACTION ；
+对外暴露getUserList的方法，这里异步获得后台数据，并分发action creator,从而使得reducer可以处理并改变状态。
+组件可以通过@connect关联redux，从而通过this.props来获得redux暴露的方法和状态。
+
+{% highlight javascript %}
+import axios from 'axios';
+
+// chatuser 相关的 ACTION
+
+const USER_LIST = 'USER_LIST';
+
+
+// 用户的初始状态
+const initState = {
+  userList:[]
+};
+
+// reducer
+export function chatuser(state=initState, action){
+  switch (action.type) {
+    case USER_LIST:
+      return {...state, userList:action.payload};
+
+    default:
+      return state;
+  }
+}
+
+// action creator UserList
+function userList(data){
+  return {type:USER_LIST, payload:data}
+}
+
+// 对外暴露 getUserList 获得列表
+export function getUserList(type){
+  return dispatch=>{
+    axios.get('/user/list?type=' + type)
+    .then(res=>{
+      if (res.data.code==0) {
+        // this.setState({data:res.data.data})
+        dispatch(userList(res.data.data));
+      }
+    });
+  };
+}
+
+{% endhighlight %}
+
+不同的redux文件需要合并：
+
+{% highlight javascript %}
+import { combineReducers } from 'redux';
+import { user } from './redux/user.redux';
+import { chatuser } from './redux/chatuser.redux';
+
+export default combineReducers({ user, chatuser });
+
+{% endhighlight %}
+
+##### 后台实现
+
+主要是从mongo中查询用户列表：
+
+{% highlight javascript %}
+
+Router.get('/list', function(req, rsp){
+	// GET 参数使用 req.query来获得,POST 蚕食是req.body获取
+	const type = req.query.type;
+	User.find({type}, function(err, doc){
+		return rsp.json({code:0, data:doc});
+	});
+});
+
+{% endhighlight %}
+
+
+
+
 
 
 
@@ -393,6 +599,9 @@ Router.get('/info', (req, rsp) =>{
 * InputItem 输入框
 * Button 按钮
 * Grid 宫格
+* Card 卡片
+* TabBar 底部导航 
+* NavBar 头部状态栏
 
 
 
