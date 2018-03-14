@@ -403,7 +403,7 @@ Dashboard分为三个部分，Header，中间内容，和类似iOS的底部导�
   navList.map(v=>(
     <TabBar.Item title={v.text} key={v.path}
       icon={{uri:require(`./img/${v.icon}.png`)}}
-      selectedIcon={{uri:require(`./img/${v.icon}-active.png`)}}
+      selectedIcon=两个花括号开始uri:require(`./img/${v.icon}-active.png`)两个花括号结束
       selected={pathname === v.path}
       // 控制路由的一个关键一句
       // 即，点击某一个tab，将路由变成v.path
