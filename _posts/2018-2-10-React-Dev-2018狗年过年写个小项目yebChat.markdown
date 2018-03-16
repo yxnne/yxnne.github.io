@@ -538,6 +538,7 @@ Router.get('/list', function(req, rsp){
 {% endhighlight %}
 
 
+### 正月初四
 
 
 
@@ -551,7 +552,98 @@ Router.get('/list', function(req, rsp){
 
 
 
+#### Me页面
 
+Me页面很简单，直接从redux中获取用户数据就好，另外还有一个操作就是登出.
+登出的逻辑是：
+点击登出，弹窗确认登出，当确认后，清理名为userid的cookie。
+然后从调用redux中的一个action，此action将redux中维护的用户信息变为初始值。同时，设置一个重定向路由地址。
+
+
+{% highlight javascript %}
+// user.redux.js中
+// reducer
+export function user(state=initState, action){
+// ....
+  case LOGOUT:
+    return {...initState,redirectTo:'/login'};
+  
+  // ...
+  }
+
+// 对外暴露一个action creator 登出
+export function logoutSubmit(data){
+  return {type:LOGOUT};
+}
+
+
+{% endhighlight %}
+Me中定义的logout方法。browserCookie是操作cookie的第三方库(import browserCookie from 'browser-cookies',npm安装，注意这里安装包中是cookies)。
+
+{% highlight javascript %}
+
+logout(){
+  const alert = Modal.alert
+  console.log('logout function ');
+  alert('注销', '确认退出登录吗???', [
+        { text: '取消', onPress: () => console.log('cancel') },
+        { text: '确认', onPress: () => {
+          browserCookie.erase('userid')
+          this.props.logoutSubmit()
+        }}
+      ])
+}
+
+{% endhighlight %}
+
+#### 添加一个高阶组件
+
+高阶组件，思想来自于高阶函数。
+所谓高阶函数，就是将函数名作为变量，进行功能扩展，返回功能扩展后的函数。
+[带着三个问题深入浅出React高阶组件](https://juejin.im/post/59818a485188255694568ff2),概念方面这篇文章不错，很清晰。
+
+这里，通过属性代理的方式，写一个作用于login组件的高阶组件玩玩：
+
+{% highlight javascript %}
+
+// form-hoc.js
+
+import React from 'react';
+
+function FormHoc(Comp){
+  return class Wrapper extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {};
+      this.handleChange = this.handleChange.bind(this);
+    }
+
+    // 输入控件事件
+    handleChange(key, value){
+      this.setState({
+        // 注意这个中括号
+        [key]:value
+      });
+    }
+
+    render(){
+      return <Comp state={this.state} {...this.props} handleChange={this.handleChange}/>
+    }
+  }
+}
+
+export default FormHoc;
+
+{% endhighlight %}
+本来是要这样使用：Login = FormHoc(Login);但是项目支持装饰器，就像写@connect一样简单，PS：connect就是高阶组件啦。
+
+{% highlight javascript %}
+
+@FormHoc
+class Login extends React.Component{
+// ...
+
+{% endhighlight %}
 
 
 
@@ -568,9 +660,10 @@ Router.get('/list', function(req, rsp){
 {% endhighlight %}
 
 
-{% highlight javascript %}
 
-{% endhighlight %}
+
+
+
 
 ### 项目架构
 <a name="my_project_structure"></a>
