@@ -540,18 +540,6 @@ Router.get('/list', function(req, rsp){
 
 ### 正月初四
 
-
-
-
-
-
-
-
-
-
-
-
-
 #### Me页面
 
 Me页面很简单，直接从redux中获取用户数据就好，另外还有一个操作就是登出.
@@ -660,9 +648,156 @@ class Login extends React.Component{
 {% endhighlight %}
 
 
+### 正月初五
+
+#### 用websockit 协议通信（socket.io），实时通信
+
+WebSocket协议是不同于HTTP协议的，他是有链接状态的，可以保持长连接。
+思路是比较简单的：
+1. 服务端监听链接'connection'事件，然后在connection 事件的回调中在监听具体某个事件；
+2. 客户端发送某事件，这个事件则将被Server侧处理；
+比如，服务端：
+
+{% highlight javascript %}
+
+// socket.io 和express结合起来的方法
+const server = require('http').Server(app);
+
+const io = require('socket.io')(server);
+
+io.on('connection', function(socket){
+  // console.log('user connected...' );
+  // 监听 sendmsg事件
+  socket.on('sendmsg', function(data){
+    io.emit('recvmsg', {code:0, msg:'get the msg'});
+  });
+});
+
+{% endhighlight %}
+
+客户端：
+
+{% highlight javascript %}
+
+// 链接 后台socket，使用 ws:web socket 协议
+const socket = io('ws://localhost:9090');
+
+// 接收返回的监听
+socket.on('recvmsg', function(data){
+  console.log('recvmsg', data);
+})
+
+// 发送消息的监听
+socket.emit('sendmsg', {msg:msg});
+import io from 'socket.io-client';
+import axios from 'axios';
+// 链接 后台socket，使用 ws:web socket 协议
+const socket = io('ws://localhost:9090');
+
+
+// 初始状态
+const initState = {
+  chatmsg:[],
+  unread:0
+};
+
+// ...
+
+
+{% endhighlight %}
+
+这里的流程是，服务端监听客户消息事件，该事件会携带消息内容，从谁发，和去哪里({from, to, msg})那么server端拿到之后呢，就将消息插入到mongo中，同时，再将此消息内容以另一事件发送到客户端。由客户端redux处理。
+另外，服务端还应该有个方法获得某人和某人对话的所有消息列表（从mongo中得到）。这个获得的过程在前端也是redux维护。
+
+chat.redux,js中：
+{% highlight javascript %}
+
+// 得到消息列表
+export function getMsgList(){
+  return dispatch=>{
+    axios.get('/user/getMsgList')
+    .then(res=>{
+      //console.log('res is', res );
+      if (res.status == 200 && res.data.code == 0){
+        console.log('res.data.msgs is', res.data.msgs);
+        dispatch(msgList(res.data.msgs));
+      }
+    });
+  }
+}
+// 发送信息
+export function sengMsg({from, to, msg}){
+  return dispatch =>{
+    socket.emit('sendmsg', {from, to, msg});
+  };
+}
+
+// 接受消息
+export function recvMsg(){
+  return dispatch=>{
+    socket.on('recvmsg', function(data){
+      console.log('recvmsg', data);
+      dispatch(msgRecv(data));
+    })
+  }
+}
+
+
+{% endhighlight %}
+
+后台中，server.js中添加监听消息，插入mongo的方法：
+
+
+{% highlight javascript %}
+
+// socket.io 和express结合起来的方法
+const server = require('http').Server(app);
+
+const io = require('socket.io')(server);
+
+io.on('connection', function(socket){
+  // console.log('user connected...' );
+  // 监听 sendmsg事件
+  socket.on('sendmsg', function(data){
+    const { from, to, msg } = data;
+    const chatid = [from, to].sort().join('_');
+    console.log('chatid is :', chatid);
+    //  数据插入到mongo
+    Chat.create({chatid, from, to, content:msg}, function(err, doc){
+      io.emit('recvmsg', Object.assign({}, doc._doc));
+    });
+
+  });
+});
+
+{% endhighlight %}
+mongo中的数据模型：chat
+
+{% highlight javascript %}
+chat{
+  'chatid':{'type':String, require:true},
+  'from':{'type':String,'require':true},
+  'to':{'type':String,'require':true},
+  'read':{'type':Boolean,default:false},
+  'content':{'type':String,'require':true,'default':''},
+  'create_time':{'type':Number,'default':Date.now}
+}
+
+{% endhighlight %}
+
+#### chat的前端界面
+
+页面的逻辑：
+1. 在组件的componentDidMount()方法中：1)向后台请求数据，2）前端监听接收消息的事件；
+2. redux中维护一个列表，消息集合的列表，在render中map这个列表，封装ui；
+3. 页面组件本地的state中，维护一个text是当前的输入，点击发送后，该值被发送到后台，后台确认后返回，再由redux插入到消息列表中，text清空；
+
+
+{% highlight javascript %}
 
 
 
+{% endhighlight %}
 
 
 ### 项目架构
