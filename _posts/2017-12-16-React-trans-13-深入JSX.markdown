@@ -61,7 +61,7 @@ function WarningButton() {
 
 ```
 
-如果你不用js打包器，而是用scrit标签引用React，那么React是存在全局域中的。
+如果你不用js打包器，而是用script标签引用React，那么React是存在全局域中的。
 
 ##### 在JSX中使用'.'语法
 
@@ -186,8 +186,25 @@ function NumberDescriber(props) {
 }
 
 ```
-在前面的相关章节有更多关于条件渲染的知识。（QUICK START, Conditional Rendering）
+在前面的相关章节有更多关于“条件渲染”的知识。（QUICK START, Conditional Rendering）
 
+##### 字符串字面值
+你可以直接在属性中传递字符串，下面这两个写法没区别：
+```
+<MyComponent message="hello world" />
+
+<MyComponent message={'hello world'} />
+
+```
+在你传递字符串字面值的时候，他的值就是HTML-unescaped（HTML保有值），所以下面两种也是相等的：
+```
+<MyComponent message="&lt;3" />
+
+<MyComponent message={'<3'} />
+
+```
+
+这个问题关系不大，这里提及只是为了知识完整性。
 
 -----------------------------------------------------not finish
 
