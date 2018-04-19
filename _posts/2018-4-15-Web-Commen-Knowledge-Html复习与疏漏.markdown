@@ -50,10 +50,6 @@ comment: true
 <p>图像 <img src="/i/eg_cute.gif" align="bottom"> 在文本中</p>
 {% endhighlight %}
 
-```
-<p>图像 <img src="/i/eg_cute.gif" align="bottom"> 在文本中</p>
-
-```
 上述代码中，文字和图片的底部在一条水平线
 
 同理 align中也可以设置成：middle \ top ，分别是竖直方向上的位置；
@@ -70,15 +66,21 @@ align属性设置为left和right是左、右浮动,和float样式差不多；
 * table标签的border属性用来设置边框粗细大小，不想要边框，设置成0；
 * 表格的td里面可以嵌套其他标签，比如div \ ul \ p等；
 * 跨行或者跨列的表格，[示例](http://www.w3school.com.cn/tiy/t.asp?f=html_table_span)
-```
+
+{% highlight html %}
   <td colspan="2">电话</th> <!-- 这意思是长度是两列的长度 -->
 
   <td rowspan="2">电话</th> <!-- 这意思是高度是两行的高度 -->
-```
+
+{% endhighlight %}
+
+
 * align属性可以排列表格内容的位置；
 * frame属性可以设置表格的边框，设置边框线只有上下还是左右，或者其他；
 * 表格的组成还包括其他标签：
-```
+
+{% highlight html %}
+
 <table>
     <caption>这是表的标题标签</caption>
     <!-- colgroup 标签配合col标签， 可以用来给表格列分配位置空间 -->
@@ -120,7 +122,8 @@ align属性设置为left和right是左、右浮动,和float样式差不多；
     </tfoot>
 </table>
 
-```
+{% endhighlight %}
+
 
 ##### 关于列表的补缺
 * 列表大致分为ul（无序）\ ol(有序) \ 以及dl(自定义)
@@ -129,7 +132,9 @@ align属性设置为left和right是左、右浮动,和float样式差不多；
 
 ##### 框架和内联框架
 * 先说frame
-```
+
+{% highlight html %}
+
 <html>
 
 <frameset cols="120,*">
@@ -140,12 +145,14 @@ align属性设置为left和right是左、右浮动,和float样式差不多；
 </frameset>
 
 </html>
+{% endhighlight %}
 
-```
 上面的代码是frame的典型用法，就是把页面分成两部分frame，放在frameset中，左边宽120，剩下的是右边；
 左边frame中放置一个html页面，右边的frame中也放置一个；
 这样的结构可以是一个典型的导航结构，假设左边的frame中放置几个链接像这样：
-```
+
+
+{% highlight html %}
 <html>
 <body>
     <a href="/example/html/frame_a.html" target="showframe"/>
@@ -153,16 +160,21 @@ align属性设置为left和right是左、右浮动,和float样式差不多；
     <!-- 其他省略 -->
 </body>
 </html>
-```
+
+{% endhighlight %}
+
 这里target属性就是frame的name属性，也就是说，这个链接的作用是，让name等于target的frame中呈现我href的页面。
 
 * 再看iframe
 iframe和frame从功能上来讲颇为类似，也是提供一个页面容器，在里面放置html呈现。
-```
-在body中的代码片段
+在body中的代码片段：
+{% highlight html %}
+
 <iframe src="demo_iframe.htm" name="iframe_a"></iframe>
 <p><a href="http://www.w3school.com.cn" target="iframe_a">W3School.com.cn</a></p>
-```
+
+{% endhighlight %}
+
 
 * frame 和 iframe的区别
 1. frame不能脱离frameSet单独使用，iframe可以；
@@ -175,12 +187,15 @@ iframe和frame从功能上来讲颇为类似，也是提供一个页面容器，
 ##### html的 head标签中的元素
 * title 标题，这个标题决定了：浏览器工具栏中的标题；提供页面被添加到收藏夹时显示的标题；在搜索引擎结果中的页面标题；
 * base, 标签为页面上的所有链接规定默认地址或默认目标（target）
-```
+
+{% highlight html %}
+
 <head>
 <base href="http://www.w3school.com.cn/images/" />
 <base target="_blank" />
 </head>
-```
+{% endhighlight %}
+
 * link,常用外部样式引入；
 * style，文档内样式；
 * script, 里面放脚本；
@@ -192,11 +207,13 @@ meta 标签提供关于 HTML 文档的元数据。元数据不会显示在页面
 
 *一些搜索引擎会利用 meta 元素的 name 和 content 属性来索引您的页面。*
 
-```
+{% highlight html %}
+
 <meta name="description" content="Free Web tutorials on HTML, CSS, XML" />
 
 <meta name="keywords" content="HTML, CSS, XML" />
-```
+{% endhighlight %}
+
 [关于meta，其实东西有很多](http://www.w3school.com.cn/tags/tag_meta.asp)
 #### 参考文献
 
