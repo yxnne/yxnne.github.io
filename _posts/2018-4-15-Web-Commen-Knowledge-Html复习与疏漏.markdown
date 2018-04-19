@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  浏览器同源策源以及相关跨域请求的处理
+title:  HTML基础知识复习和疏漏
 date:   2018-4-15
 categories: Common_Knowledge_Fragments
 tags: [Developing_React, Web_Common_Knowledge]
@@ -45,6 +45,11 @@ comment: true
 
 ##### img标签我没注意过的：
 * img标签的align属性
+{% highlight html %}
+
+<p>图像 <img src="/i/eg_cute.gif" align="bottom"> 在文本中</p>
+{% endhighlight %}
+
 ```
 <p>图像 <img src="/i/eg_cute.gif" align="bottom"> 在文本中</p>
 
