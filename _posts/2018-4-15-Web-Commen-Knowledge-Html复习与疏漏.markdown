@@ -3,7 +3,7 @@ layout: post
 title:  HTML基础知识复习和疏漏
 date:   2018-4-15
 categories: Common_Knowledge_Fragments
-tags: [Developing_React, Web_Common_Knowledge]
+tags: [Basic_Web_Knowledge, Web_Common_Knowledge]
 comment: true
 ---
 对于html，之前都是现用现baidu，但是从来没有好好学习和记忆过，所以，总是查了忘，忘了查，而且知识点也是支离玻碎的。
