@@ -215,9 +215,31 @@ meta 标签提供关于 HTML 文档的元数据。元数据不会显示在页面
 {% endhighlight %}
 
 [关于meta，其实东西有很多](http://www.w3school.com.cn/tags/tag_meta.asp)
+
+##### XHTML
+1. 什么是XHTML
+* XHTML 指可扩展超文本标签语言（EXtensible HyperText Markup Language）。
+* XHTML 的目标是取代 HTML。
+* XHTML 与 HTML 4.01 几乎是相同的。
+* XHTML 是更严格更纯净的 HTML 版本。
+* XHTML 是作为一种 XML 应用被重新定义的 HTML。
+* XHTML 是一个 W3C 标准（不是语言）。
+
+2. 几个重要注意点
+* XHTML 元素必须被正确地嵌套。
+* XHTML 元素必须被关闭。
+* 标签名必须用小写字母。
+* XHTML 文档必须拥有根元素。
+* 属性名称必须小写
+* 属性值必须加引号
+* 属性不能简写
+* 用 Id 属性代替 name 属性
+* XHTML DTD 定义了强制使用的 HTML 元素, [W3School DTD](http://www.w3school.com.cn/xhtml/xhtml_dtd.asp)
+
+
 #### 参考文献
 
 [W3 School HTML](http://www.w3school.com.cn/html/index.asp)
-
+[W3 School XHTML](http://www.w3school.com.cn/xhtml/xhtml_intro.asp)
 
 __操千曲尔后晓声，观千剑尔后识器__
