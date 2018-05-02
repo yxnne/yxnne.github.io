@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  React-官网学习-Advanced-Guides1-使用PropTypes做类型检查
+title:  React-官网学习-Advanced-Guides2-使用PropTypes做类型检查
 date:   2018-5-2
 categories: react_learnning
 tags: [translations_React.js]
