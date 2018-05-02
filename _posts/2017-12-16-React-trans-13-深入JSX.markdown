@@ -88,11 +88,12 @@ function BlueDatePicker() {
 
 我们推荐使用首字母大写命名，如果你要是此前有小写开头的组件，那么在使用JSX之前先把他们变成首字母大写的。
 
-下面打代码不会按预期运行的：
+下面的代码不会按预期运行的：
 ```
 import React from 'react';
 
 // Wrong! This is a component and should have been capitalized:
+// 错！应该用首字母大写的方式定义组件
 function hello(props) {
   // Correct! This use of <div> is legitimate because div is a valid HTML tag:
   return <div>Hello {props.toWhat}</div>;
@@ -100,6 +101,7 @@ function hello(props) {
 
 function HelloWorld() {
   // Wrong! React thinks <hello /> is an HTML tag because it's not capitalized:
+  // 错！React认为，hello是个原生html标签
   return <hello toWhat="World" />;
 }
 
@@ -186,7 +188,7 @@ function NumberDescriber(props) {
 }
 
 ```
-在前面的相关章节有更多关于“条件渲染”的知识。（QUICK START, Conditional Rendering）
+在前面的相关章节有更多关于“条件渲染”的知识。[QUICK START, Conditional Rendering](https://reactjs.org/docs/conditional-rendering.html)
 
 ##### 字符串字面值
 你可以直接在属性中传递字符串，下面这两个写法没区别：
@@ -206,87 +208,231 @@ function NumberDescriber(props) {
 
 这个问题关系不大，这里提及只是为了知识完整性。
 
------------------------------------------------------not finish
+##### Props属性的True默认值
+你要是传递了一个“没有值”的props属性，它的默认值就是true，下面两种写法相等：
+```
+<MyTextBox autocomplete />
 
+<MyTextBox autocomplete={true} />
 
+```
 
-import React from 'react';
-import CustomButton from './CustomButton';
+一般来说我们不推荐这样使用，因为这样容易和ES6 Obeject Shorthand特性相冲突，在Shorthand特性中{foo}写法表示{foo:foo}而不是{foo:true}。这里的这种行为只是为了对应HTML的行为。
 
-function WarningButton() {
-  // return React.createElement(CustomButton, {color: 'red'}, null);
-  return <CustomButton color="red" />;
+##### 展开属性
+如果你已经将需要传递的props写成了一个对象，那么你也许需要使用...运算符，展开运算符，来讲整个props对象传递，下面两种写法等价。
+```
+function App1() {
+  return <Greeting firstName="Ben" lastName="Hector" />;
 }
 
+function App2() {
+  const props = {firstName: 'Ben', lastName: 'Hector'};
+  return <Greeting {...props} />;
+}
+```
+你也可以调出那些将要在组件中处理掉的属性同时使用...传递其他属性。
+```
+const Button = props => {
+  const { kind, ...other } = props;
+  const className = kind === "primary" ? "PrimaryButton" : "SecondaryButton";
+  return <button className={className} {...other} />;
+};
 
-//------------
+const App = () => {
+  return (
+    <div>
+      <Button kind="primary" onClick={() => console.log("clicked!")}>
+        Hello World!
+      </Button>
+    </div>
+  );
+};
+```
 
-import React from 'react';
-import CustomButton from './CustomButton';
+上面的例子中，kind，props属性安全的“被消费”在传递进button元素之前，剩下的所有props通过...other对象传递，你可以看到，onClick和children都被传递下去了。
+扩展运算符简单好用，但是很容易把不必要的props或者不可用的html属性传递到组件中，我们推荐有节制地使用这样的语法。
 
-function WarningButton() {
-  // return React.createElement(CustomButton, {color: 'red'}, null);
-  return <CustomButton color="red" />;
+#### JSX中的子元素
+JSX表达式包含开放和闭合标签，标签间的内容是依靠一个特殊的属性传递：props.children。有几种方式来传递子元素:
+
+##### 字符串值
+你可以将string放置在标签中，这时候props.children的值就是string本身。对于许多基于html元素来讲，这是有用的。
+比如：
+```
+<MyComponent>Hello world!</MyComponent>
+```
+这就是一个可用的JSX，props.children的值就是“Hello World!”。Html值就是HTML-unescaped（HTML保有值），所以你也可以像写html那样写jsx：
+```
+<div>This is valid HTML &amp; JSX at the same time.</div>
+
+```
+JSX会移除行首尾的空格，也会移除空行，标签临近的会被移除，字符串中间的新行会被压缩成一个空格。所以一下几种情况渲染的东西都一样：
+```
+<div>Hello World</div>
+
+<div>
+  Hello World
+</div>
+
+<div>
+  Hello
+  World
+</div>
+
+<div>
+
+  Hello World
+</div>
+```
+
+##### JSX子元素
+你可以提供更多JSX元素作为子元素，这对于展示嵌套的组件是有效的：
+```
+<MyContainer>
+  <MyFirstComponent />
+  <MySecondComponent />
+</MyContainer>
+
+```
+
+你也可以混合不同类型的子元素，所以，你可以将字符串和JSX子元素混合用。这是JSX和html另一点相像之处，所以，下面的既能JSX中使用，也能HTML中使用：
+```
+<div>
+  Here is a list:
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+  </ul>
+</div>
+```
+React组件也能返回医嘱对象，对象数组：
+```
+render() {
+  // No need to wrap list items in an extra element!
+  return [
+    // Don't forget the keys :)
+    <li key="A">First item</li>,
+    <li key="B">Second item</li>,
+    <li key="C">Third item</li>,
+  ];
+}
+```
+
+##### JS表达式作为子元素
+任何js表达式都能在一放在一对花括号中，举例来说，下面的表达式等价：
+```
+<MyComponent>foo</MyComponent>
+
+<MyComponent>{'foo'}</MyComponent>
+
+```
+
+这种通常在渲染一个任意长度JSX列表时格外有用，比如，下面渲染了一个HTML的列表：
+```
+function Item(props) {
+  return <li>{props.message}</li>;
 }
 
-
-
-import React from 'react';
-import CustomButton from './CustomButton';
-
-function WarningButton() {
-  // return React.createElement(CustomButton, {color: 'red'}, null);
-  return <CustomButton color="red" />;
+function TodoList() {
+  const todos = ['finish doc', 'submit pr', 'nag dan to review'];
+  return (
+    <ul>
+      {todos.map((message) => <Item key={message} message={message} />)}
+    </ul>
+  );
+}
+```
+js表达式也可以混合其他类型的子元素写法，通常，代替字符串模板时非常有用。
+```
+function Hello(props) {
+  return <div>Hello {props.addressee}!</div>;
 }
 
+```
+
+##### 函数作为子元素
+
+通常地，JSX中的JavaScript表达式的值作为字符串，React元素或者这些东西的列表。然而，props.children和其他props一样的，当你传递其他数据序列集合不仅仅是那些react知道如何渲染的集合时也能工作。比如，假设你有一个自定义组件，你可以让它持有一个回调函数作为props.children。
+```
+// Calls the children callback numTimes to produce a repeated component
+function Repeat(props) {
+  let items = [];
+  for (let i = 0; i < props.numTimes; i++) {
+    // 这里回调了
+    items.push(props.children(i));
+  }
+  return <div>{items}</div>;
+}
+
+function ListOfTenThings() {
+  return (
+    <Repeat numTimes={10}>
+      {(index) => <div key={index}>This is item {index} in the list</div>}
+    </Repeat>
+  );
+}
+
+//这个最终渲染的结果为：
+This is item 0 in the list
+This is item 1 in the list
+This is item 2 in the list
+This is item 3 in the list
+This is item 4 in the list
+This is item 5 in the list
+This is item 6 in the list
+This is item 7 in the list
+This is item 8 in the list
+This is item 9 in the list
+```
+向组件中添加的子组件可以是任何东西，只要React能够在渲染之前将他们转换成React能理解的东西。这一点不常用，不过如果你想对jsx的能力来点延伸时，它是可用的。
+##### Booleans, Null, 以及 Undefined 将被忽略
+false, null, udefined和true是可用的子组件，他们不会被渲染，下面这些jsx会被渲染成相同的东西：
+```
+<div />
+
+<div></div>
+
+<div>{false}</div>
+
+<div>{null}</div>
+
+<div>{undefined}</div>
+
+<div>{true}</div>
+```
+这一点倒是在条件渲染中可用。这个JSX会在showHeader是True的时候渲染出Header组件。
+```
+<div>
+  {showHeader && <Header />}
+  <Content />
+</div>
+```
+
+这里有个附加警告：一些falsy值[(类似false的值)](https://developer.mozilla.org/en-US/docs/Glossary/Falsy),比如0,依旧会被渲染。举例，下面的代码并不会如你期望那样，因为0间如果props.message是空的，0也将会被打印出来。
+```
+<div>
+  {props.messages.length &&
+    <MessageList messages={props.messages} />
+  }
+</div>
+```
+修复它的话就要保证你的表达式始终是一个布尔表达式：
+```
+<div>
+  {props.messages.length > 0 &&
+    <MessageList messages={props.messages} />
+  }
+</div>
+
+```
+反过来说，你要是想要这种false，true，null，undefined出现在输出中，你得用string()函数转换他们先：
+```
+<div>
+  My JavaScript variable is {String(myVariable)}.
+</div>
+```
+
+[官网文章 Advanced Guides :JSX In Depthe](https://reactjs.org/docs/jsx-in-depth.htmll)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[官网文章 Advanced Guides:JSX in Depth](https://reactjs.org/docs/thinking-in-react.html)
