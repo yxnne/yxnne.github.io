@@ -237,6 +237,11 @@ Reason在Facebook发展，并且应用在其他的产品中，比如Messager。�
 
 Kotlin是由JetBrains开发的静态强类型语言。它的面向平台是JVM，Android和LLVM和JavaScript。
 
+JetBrains给React社区开发和维护了若干工具：React Bindings 和 Creact React Kotlin App。 后者帮你构件一个不用你配置的Kotlin开发的ReactApp。
+
+#### 其他语言
+
+注意，还有其他静态类型语言能编译成js并且和React 兼容。如elmish-react，F#/Fable。去看看他们各自的网站来获得更多信息，并可以任意编辑这一页来添加更多能用React的静态类型语言。
 
 [官网文章 Advanced Guides :Static Type Checking](https://reactjs.org/docs/static-type-checking.html)
 
