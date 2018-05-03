@@ -147,13 +147,15 @@ tsc --init
 众多的选项中，我们关注rootDir和outDir。它真实的方式是将TypeScript文件生成JavaScript文件，但是，我们并不想将源文件和产生的输出文件弄混。
 我们将分两步来分配他们的位置：
 * 首先，我们将我们的项目目录编程这样。我们将用src放置源文件：
-```
+
+{% highlight javascript %}
+
 ├── package.json
 ├── src
 │   └── index.ts
 └── tsconfig.json
 
-```
+{% endhighlight %}
 
 * 接着，我们将要告诉编译器哪里是源文件的地方，哪里是输出文件的地方：
 
