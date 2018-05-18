@@ -439,16 +439,6 @@ x === z; // true
 不可变数据提供了一种更简单的方式来追踪对象的改变，这正是我们实现 shouldComponentUpdate 所需要的。这将会很好的促进性能提升。
 
 
-
-
-
-
-
-
-
-
-
-
 [官网文章 Advanced Guides :Optimizing Performance](https://reactjs.org/docs/optimizing-performance.html)
 
 
