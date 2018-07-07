@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  React-官网学习-Advanced-Guides9-核对(Differ算法)
+title:  React-官网学习-Advanced-Guides9-调和
 date:   2018-5-21
 categories: react_learnning
 tags: [translations_React.js]
