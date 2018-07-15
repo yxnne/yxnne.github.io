@@ -1,0 +1,31 @@
+---
+layout: post
+title:  "两周计划系列_2018-04-17"
+date:   2018-4-17
+categories: Study_Plan
+tags: [Study_Plan]
+comment: true
+---
+两周计划: 2018-04-17 ~ 2018-5-1
+
+
+* 这两周需要专门复习下web基础的知识，包括：
+html / css / js 基础知识，为此，专门新建了个项目 'WebFundamental'
+
+* Nap 用react继续实现，尽量将已有功能实现了，并且做好个人页面
+
+* 每天，工作日，自己列一个清单，todolist
+
+* 笔记需要勤记录
+
+
+宏观方向把控：近期发现自己的web基础没有系统的总结和学习过，实在是需要抽出时间好好弄弄。
+大的方向不会变，js全栈，web前端主攻React，了解vue，后台做node平台，express，了解koa，了解Java，移动端了解iOS（swift开发），android（java）以及ReactNative。
+
+
+>两周后的总结和反馈：
+
+
+
+
+__生于忧患死于安乐__
