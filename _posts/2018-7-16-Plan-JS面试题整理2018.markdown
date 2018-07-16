@@ -1,0 +1,62 @@
+---
+layout: post
+title:  "JS面试题整理2018"
+date:   2018-7-16
+categories: Interview
+tags: [Javascript]
+comment: true
+---
+### JS的基本数据类型和引用数据类型
+
+基本数据类型：undefined、null、boolean、number、string、symbol
+引用数据类型：object、array、function
+
+### 介绍JS有哪些内置对象？
+
+数据封装类对象：Object、Array、Boolean、Number、String
+其他对象：Function、Arguments、Math、Date、RegExp、Error
+ES6新增对象：Symbol、Map、Set、Promises、Proxy、Reflect
+
+### 说几条写JavaScript的基本规范？
+
+代码缩进，建议使用“四个空格”缩进
+代码段使用花括号{}包裹
+语句结束使用分号;
+变量和函数在使用前进行声明
+以大写字母开头命名构造函数，全大写命名常量
+规范定义JSON对象，补全双引号
+用{}和[]声明对象和数组
+
+### 描述浏览器的渲染过程，DOM树和渲染树的区别？
+
+1. 浏览器的渲染过程：
+
+a. 解析HTML构建 DOM(DOM树)，并行请求 css/image/js
+b. CSS 文件下载完成，开始构建 CSSOM(CSS树)
+c. CSSOM 构建结束后，和 DOM 一起生成 Render Tree(渲染树)
+d. 布局(Layout)：计算出每个节点在屏幕中的位置
+e. 显示(Painting)：通过显卡把页面画到屏幕上
+
+2. DOM树 和 渲染树 的区别：
+
+DOM树与HTML标签一一对应，包括head和隐藏元素
+渲染树不包括head和隐藏元素，大段文本的每一个行都是独立节点，每一个节点都有对应的css属性
+
+### 解释JavaScript中的作用域与变量声明提升？
+
+#### JavaScript作用域：
+
+在Java、C等语言中，作用域为for语句、if语句或{}内的一块区域，称为作用域；
+而在 JavaScript 中，作用域为function(){}内的区域，称为函数作用域。
+
+#### JavaScript变量声明提升：
+
+在JavaScript中，函数声明与变量声明经常被JavaScript引擎隐式地提升到当前作用域的顶部。
+声明语句中的赋值部分并不会被提升，只有名称被提升
+函数声明的优先级高于变量，如果变量名跟函数名相同且未赋值，则函数声明会覆盖变量声明
+如果函数有多个同名参数，那么最后一个参数（即使没有定义）会覆盖前面的同名参数
+
+
+[参考](https://github.com/poetries/FE-Interview-Questions/blob/master/JavaScript.md)
+
+__生于忧患死于安乐__
