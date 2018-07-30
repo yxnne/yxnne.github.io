@@ -1,31 +1,34 @@
 ---
 layout: post
-title:  "两周计划系列_2018-04-17"
+title:  "近期复习计划"
 date:   2018-4-17
 categories: Study_Plan
 tags: [Study_Plan]
 comment: true
 ---
-两周计划: 2018-04-17 ~ 2018-5-1
 
+需要再看的有：
+1. 前端的面试题刷下，在刷题的过程中总结下；
+2. React Native了解下；
+3. 复习自己的android和iOS项目；
 
-* 这两周需要专门复习下web基础的知识，包括：
-html / css / js 基础知识，为此，专门新建了个项目 'WebFundamental'
+<br/>
+https://mp.weixin.qq.com/s?src=11&timestamp=1531667416&ver=999&signature=AfU4LkdykUsWc8dq4iTpVCsgdum-pkFMLJ2Kx83WYcsigpo0tnFdw5WXvRA3w5I0rE6znuNM9JE3iQ00nul8MNybKgNxcYhagoehVuDIVZPh9N6Efvlr7xjdiNureMy6&new=1
 
-* Nap 用react继续实现，尽量将已有功能实现了，并且做好个人页面
+<br/>
 
-* 每天，工作日，自己列一个清单，todolist
+https://mp.weixin.qq.com/s?src=11&timestamp=1531667416&ver=999&signature=JcOKJ9mLetru2LNeT8LueYMRpbA9DDLtPHXYVmvOebDkijlZ0MYxrkny5QpY5y6Kj3EhUSUYjiX8Uhws4r2n4*5Eb-KF5UkDO83Kbemn5mU*RmjmUMNQloPcBu0H56jk&new=1
 
-* 笔记需要勤记录
+<br/>
+https://mp.weixin.qq.com/s?src=11&timestamp=1531667416&ver=999&signature=udb3N24BfIjUIqSjUxDGGuqh0Bq9NJsH2Fp4*NCmpOR8bLDfP9gEfTbndYqS2SXcNXftJ*jejz4FzRHw5CfnZQY154s9h6fjAu4jzU-rzacAxzxvRmRdcjQ5V-kvoduV&new=1
 
+<br/>
+https://mp.weixin.qq.com/s?src=11&timestamp=1531668243&ver=999&signature=aOJr9fhHaWPalZbx*aVVqSkuEXX5oChCVsYftj2YYPmXNoqkLXGAPExRUrlKpcsl*G7Tn*h0nkOWTZMPP10iUsreudzYwn6JUJIgjrAETDxcTkUkRMCwU54*3xTaD5wy&new=1
 
-宏观方向把控：近期发现自己的web基础没有系统的总结和学习过，实在是需要抽出时间好好弄弄。
-大的方向不会变，js全栈，web前端主攻React，了解vue，后台做node平台，express，了解koa，了解Java，移动端了解iOS（swift开发），android（java）以及ReactNative。
+<br/>
 
+https://mp.weixin.qq.com/s?src=11&timestamp=1531668317&ver=999&signature=giCwxCEimp7hDdLsORz9fSIsvVdgLW9lAooW*h*XFWEul9Lot7CbtnDfrf9jZopZMuIf4RVKWZZpSJ5UablpBUJK8R64CCMzOlGgFCK-JDCF*lRO11COaZ8PehPxeopX&new=1
 
->两周后的总结和反馈：
-
-
-
+<br/>
 
 __生于忧患死于安乐__
