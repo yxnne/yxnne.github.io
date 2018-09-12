@@ -99,7 +99,121 @@ class MouseTracker extends React.Component {
 }
 ```
 
+现在Mouse组件封装了所有因为监听mousemove事件而关联的行为，同时将(x, y)坐标存储起来。但这依旧不是真正的复用。
 
+就比如，我们假象一个Cat组件，它在屏幕上渲染一个抓老鼠的小猫。我们期望能用《Cat mouse={{x, y}}》来告知组件老鼠的坐标，这样来决定将这张图片展示在什么地方。
+
+ 一开始，你可能想将Cat渲染在Mouse中去：
+
+ ```
+class Cat extends React.Component {
+  render() {
+    const mouse = this.props.mouse;
+    return (
+      <img src="/cat.jpg" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
+    );
+  }
+}
+
+class MouseWithCat extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.state = { x: 0, y: 0 };
+  }
+
+  handleMouseMove(event) {
+    this.setState({
+      x: event.clientX,
+      y: event.clientY
+    });
+  }
+
+  render() {
+    return (
+      <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
+
+        {/*
+          We could just swap out the <p> for a <Cat> here ... but then
+          we would need to create a separate <MouseWithSomethingElse>
+          component every time we need to use it, so <MouseWithCat>
+          isn't really reusable yet.
+        */}
+        <Cat mouse={this.state} />
+      </div>
+    );
+  }
+}
+
+class MouseTracker extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Move the mouse around!</h1>
+        <MouseWithCat />
+      </div>
+    );
+  }
+}
+
+ ```
+
+这个方法对我们这个特殊的需求的确奏效。但是我们还没有达到真正以可重用的方式封装的目的。现在是，每次想要使用鼠标位置，我们都得创建一个新的满足我们特殊要求的组件（基本上是另一个MouseWithCat）。
+
+Render Props技术这就来了：我们将给Mouse组件中传递一个函数的Props，该函数用来动态决定怎样渲染Render Props，这样来取代在Mouse中硬编码了一个Cat组件，并且高效率的变更其渲染输出。
+
+```
+class Cat extends React.Component {
+  render() {
+    const mouse = this.props.mouse;
+    return (
+      <img src="/cat.jpg" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
+    );
+  }
+}
+
+class Mouse extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.state = { x: 0, y: 0 };
+  }
+
+  handleMouseMove(event) {
+    this.setState({
+      x: event.clientX,
+      y: event.clientY
+    });
+  }
+
+  render() {
+    return (
+      <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
+
+        {/*
+          Instead of providing a static representation of what <Mouse> renders,
+          use the `render` prop to dynamically determine what to render.
+        */}
+        {this.props.render(this.state)}
+      </div>
+    );
+  }
+}
+
+class MouseTracker extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Move the mouse around!</h1>
+        <Mouse render={mouse => (
+          <Cat mouse={mouse} />
+        )}/>
+      </div>
+    );
+  }
+}
+
+```
 #### file input 标签
 
 
