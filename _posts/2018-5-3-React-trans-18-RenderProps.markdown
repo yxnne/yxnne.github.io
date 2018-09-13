@@ -214,9 +214,129 @@ class MouseTracker extends React.Component {
 }
 
 ```
-#### file input 标签
+
+现在，取代实际等于拷贝Mouse组件以及硬编码在render方法来解决这个特殊用例，我们提供名字是render的属性，这样Mouse组件可以动态的决定要渲染什么。
+
+更正确的说，名为render的props是一个可以让组件知道要自己要渲染的东西。
+
+这项技术使得我们共享的需求十分简单。为了达成目的，我们渲染Mouse时要用render props来告知当前鼠标的x，y坐标。
+
+另一个有趣的事情是，大多数的高阶组件HOC可以用上这种常规组件携带render props的方法。比如说， 想要一个withMouse的HOC来替代Mouse组件，你可以简单的创造一个常规Mouse组件带上一个render props。
+
+```
+
+// If you really want a HOC for some reason, you can easily
+// create one using a regular component with a render prop!
+function withMouse(Component) {
+  return class extends React.Component {
+    render() {
+      return (
+        <Mouse render={mouse => (
+          <Component {...this.props} mouse={mouse} />
+        )}/>
+      );
+    }
+  }
+}
 
 
+```
+
+所以，使用名为render的props让两种模式都得以实现。
+
+#### 使用Props不仅仅是render
+
+记住这个很重要，这个模式叫“render props”，所以你没必要必须用一个名为render的 prop来使用该模式。事实上，任何一个函数props，其作用是提供组件的渲染元素，都叫render props。
+
+尽管上面的例子都在使用render。但是我们可以简单的使用children属性。
+
+```
+
+<Mouse children={mouse => (
+  <p>The mouse position is {mouse.x}, {mouse.y}</p>
+)}/>
+
+```
+同时要记住，children属性实际不需要写在JSX的一串属性中。你可以将它直接写在组件内部。
+
+```
+<Mouse>
+  {mouse => (
+    <p>The mouse position is {mouse.x}, {mouse.y}</p>
+  )}
+</Mouse>
+
+```
+
+你在react-motion库中常见此技术。
+
+既然该技术有点不寻常，你可能想在设计API的时候在propTypes中，明确的声明children应该是一个function。
+
+```
+Mouse.propTypes = {
+  children: PropTypes.func.isRequired
+};
+
+```
+
+### 警告
+
+**在React.PureComponent中小心使用名为Render的Props**
+
+当你在render中新建一个函数，那么使用这个技术就抵消了使用React.PureComponent的优点。这是因为钱比较对于新的props来讲会返回false（不相等），而每一次渲染都会造成一个新的render props产生（箭头函数对象）。
+
+比如，继续我们上面提到的例子Mouse组件，如果Mouse组件集成了PureComponent，它就是这样的：
+
+```
+class Mouse extends React.PureComponent {
+  // Same implementation as above...
+}
+
+class MouseTracker extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Move the mouse around!</h1>
+
+        {/*
+          This is bad! The value of the `render` prop will
+          be different on each render.
+        */}
+        <Mouse render={mouse => (
+          <Cat mouse={mouse} />
+        )}/>
+      </div>
+    );
+  }
+}
+
+```
+
+这个例子中，每次MouseTracker渲染后，就产生新的函数对象作为Mouse的属性，这样就是一开始就抵消了Mouse集成PureComponent的作用。
+
+绕过这个问题的办法，就是你可以定义属性的值为一个实例方法，像这样：
+
+```
+class MouseTracker extends React.Component {
+  // Defined as an instance method, `this.renderTheCat` always
+  // refers to *same* function when we use it in render
+  renderTheCat(mouse) {
+    return <Cat mouse={mouse} />;
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Move the mouse around!</h1>
+        <Mouse render={this.renderTheCat} />
+      </div>
+    );
+  }
+}
+
+```
+
+那些你不能定义静态属性的例子中（比如你要关闭组件的属性后状态？），Mouse应该集成React。Component。
 
 [官网文章 Advanced Guides :Render Props](https://reactjs.org/docs/render-props.html)
 
